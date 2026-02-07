@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalhara Development | High-End IT Solutions</title>
+    
+    <!-- Using Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Using FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        techBlue: '#00f2ff',
+                        techPurple: '#bc13fe',
+                        techPink: '#ff0055',
+                        techDark: '#050505',
+                        techCard: 'rgba(22, 22, 22, 0.7)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Orbs */
+        .orb-1, .orb-2, .orb-3 {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: blob 10s infinite alternate;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #7000ff; }
+        .orb-2 { top: 20%; right: -20%; width: 400px; height: 400px; background: #00f2ff; animation-delay: 2s; }
+        .orb-3 { bottom: -10%; left: 20%; width: 600px; height: 600px; background: #ff0055; animation-delay: 4s; }
+
+        /* Neon Glow Text */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(188, 19, 254, 0.7), 0 0 20px rgba(0, 242, 255, 0.5);
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00f2ff;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2), inset 0 0 20px rgba(0, 242, 255, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #00f2ff, #bc13fe); border-radius: 4px; }
+
+        /* Typing Effect Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Button Glow */
+        .btn-glow {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-glow:hover::before { left: 100%; }
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Accordion Transition */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+            transition: max-height 0.4s ease-in-out;
+        }
+        .faq-item.active i.fa-chevron-down { transform: rotate(180deg); }
+        .faq-item.active { border-color: #bc13fe; background: rgba(188, 19, 254, 0.1); }
+    </style>
+</head>
+<body class="bg-techDark text-white selection:bg-techPink selection:text-white">
+
+    <!-- Animated Background Blobs -->
+    <div class="orb-1"></div>
+    <div class="orb-2"></div>
+    <div class="orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 cursor-pointer group">
+                    <span class="text-2xl font-black tracking-wider text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-techBlue group-hover:to-techPurple transition-all duration-300">
+                        KALHARA <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">DEV</span>
+                    </span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#home" class="text-gray-300 hover:text-techBlue font-medium transition-colors relative group">
+                            Home <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-techBlue transition-all group-hover:w-full"></span>
+                        </a>
+                        <a href="#services" class="text-gray-300 hover:text-techPurple font-medium transition-colors relative group">
+                            Services <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-techPurple transition-all group-hover:w-full"></span>
+                        </a>
+                        <a href="#troubleshoot" class="text-gray-300 hover:text-techPink font-medium transition-colors relative group">
+                            Troubleshoot <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-techPink transition-all group-hover:w-full"></span>
+                        </a>
+                        <a href="#about" class="text-gray-300 hover:text-white font-medium transition-colors">About</a>
+                        <a href="#contact" class="btn-glow bg-gradient-to-r from-techBlue to-techPurple text-black px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-purple-500/20">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button onclick="toggleMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-xl border-t border-gray-800 absolute w-full">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Home</a>
+                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Services</a>
+                <a href="#troubleshoot" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Troubleshoot</a>
+                <a href="#contact" class="block px-3 py-3 mt-4 text-center rounded-md font-bold bg-gradient-to-r from-techBlue to-techPurple text-black">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
+        <div class="text-center z-10 max-w-5xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-techPurple/50 bg-techPurple/10 text-techBlue text-sm font-bold uppercase tracking-widest animate-pulse-slow">
+                <span class="w-2 h-2 rounded-full bg-techBlue animate-pulse"></span>
+                Full Stack IT Solutions
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-black text-white mb-6 leading-tight tracking-tight">
+                MASTERING <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue via-techPurple to-techPink neon-text typing-cursor" id="typing-text">HARDWARE & CODE</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+                Experience the perfect fusion of precision hardware repair and next-gen software development.
+            </p>
+            
+            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#services" class="btn-glow px-10 py-4 rounded-full bg-white text-black font-extrabold text-lg transition-all hover:bg-gray-200">
+                    Explore Services <i class="fas fa-arrow-right ml-2 text-techPurple"></i>
+                </a>
+                <a href="#troubleshoot" class="px-10 py-4 rounded-full border border-gray-500 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 text-white font-bold text-lg transition-all backdrop-blur-sm">
+                    Fix a Problem
+                </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-500">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Elite <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">Services</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-techBlue to-techPurple mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Hardware -->
+                <div class="glass-card p-8 rounded-2xl relative group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-techBlue to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-microchip text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-techBlue transition-colors">Hardware Repair</h3>
+                    <p class="text-gray-400 mb-6">Chip-level diagnostics and repair for motherboards, power units, and intricate circuitry.</p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-2"></i> Motherboard Recovery</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-2"></i> Power Supply Fixing</li>
+                    </ul>
+                </div>
+
+                <!-- Web Dev -->
+                <div class="glass-card p-8 rounded-2xl relative group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-techPurple to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-techPurple transition-colors">Web Development</h3>
+                    <p class="text-gray-400 mb-6">Stunning, high-performance websites tailored to elevate your digital presence.</p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-2"></i> Responsive Design</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-2"></i> E-Commerce Ready</li>
+                    </ul>
+                </div>
+
+                <!-- Software Dev -->
+                <div class="glass-card p-8 rounded-2xl relative group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-green-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-terminal text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">Software Solutions</h3>
+                    <p class="text-gray-400 mb-6">Custom-built software for POS, inventory management, and business automation.</p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Custom POS Systems</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Inventory Tools</li>
+                    </ul>
+                </div>
+
+                <!-- Networking -->
+                <div class="glass-card p-8 rounded-2xl relative group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-network-wired text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">System & Network</h3>
+                    <p class="text-gray-400 mb-6">Robust network infrastructure, server management, and CCTV security installations.</p>
+                </div>
+
+                <!-- OS & Format -->
+                <div class="glass-card p-8 rounded-2xl relative group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fab fa-windows text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">OS & Formatting</h3>
+                    <p class="text-gray-400 mb-6">Complete OS installation (Windows/Linux/Mac) with driver optimization.</p>
+                </div>
+
+                <!-- Data Recovery -->
+                <div class="glass-card p-8 rounded-2xl relative group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-rose-700 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-red-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-database text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-red-500 transition-colors">Data Recovery</h3>
+                    <p class="text-gray-400 mb-6">Advanced recovery techniques for lost data from damaged storage devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TROUBLESHOOT SECTION -->
+    <section id="troubleshoot" class="py-24 relative bg-black/40 backdrop-blur-sm border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-techPink font-bold tracking-widest uppercase text-sm">Self Help Center</span>
+                <h2 class="text-4xl font-bold text-white mt-2">Knowledge <span class="text-transparent bg-clip-text bg-gradient-to-r from-techPink to-techPurple">Base</span></h2>
+            </div>
+
+            <!-- Modern Search -->
+            <div class="mb-12 relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-techBlue via-techPurple to-techPink rounded-full opacity-50 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div class="relative flex items-center bg-black rounded-full p-2">
+                    <i class="fas fa-search text-gray-400 ml-4 text-xl"></i>
+                    <input type="text" id="searchInput" placeholder="Describe your issue (e.g. 'No Sound', 'Blue Screen')..." 
+                        class="w-full bg-transparent text-white px-4 py-3 text-lg focus:outline-none placeholder-gray-600">
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-4 mb-8 flex-wrap">
+                <button onclick="filterIssues('all')" class="filter-btn active px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">All Issues</button>
+                <button onclick="filterIssues('Hardware')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">Hardware</button>
+                <button onclick="filterIssues('Software')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">Software</button>
+                <button onclick="filterIssues('Internet')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">Internet</button>
+            </div>
+
+            <!-- Issues List -->
+            <div id="issuesContainer" class="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 md:p-12 border border-gray-800 bg-gradient-to-br from-gray-900 to-black">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl font-bold text-white mb-6">About <span class="text-techBlue">Tiran Kalhara</span></h2>
+                        
+                        <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+                            <p>
+                                I am not just a technician or a developer; I am someone who genuinely cares about technology and the people who use it. I started this journey out of pure passion for understanding how things work—from the tiniest microchip to complex software codes.
+                            </p>
+                            <p>
+                                My philosophy is simple: <strong>Quality over Quantity</strong>. When you hand over a laptop for repair or trust me with a website project, I treat it as my own. I don't believe in quick fixes, shortcuts, or hidden costs. I believe in doing the job right the first time.
+                            </p>
+                            <p>
+                                Whether it's reviving a dead computer or building a system for your business, my goal is to give you a solution that you can rely on. If I can't fix it, I'll be honest about it. My reputation is built on trust, transparency, and a genuine desire to help.
+                            </p>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-gray-800">
+                            <p class="text-gray-400 italic">"Technology is complicated, but finding a reliable person to handle it shouldn't be."</p>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <!-- Decorative elements -->
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-techBlue rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+                        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-techPurple rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techBlue transition-colors">
+                                <i class="fas fa-brain text-4xl text-techBlue mb-4"></i>
+                                <h4 class="text-white font-bold">Deep Analysis</h4>
+                                <p class="text-xs text-gray-500 mt-2">I find the root cause, not just the symptom.</p>
+                            </div>
+                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techPurple transition-colors mt-8">
+                                <i class="fas fa-layer-group text-4xl text-techPurple mb-4"></i>
+                                <h4 class="text-white font-bold">Full Dedication</h4>
+                                <p class="text-xs text-gray-500 mt-2">Every project gets my 100% attention.</p>
+                            </div>
+                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techPink transition-colors">
+                                <i class="fas fa-handshake text-4xl text-techPink mb-4"></i>
+                                <h4 class="text-white font-bold">Honest Work</h4>
+                                <p class="text-xs text-gray-500 mt-2">Transparent pricing and genuine advice.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Strip -->
+    <div class="py-10 border-t border-white/5 bg-black/50 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-12 grayscale hover:grayscale-0 transition-all duration-500">
+            <i class="fab fa-html5 text-5xl text-orange-500 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-css3-alt text-5xl text-blue-500 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-js text-5xl text-yellow-400 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-react text-5xl text-cyan-400 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-python text-5xl text-blue-300 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-windows text-5xl text-blue-600 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-1 bg-gradient-to-b from-gray-800 to-black">
+                <div class="bg-black/80 rounded-[22px] p-8 md:p-12 backdrop-blur-xl">
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl font-bold text-white">Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">Connect</span></h2>
+                        <p class="text-gray-400 mt-2">Ready to start your project or fix your device?</p>
+                    </div>
+
+                    <!-- Contact Form Input Fields (No Default Form Action) -->
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="group">
+                                <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Name</label>
+                                <input type="text" id="c-name" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="John Doe">
+                            </div>
+                            <div class="group">
+                                <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Phone</label>
+                                <input type="tel" id="c-phone" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="07x xxx xxxx">
+                            </div>
+                        </div>
+                        <div class="group">
+                            <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Service</label>
+                            <select id="c-service" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all [&>option]:bg-black">
+                                <option>Hardware Repair</option>
+                                <option>Web Development</option>
+                                <option>Software Development</option>
+                                <option>Network Issue</option>
+                                <option>Other Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="group">
+                            <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Message</label>
+                            <textarea id="c-message" rows="4" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="How can I help you?"></textarea>
+                        </div>
+                        
+                        <!-- Dual Button System -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                            <button onclick="sendMessage('whatsapp')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
+                                <i class="fab fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i> Send via WhatsApp
+                            </button>
+                            <button onclick="sendMessage('email')" class="w-full bg-gradient-to-r from-techBlue to-techPurple hover:opacity-90 text-black font-bold py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
+                                <i class="fas fa-envelope text-xl group-hover:scale-110 transition-transform"></i> Send via Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                        <div>
+                            <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Email</p>
+                            <p class="text-white hover:text-techBlue transition-colors">tirankalharac@gmail.com</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Phone</p>
+                            <p class="text-white hover:text-techBlue transition-colors">070 342 7275</p>
+                        </div>
+                        <div class="md:text-right">
+                            <a href="https://www.facebook.com/" target="_blank" class="inline-flex items-center text-blue-500 hover:text-white transition-colors">
+                                <i class="fab fa-facebook text-2xl mr-2"></i> Find me on Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-900 text-center">
+        <p class="text-gray-600 text-sm">
+            &copy; 2026 Kalhara Development. Crafted with <i class="fas fa-heart text-red-500 animate-pulse"></i> for technology.
+        </p>
+    </footer>
+
+    <script>
+        // --- MESSAGING LOGIC ---
+        function sendMessage(method) {
+            // Get Input Values
+            const name = document.getElementById('c-name').value;
+            const phone = document.getElementById('c-phone').value;
+            const service = document.getElementById('c-service').value;
+            const message = document.getElementById('c-message').value;
+
+            // Simple validation
+            if(!name || !message) {
+                alert("Please enter your Name and Message.");
+                return;
+            }
+
+            // Create formatted message
+            // %0A is a code for new line (Enter key)
+            const fullMessage = `*New Inquiry via Website*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Service:* ${service}%0A*Message:* ${message}`;
+
+            if(method === 'whatsapp') {
+                // WhatsApp URL (International format for Sri Lanka is 94...)
+                // Your number: 0703427275 -> 94703427275
+                const whatsappUrl = `https://wa.me/94703427275?text=${fullMessage}`;
+                window.open(whatsappUrl, '_blank');
+            } 
+            else if(method === 'email') {
+                // Mailto URL
+                const mailSubject = `Website Inquiry: ${service}`;
+                // Use regular newline for email body
+                const emailBody = `Name: ${name}%0D%0APhone: ${phone}%0D%0AService: ${service}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+                const mailtoUrl = `mailto:tirankalharac@gmail.com?subject=${mailSubject}&body=${emailBody}`;
+                window.location.href = mailtoUrl;
+            }
+        }
+
+        // --- TROUBLESHOOT DATA ---
+        const troubleshootData = [
+            { cat: 'Hardware', q: 'Computer won\'t turn on (No lights)', a: 'Check if the power cable is plugged in firmly. Try a different wall socket. If it\'s a laptop, remove the battery and plug in the charger.' },
+            { cat: 'Hardware', q: 'Screen is black but fans are spinning', a: 'Likely RAM issue. Try cleaning the RAM sticks with an eraser and reseating them carefully.' },
+            { cat: 'Hardware', q: 'PC shuts down randomly', a: 'Check CPU temperature. The thermal paste might be dried up or the fan is clogged with dust.' },
+            { cat: 'Software', q: 'Blue Screen (BSOD)', a: 'Restart PC. If frequent, note the error code (e.g., MEMORY_MANAGEMENT). Could be a bad driver or failing hardware.' },
+            { cat: 'Performance', q: 'Computer runs very slow', a: 'Check Task Manager for high CPU usage. Consider upgrading from HDD to SSD for 10x speed.' },
+            { cat: 'Internet', q: 'Connected to WiFi but no Internet', a: 'Open CMD and type "ipconfig /flushdns". Restart your router.' },
+            { cat: 'Audio', q: 'No sound from speakers', a: 'Check if correct Output Device is selected in Sound Settings. Update Realtek drivers.' },
+            { cat: 'Software', q: 'Microphone not working', a: 'Go to Settings > Privacy > Microphone and ensure "Allow apps to access your microphone" is ON.' },
+            { cat: 'Hardware', q: 'USB Device not recognized', a: 'Try a different port. Open Device Manager and scan for hardware changes.' },
+            { cat: 'Software', q: 'Windows Update failed', a: 'Run the built-in Windows Update Troubleshooter. Restart PC and try again.' },
+            { cat: 'Internet', q: 'Slow Internet Speed', a: 'Use 5GHz WiFi band if possible. Close background downloads like Steam or Torrent.' },
+            { cat: 'Hardware', q: 'Laptop Battery draining fast', a: 'Reduce brightness. Close unused apps. Battery health might be degraded and needs replacement.' },
+            { cat: 'Hardware', q: 'Keyboard typing wrong characters', a: 'Check if NumLock is on. Ensure keyboard language is set to US English.' },
+            { cat: 'Software', q: 'Program freezes / Not Responding', a: 'Press Ctrl+Shift+Esc to open Task Manager, find the app, and click "End Task".' },
+            { cat: 'Software', q: 'Deleted important file', a: 'Check Recycle Bin. If empty, stop using the drive immediately and use recovery software.' }
+        ];
+
+        const issuesContainer = document.getElementById('issuesContainer');
+        const searchInput = document.getElementById('searchInput');
+
+        function renderIssues(data) {
+            issuesContainer.innerHTML = '';
+            if(data.length === 0) {
+                issuesContainer.innerHTML = '<div class="text-center text-gray-500 py-8 italic">No matching solutions found. Please contact me directly.</div>';
+                return;
+            }
+            
+            data.forEach((issue) => {
+                const item = document.createElement('div');
+                item.className = 'faq-item bg-white/5 border border-white/10 rounded-xl px-6 py-4 cursor-pointer hover:bg-white/10 transition-all group';
+                item.onclick = () => toggleAnswer(item);
+                
+                let iconClass = 'fa-question-circle text-gray-500';
+                if(issue.cat === 'Hardware') iconClass = 'fa-microchip text-techBlue';
+                if(issue.cat === 'Software') iconClass = 'fa-code text-techPurple';
+                if(issue.cat === 'Internet') iconClass = 'fa-wifi text-techPink';
+
+                item.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
+                                <i class="fas ${iconClass}"></i>
+                            </div>
+                            <h4 class="text-white font-medium text-lg group-hover:text-techBlue transition-colors">${issue.q}</h4>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer text-gray-400 mt-0">
+                        <div class="pt-4 pl-12 border-t border-white/5 mt-3">
+                            <p><span class="text-techBlue font-bold tracking-wide text-sm uppercase">Fix:</span> ${issue.a}</p>
+                        </div>
+                    </div>
+                `;
+                issuesContainer.appendChild(item);
+            });
+        }
+
+        function toggleAnswer(element) {
+            const wasActive = element.classList.contains('active');
+            // Optional: Close others
+            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+            
+            if (!wasActive) {
+                element.classList.add('active');
+            }
+        }
+
+        function filterIssues(category) {
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const btnText = btn.innerText.includes('All') ? 'all' : btn.innerText;
+                if(btnText === category || (category === 'all' && btn.innerText.includes('All'))) {
+                    btn.classList.add('active', 'border-techBlue', 'text-techBlue', 'bg-techBlue/10');
+                    btn.classList.remove('border-gray-700', 'text-gray-300');
+                } else {
+                    btn.classList.remove('active', 'border-techBlue', 'text-techBlue', 'bg-techBlue/10');
+                    btn.classList.add('border-gray-700', 'text-gray-300');
+                }
+            });
+
+            const term = searchInput.value.toLowerCase();
+            const filtered = troubleshootData.filter(item => {
+                const matchesCat = category === 'all' || item.cat === category;
+                const matchesSearch = item.q.toLowerCase().includes(term) || item.a.toLowerCase().includes(term);
+                return matchesCat && matchesSearch;
+            });
+            renderIssues(filtered);
+        }
+
+        searchInput.addEventListener('input', () => {
+            const activeBtn = document.querySelector('.filter-btn.active');
+            const category = activeBtn ? (activeBtn.innerText.includes('All') ? 'all' : activeBtn.innerText) : 'all';
+            filterIssues(category);
+        });
+
+        // Initialize
+        renderIssues(troubleshootData);
+
+        // --- TYPING EFFECT ---
+        const textToType = "HARDWARE & CODE";
+        const typingElement = document.getElementById('typing-text');
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentText = textToType; // Can be array for multiple phrases
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 100 : 200;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 3000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+        
+        // Start typing on load
+        document.addEventListener('DOMContentLoaded', typeEffect);
+
+        // Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
