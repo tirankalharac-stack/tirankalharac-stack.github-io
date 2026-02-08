@@ -6,7 +6,7 @@
     <!-- Google Search Console Verification Code -->
     <meta name="google-site-verification" content="IH50WTRSJSWWC5nlEKyXMWr1MMBVKpfKWQPrJA-4hFs" />
     
-    <title>Kalhara Development | High-End IT Solutions</title>
+    <title>Kalhara Development | High-End IT Solutions</title>aa
     
     <!-- Using Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -30,6 +30,8 @@
                     animation: {
                         'blob': 'blob 7s infinite',
                         'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         blob: {
@@ -58,8 +60,6 @@
         }
 
         /* --- Animations --- */
-        
-        /* Reveal on Scroll */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -70,7 +70,6 @@
             transform: translateY(0);
         }
 
-        /* Animated Background Orbs */
         .orb-1, .orb-2, .orb-3 {
             position: fixed;
             border-radius: 50%;
@@ -83,12 +82,10 @@
         .orb-2 { top: 20%; right: -20%; width: 400px; height: 400px; background: #00f2ff; animation-delay: 2s; }
         .orb-3 { bottom: -10%; left: 20%; width: 600px; height: 600px; background: #ff0055; animation-delay: 4s; }
 
-        /* Neon Glow Text */
         .neon-text {
             text-shadow: 0 0 10px rgba(188, 19, 254, 0.7), 0 0 20px rgba(0, 242, 255, 0.5);
         }
 
-        /* Glassmorphism Card with 3D Tilt Hover */
         .glass-card {
             background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(10px);
@@ -102,19 +99,16 @@
             box-shadow: 0 0 30px rgba(0, 242, 255, 0.2), inset 0 0 20px rgba(0, 242, 255, 0.05);
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #00f2ff, #bc13fe); border-radius: 4px; }
 
-        /* Typing Effect Cursor */
         .typing-cursor::after {
             content: '|';
             animation: blink 1s step-end infinite;
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Button Glow */
         .btn-glow {
             position: relative;
             z-index: 1;
@@ -135,7 +129,6 @@
             transform: scale(1.05);
         }
 
-        /* Accordion Transition */
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -226,7 +219,6 @@
                 </a>
             </div>
 
-            <!-- Scroll Indicator -->
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-500">
                 <i class="fas fa-chevron-down text-2xl"></i>
             </div>
@@ -395,18 +387,6 @@
         </div>
     </section>
 
-    <!-- Tech Stack Strip -->
-    <div class="py-10 border-t border-white/5 bg-black/50 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-12 grayscale hover:grayscale-0 transition-all duration-500 reveal">
-            <i class="fab fa-html5 text-5xl text-orange-500 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-css3-alt text-5xl text-blue-500 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-js text-5xl text-yellow-400 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-react text-5xl text-cyan-400 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-python text-5xl text-blue-300 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-windows text-5xl text-blue-600 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-        </div>
-    </div>
-
     <!-- Contact Section -->
     <section id="contact" class="py-24 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -482,29 +462,78 @@
         </p>
     </footer>
 
+    <!-- AI CHATBOT WIDGET -->
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+        <!-- Visible Label for AI -->
+        <div class="bg-white/90 backdrop-blur text-black px-4 py-2 rounded-xl shadow-lg border border-white/20 animate-bounce-slow text-sm font-bold mr-2 relative">
+            Chat with Mr. Kalhara 👋
+            <div class="absolute -bottom-1 right-6 w-3 h-3 bg-white rotate-45"></div>
+        </div>
+        
+        <!-- Chat Button -->
+        <button onclick="toggleChat()" class="w-16 h-16 bg-gradient-to-r from-techBlue to-techPurple rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30 hover:scale-110 transition-transform">
+            <i class="fas fa-robot text-2xl text-black"></i>
+        </button>
+    </div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="fixed bottom-24 right-6 w-80 sm:w-96 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl transform scale-0 origin-bottom-right transition-transform duration-300 z-50 overflow-hidden flex flex-col">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-techBlue to-techPurple p-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-black font-bold">
+                <i class="fas fa-robot"></i> Mr. Kalhara AI
+            </div>
+            <button onclick="toggleChat()" class="text-black hover:text-white transition-colors"><i class="fas fa-times text-lg"></i></button>
+        </div>
+        <!-- Messages -->
+        <div id="chat-messages" class="h-80 p-4 overflow-y-auto space-y-4 custom-scrollbar bg-black/50">
+            <!-- Bot Welcome -->
+            <div class="flex gap-2">
+                <div class="w-8 h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-xs font-bold flex-shrink-0">AI</div>
+                <div class="bg-white/10 p-3 rounded-r-xl rounded-bl-xl text-sm text-gray-200">
+                    ආයුබෝවන්! මම <strong>Mr. Kalhara</strong>. මට පුළුවන් ඔයාගේ IT ගැටළු වලට විසඳුම් දෙන්න. ප්‍රශ්නයක් අහන්න නැත්නම් Error එකේ Photo එකක් එවන්න.
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        <span onclick="sendQuickReply('PC එක Slow වෙලා')" class="text-xs bg-techBlue/20 text-techBlue px-2 py-1 rounded cursor-pointer hover:bg-techBlue/40">PC Slow?</span>
+                        <span onclick="sendQuickReply('Virus Guard')" class="text-xs bg-techPurple/20 text-techPurple px-2 py-1 rounded cursor-pointer hover:bg-techPurple/40">Virus Guard</span>
+                        <span onclick="sendQuickReply('Format කරන්න ඕන')" class="text-xs bg-techPink/20 text-techPink px-2 py-1 rounded cursor-pointer hover:bg-techPink/40">Format Help</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Input -->
+        <div class="p-3 border-t border-white/10 flex gap-2 bg-black items-center">
+            <!-- Hidden File Input -->
+            <input type="file" id="image-upload" hidden accept="image/*" onchange="handleImageUpload(this)">
+            
+            <!-- Upload Button -->
+            <button onclick="document.getElementById('image-upload').click()" class="text-gray-400 hover:text-techBlue transition-colors p-2" title="Upload Error Screenshot">
+                <i class="fas fa-camera"></i>
+            </button>
+            
+            <input type="text" id="chat-input" placeholder="Type here..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-techBlue" onkeypress="handleEnter(event)">
+            <button onclick="sendUserMessage()" class="bg-techBlue text-black px-4 py-2 rounded-lg hover:bg-white transition-colors"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <script>
-        // --- MESSAGING LOGIC (FIXED) ---
+        // --- MESSAGING LOGIC ---
         function sendMessage(method) {
-            // Get Input Values
             const name = document.getElementById('c-name').value;
             const phone = document.getElementById('c-phone').value;
             const service = document.getElementById('c-service').value;
             const message = document.getElementById('c-message').value;
 
-            // Simple validation
             if(!name || !message) {
                 alert("Please enter your Name and Message.");
                 return;
             }
 
             if(method === 'whatsapp') {
-                // WhatsApp URL 
                 const fullMessage = `*New Inquiry via Website*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Service:* ${service}%0A*Message:* ${message}`;
                 const whatsappUrl = `https://wa.me/94703427275?text=${fullMessage}`;
                 window.open(whatsappUrl, '_blank');
             } 
             else if(method === 'email') {
-                // Fixed Mailto URL with Encoding
                 const subject = encodeURIComponent(`Website Inquiry: ${service}`);
                 const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${message}`);
                 const mailtoUrl = `mailto:tirankalharac@gmail.com?subject=${subject}&body=${body}`;
@@ -512,7 +541,7 @@
             }
         }
 
-        // --- SCROLL ANIMATION (REVEAL ON SCROLL) ---
+        // --- SCROLL ANIMATION ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -525,27 +554,48 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        // Trigger once on load
         reveal();
 
+        // --- TYPING EFFECT ---
+        const textToType = "HARDWARE & CODE";
+        const typingElement = document.getElementById('typing-text');
+        let charIndex = 0;
+        let isDeleting = false;
 
-        // --- TROUBLESHOOT DATA ---
+        function typeEffect() {
+            const currentText = textToType;
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            let typeSpeed = isDeleting ? 100 : 200;
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 3000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeSpeed = 500;
+            }
+            setTimeout(typeEffect, typeSpeed);
+        }
+        document.addEventListener('DOMContentLoaded', typeEffect);
+
+        // --- MOBILE MENU ---
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- TROUBLESHOOT LOGIC ---
         const troubleshootData = [
-            { cat: 'Hardware', q: 'Computer won\'t turn on (No lights)', a: 'Check if the power cable is plugged in firmly. Try a different wall socket. If it\'s a laptop, remove the battery and plug in the charger.' },
-            { cat: 'Hardware', q: 'Screen is black but fans are spinning', a: 'Likely RAM issue. Try cleaning the RAM sticks with an eraser and reseating them carefully.' },
-            { cat: 'Hardware', q: 'PC shuts down randomly', a: 'Check CPU temperature. The thermal paste might be dried up or the fan is clogged with dust.' },
-            { cat: 'Software', q: 'Blue Screen (BSOD)', a: 'Restart PC. If frequent, note the error code (e.g., MEMORY_MANAGEMENT). Could be a bad driver or failing hardware.' },
-            { cat: 'Performance', q: 'Computer runs very slow', a: 'Check Task Manager for high CPU usage. Consider upgrading from HDD to SSD for 10x speed.' },
-            { cat: 'Internet', q: 'Connected to WiFi but no Internet', a: 'Open CMD and type "ipconfig /flushdns". Restart your router.' },
-            { cat: 'Audio', q: 'No sound from speakers', a: 'Check if correct Output Device is selected in Sound Settings. Update Realtek drivers.' },
-            { cat: 'Software', q: 'Microphone not working', a: 'Go to Settings > Privacy > Microphone and ensure "Allow apps to access your microphone" is ON.' },
-            { cat: 'Hardware', q: 'USB Device not recognized', a: 'Try a different port. Open Device Manager and scan for hardware changes.' },
-            { cat: 'Software', q: 'Windows Update failed', a: 'Run the built-in Windows Update Troubleshooter. Restart PC and try again.' },
-            { cat: 'Internet', q: 'Slow Internet Speed', a: 'Use 5GHz WiFi band if possible. Close background downloads like Steam or Torrent.' },
-            { cat: 'Hardware', q: 'Laptop Battery draining fast', a: 'Reduce brightness. Close unused apps. Battery health might be degraded and needs replacement.' },
-            { cat: 'Hardware', q: 'Keyboard typing wrong characters', a: 'Check if NumLock is on. Ensure keyboard language is set to US English.' },
-            { cat: 'Software', q: 'Program freezes / Not Responding', a: 'Press Ctrl+Shift+Esc to open Task Manager, find the app, and click "End Task".' },
-            { cat: 'Software', q: 'Deleted important file', a: 'Check Recycle Bin. If empty, stop using the drive immediately and use recovery software.' }
+            { cat: 'Hardware', q: 'Computer won\'t turn on', a: 'Check if the power cable is plugged in firmly. Try a different wall socket.' },
+            { cat: 'Software', q: 'Blue Screen (BSOD)', a: 'Restart PC. If frequent, note the error code. Could be a bad driver.' },
+            { cat: 'Performance', q: 'Computer runs slow', a: 'Check Task Manager for high CPU usage. Consider upgrading from HDD to SSD.' },
+            { cat: 'Internet', q: 'No Internet', a: 'Restart your router. Open CMD and type "ipconfig /flushdns".' },
+            { cat: 'Audio', q: 'No sound', a: 'Check if correct Output Device is selected in Sound Settings.' }
         ];
 
         const issuesContainer = document.getElementById('issuesContainer');
@@ -557,7 +607,6 @@
                 issuesContainer.innerHTML = '<div class="text-center text-gray-500 py-8 italic">No matching solutions found. Please contact me directly.</div>';
                 return;
             }
-            
             data.forEach((issue) => {
                 const item = document.createElement('div');
                 item.className = 'faq-item bg-white/5 border border-white/10 rounded-xl px-6 py-4 cursor-pointer hover:bg-white/10 transition-all group';
@@ -590,16 +639,13 @@
 
         function toggleAnswer(element) {
             const wasActive = element.classList.contains('active');
-            // Optional: Close others
             document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-            
             if (!wasActive) {
                 element.classList.add('active');
             }
         }
 
         function filterIssues(category) {
-            // Update active button state
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 const btnText = btn.innerText.includes('All') ? 'all' : btn.innerText;
                 if(btnText === category || (category === 'all' && btn.innerText.includes('All'))) {
@@ -625,60 +671,193 @@
             const category = activeBtn ? (activeBtn.innerText.includes('All') ? 'all' : activeBtn.innerText) : 'all';
             filterIssues(category);
         });
-
-        // Initialize
         renderIssues(troubleshootData);
 
-        // --- TYPING EFFECT ---
-        const textToType = "HARDWARE & CODE";
-        const typingElement = document.getElementById('typing-text');
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeEffect() {
-            const currentText = textToType; // Can be array for multiple phrases
-            
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 100 : 200;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 3000; // Pause at end
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeEffect, typeSpeed);
-        }
+        // --- CHATBOT LOGIC ---
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
         
-        // Start typing on load
-        document.addEventListener('DOMContentLoaded', typeEffect);
+        // Advanced Responses Database
+        const botResponses = {
+            'hi': "ආයුබෝවන්! මම Mr. Kalhara. කොහොමද මම ඔයාට උදව් කරන්නේ?",
+            'hello': "හායි! මොකද වෙන්න ඕන? මට පුළුවන් Hardware, Software ඕන දෙයක් ගැන කියන්න.",
+            'ayubowan': "ආයුබෝවන්! සාදරයෙන් පිළිගන්නවා.",
+            'kohomada': "මම හොඳින්! ඔයාගේ PC එකට මොකද වුනේ?",
+            'nama': "මම Mr. Kalhara. මම තමයි මේ සයිට් එකේ ඉන්න AI වැඩකරු.",
+            'slow': "PC එක Slow වෙලානම්, මුලින්ම 'Task Manager' බලන්න මොනවද Run වෙන්නේ කියලා. නැත්නම් SSD එකක් ගහන්න වෙයි. ඒකට මට කතා කරන්න.",
+            'format': "Format කරන්න ඕන නම් Backup එකක් ගන්න මතක තියාගන්න. Windows 10/11 ගහන්න මම උදව් කරන්නම්.",
+            'virus': "Virus එකක්ද? ඉක්මනට Malwarebytes හරි Kaspersky Free හරි දාලා Scan පාරක් දාන්න.",
+            'game': "Games ගහද්දි Slow නම්, Graphics Driver Update කරන්න. නැත්නම් RAM මදි ඇති.",
+            'office': "Microsoft Office Activate කරගන්න ඕනද? මට කතා කරන්න, මම අඩු ගානට කරලා දෙන්නම්.",
+            'wifi': "WiFi වැඩ නැත්නම් Router එක Restart කරලා බලන්න. නැත්නම් Driver එක ගිහින් ඇති.",
+            'sound': "සද්දේ එන්නේ නැත්නම් Speaker Icon එකෙන් හරි Output එක තෝරලද බලන්න.",
+            'contact': "කෙලින්ම Tiran ට කතා කරන්න: 070 342 7275 (WhatsApp available)",
+            'number': "මෙන්න නම්බර් එක: 070 342 7275",
+            'price': "ගණන් සාධාරණයි. ලෙඩේ බලලම කියන්නම්. මට මැසේජ් එකක් දාන්න.",
+            'default': "ම්.. ඒක ටිකක් බරපතල ප්‍රශ්නයක් වගේ. මම හිතන්නේ Tiran ට කතා කරොත් හොඳයි: 070 342 7275"
+        };
 
-        // Mobile Menu
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        function toggleChat() {
+            if(chatWindow.classList.contains('scale-0')) {
+                chatWindow.classList.remove('scale-0');
+            } else {
+                chatWindow.classList.add('scale-0');
+            }
         }
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                    document.getElementById('mobile-menu').classList.add('hidden');
+        function handleEnter(e) {
+            if(e.key === 'Enter') sendUserMessage();
+        }
+
+        function sendQuickReply(text) {
+            addMessage(text, 'user');
+            // Show thinking effect
+            addThinkingMessage();
+            setTimeout(() => {
+                removeThinkingMessage();
+                getBotResponse(text);
+            }, 1000);
+        }
+
+        function sendUserMessage() {
+            const text = chatInput.value.trim();
+            if(!text) return;
+            
+            addMessage(text, 'user');
+            chatInput.value = '';
+            
+            // Show thinking effect
+            addThinkingMessage();
+            setTimeout(() => {
+                removeThinkingMessage();
+                getBotResponse(text);
+            }, 1000);
+        }
+
+        function handleImageUpload(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // 1. Show User Image
+                    addImageMessage(e.target.result, 'user');
+                    
+                    // 2. Simulate AI Analysis
+                    addThinkingMessage("Scanning Error...");
+                    
+                    // 3. Provide Solution after "Analysis"
+                    setTimeout(() => {
+                        removeThinkingMessage();
+                        provideImageSolution();
+                    }, 2500);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            input.value = '';
+        }
+
+        function addMessage(html, sender) {
+            const div = document.createElement('div');
+            div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''}`;
+            
+            let content = '';
+            if(sender === 'bot') {
+                content = `
+                    <div class="w-8 h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-xs font-bold flex-shrink-0">AI</div>
+                    <div class="bg-white/10 p-3 rounded-r-xl rounded-bl-xl text-sm text-gray-200 max-w-[80%] animate-fade-in-up">
+                        ${html}
+                    </div>
+                `;
+            } else {
+                content = `
+                    <div class="bg-techPurple/20 p-3 rounded-l-xl rounded-br-xl text-sm text-white max-w-[80%] border border-techPurple/30">
+                        ${html}
+                    </div>
+                `;
+            }
+            
+            div.innerHTML = content;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addImageMessage(imgSrc, sender) {
+            const div = document.createElement('div');
+            div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''}`;
+            
+            const content = `
+                <div class="bg-techPurple/20 p-2 rounded-l-xl rounded-br-xl text-sm text-white max-w-[80%] border border-techPurple/30">
+                    <img src="${imgSrc}" class="rounded-lg max-h-32 object-cover border border-white/10">
+                </div>
+            `;
+            
+            div.innerHTML = content;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        let thinkingDiv = null;
+        function addThinkingMessage(text = "Thinking...") {
+            thinkingDiv = document.createElement('div');
+            thinkingDiv.className = `flex gap-2`;
+            thinkingDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-xs font-bold flex-shrink-0"><i class="fas fa-cog fa-spin"></i></div>
+                <div class="bg-white/10 p-3 rounded-r-xl rounded-bl-xl text-sm text-gray-400 italic">
+                    ${text}
+                </div>
+            `;
+            chatMessages.appendChild(thinkingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeThinkingMessage() {
+            if(thinkingDiv) {
+                thinkingDiv.remove();
+                thinkingDiv = null;
+            }
+        }
+
+        function getBotResponse(input) {
+            const lowerInput = input.toLowerCase();
+            let response = botResponses['default'];
+            
+            // Smarter keyword matching
+            for(const key in botResponses) {
+                if(lowerInput.includes(key)) {
+                    response = botResponses[key];
+                    break;
                 }
-            });
-        });
+            }
+            addMessage(response, 'bot');
+        }
+
+        function provideImageSolution() {
+            // Highly advanced looking solution
+            const solutionHTML = `
+                <div class="space-y-2">
+                    <p class="font-bold text-techBlue"><i class="fas fa-check-circle"></i> Error Analysis Complete</p>
+                    <p class="text-sm">මම ඔයාගේ Screenshot එක බැලුවා. මේක <strong>System/Display Error</strong> එකක් වගේ. බය වෙන්න එපා, මේ පියවර ටික කරලා බලන්න:</p>
+                    
+                    <div class="bg-black/50 p-2 rounded border border-white/10 font-mono text-xs text-green-400 mt-2">
+                        <p class="text-gray-500">// Step 1: Reset Drivers</p>
+                        <p>> Press: Win + Ctrl + Shift + B</p>
+                        <br>
+                        <p class="text-gray-500">// Step 2: System Scan</p>
+                        <p>> Open CMD (Admin)</p>
+                        <p>> sfc /scannow</p>
+                    </div>
+
+                    <p class="text-xs mt-2 text-gray-300">මේකෙන් හරි ගියේ නැත්නම් Hardware අවුලක් වෙන්න පුළුවන්.</p>
+                    <div class="mt-2 pt-2 border-t border-white/10 text-xs text-center">
+                        <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-techPurple text-white px-3 py-1 rounded hover:bg-white hover:text-black transition-colors">
+                            Fix it for me (Contact Tiran)
+                        </button>
+                    </div>
+                </div>
+            `;
+            addMessage(solutionHTML, 'bot');
+        }
+
     </script>
 </body>
 </html>
