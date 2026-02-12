@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Search Console Verification Code -->
+    <!-- Google Search Console Chiqanchawi Chimpuyu -->
     <meta name="google-site-verification" content="IH50WTRSJSWWC5nlEKyXMWr1MMBVKpfKWQPrJA-4hFs" />
     
-    <!-- FAVICON (Browser Tab Logo) -->
+    <!-- FAVICON (Navegador Tab Unancha) -->
     <link rel="icon" type="image/png" href="logo.png">
     
     <title>Kalhara Development | High-End IT Solutions</title>
     
-    <!-- Using Tailwind CSS -->
+    <!-- Tailwind CSS llamk'aspa -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Using FontAwesome -->
+    <!-- FontAwesome llamk'aspa -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -62,7 +62,7 @@
             overflow-x: hidden;
         }
 
-        /* --- Animations --- */
+        /* --- Kuyuykuna --- */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -73,7 +73,7 @@
             transform: translateY(0);
         }
 
-        /* Orbs Background */
+        /* Orbs Qhipa */
         .orb-1, .orb-2, .orb-3 {
             position: fixed;
             border-radius: 50%;
@@ -86,11 +86,11 @@
         .orb-2 { top: 20%; right: -20%; width: 400px; height: 400px; background: #00f2ff; animation-delay: 2s; }
         .orb-3 { bottom: -10%; left: 20%; width: 600px; height: 600px; background: #ff0055; animation-delay: 4s; }
 
-        /* Mobile Performance Fixes */
+        /* Kuyuchina Allichaykuna */
         @media (max-width: 768px) {
             .orb-1, .orb-2, .orb-3 {
                 filter: blur(50px);
-                animation: none; /* Stop animation on mobile to save GPU/Battery */
+                animation: none; /* Kuyuyta sayachiy kuyuchinapi GPU/Bateria waqaychanapaq */
                 opacity: 0.2;
             }
         }
@@ -99,9 +99,9 @@
             text-shadow: 0 0 10px rgba(188, 19, 254, 0.7), 0 0 20px rgba(0, 242, 255, 0.5);
         }
 
-        /* Glass Card with Mobile Optimization */
+        /* Q'ispi Tarjeta Kuyuchinapaq Allichasqa */
         .glass-card {
-            background: rgba(20, 20, 20, 0.85); /* Solid dark color for mobile to prevent scroll lag */
+            background: rgba(20, 20, 20, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
         }
@@ -161,7 +161,7 @@
         .faq-item.active i.fa-chevron-down { transform: rotate(180deg); }
         .faq-item.active { border-color: #bc13fe; background: rgba(188, 19, 254, 0.1); }
 
-        /* PC Only Custom Grid Background */
+        /* PC Sapallan Ruwasqa Grid Qhipa */
         .pc-grid-bg {
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
@@ -169,21 +169,105 @@
             mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
             -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
         }
+
+        /* --- Advanced AI Chatbot Styles --- */
+        .chat-progress-bar {
+            transition: width 0.1s linear;
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+        }
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #00f2ff;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5;}
+            40% { transform: scale(1); opacity: 1;}
+        }
+        .chat-action-btn {
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            color: #00f2ff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+        .chat-action-btn:hover {
+            background: #00f2ff;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0,242,255,0.4);
+        }
+
+        /* --- Memory Game Styles --- */
+        .memory-card {
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+        }
+        .memory-card:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .memory-card.flipped {
+            background: rgba(188, 19, 254, 0.2);
+            border-color: #bc13fe;
+            transform: rotateY(180deg);
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
+        }
+        .memory-card.matched {
+            background: rgba(0, 242, 255, 0.2);
+            border-color: #00f2ff;
+            opacity: 0.8;
+            cursor: default;
+            animation: pulse-fast 1s;
+        }
+        .memory-card i {
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            transform: rotateY(180deg); /* Counter the card flip */
+        }
+        .memory-card.flipped i, .memory-card.matched i {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-techDark text-white selection:bg-techPink selection:text-white relative">
 
-    <!-- Background Orbs -->
+    <!-- Qhipa Orbs -->
     <div class="orb-1"></div>
     <div class="orb-2"></div>
     <div class="orb-3"></div>
 
-    <!-- Navigation -->
+    <!-- Wamp'uy -->
     <nav class="fixed w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/10 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 cursor-pointer group flex items-center gap-3">
-                    <!-- LOGO IMAGE -->
+                    <!-- UNANCHA RIKCHA -->
                     <img src="logo.png" alt="KD" class="h-10 w-10 rounded-full border-2 border-techBlue object-cover shadow-[0_0_10px_rgba(0,242,255,0.5)]" onerror="this.style.display='none'">
                     
                     <span class="text-2xl font-black tracking-wider text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-techBlue group-hover:to-techPurple transition-all duration-300">
@@ -204,6 +288,9 @@
                         <a href="#troubleshoot" class="text-gray-300 hover:text-techPink font-medium transition-colors relative group">
                             Troubleshoot <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-techPink transition-all group-hover:w-full"></span>
                         </a>
+                        <a href="#funzone" class="text-gray-300 hover:text-yellow-400 font-medium transition-colors relative group">
+                            Fun Zone <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all group-hover:w-full"></span>
+                        </a>
                         <a href="#about" class="text-gray-300 hover:text-white font-medium transition-colors">About</a>
                         <a href="#contact" class="btn-glow bg-gradient-to-r from-techBlue to-techPurple text-black px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-purple-500/20">
                             Contact Me
@@ -217,21 +304,22 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
+        <!-- Kuyuchina Menú -->
         <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-xl border-t border-gray-800 absolute w-full">
             <div class="px-4 pt-4 pb-6 space-y-2">
                 <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Home</a>
                 <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Services</a>
                 <a href="#learn" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Learn Tech</a>
                 <a href="#troubleshoot" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Troubleshoot</a>
+                <a href="#funzone" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Fun Zone</a>
                 <a href="#contact" class="block px-3 py-3 mt-4 text-center rounded-md font-bold bg-gradient-to-r from-techBlue to-techPurple text-black">Contact Me</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero T'aqa -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
-        <!-- PC Only High-Tech Grid -->
+        <!-- PC Sapallan Alta Tecnología Grid -->
         <div class="hidden md:block absolute inset-0 pc-grid-bg z-0 pointer-events-none"></div>
 
         <div class="text-center z-10 max-w-5xl mx-auto">
@@ -264,7 +352,7 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Yanapakuykuna T'aqa -->
     <section id="services" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
@@ -289,7 +377,7 @@
                     </div>
                 </div>
 
-                <!-- Web Dev -->
+                <!-- Web Wiñachi -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-100 flex flex-col">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-techPurple to-pink-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
                         <i class="fas fa-code text-2xl md:text-3xl text-white"></i>
@@ -305,7 +393,7 @@
                     </div>
                 </div>
 
-                <!-- Software Dev -->
+                <!-- Software Wiñachi -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-200 flex flex-col">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-green-500/30 group-hover:scale-110 transition-transform">
                         <i class="fas fa-terminal text-2xl md:text-3xl text-white"></i>
@@ -321,7 +409,7 @@
                     </div>
                 </div>
 
-                <!-- Networking -->
+                <!-- Llikakuna -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal flex flex-col">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-orange-400 to-red-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
                         <i class="fas fa-network-wired text-2xl md:text-3xl text-white"></i>
@@ -337,7 +425,7 @@
                     </div>
                 </div>
 
-                <!-- OS & Format -->
+                <!-- OS & Formato -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-100 flex flex-col">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
                         <i class="fab fa-windows text-2xl md:text-3xl text-white"></i>
@@ -353,7 +441,7 @@
                     </div>
                 </div>
 
-                <!-- Data Recovery -->
+                <!-- Willaykuna Kutichiy -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-200 flex flex-col">
                     <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-red-500 to-rose-700 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-red-500/30 group-hover:scale-110 transition-transform">
                         <i class="fas fa-database text-2xl md:text-3xl text-white"></i>
@@ -372,7 +460,7 @@
         </div>
     </section>
 
-    <!-- LEARN TECH SECTION (BLOG / ARTICLES) -->
+    <!-- YACHAY TECH T'AQA (BLOG / QILLQASQAKUNA) -->
     <section id="learn" class="py-24 relative bg-black/50 backdrop-blur-sm border-t border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
@@ -381,14 +469,14 @@
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">සරල සිංහලෙන් තාක්ෂණය ඉගෙන ගන්න. (විස්තරාත්මක ලිපි 20+)</p>
             </div>
 
-            <!-- Ad Space Placeholder (Top) -->
+            <!-- Willakuy K'iti (Pata) -->
             <div class="w-full h-24 bg-gray-900/50 border border-gray-800 border-dashed rounded-xl mb-12 flex items-center justify-center text-gray-600 text-sm reveal">
                 <p>Google AdSense Banner Area (This earns you money)</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                 
-                <!-- Article 1: What is Software? -->
+                <!-- Qillqasqa 1: Ima Software? -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-green-500/50 transition-all flex flex-col">
                     <div class="flex gap-3 mb-4 hidden md:flex">
                         <span class="bg-gray-800/50 text-green-400 border border-green-500/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 3 Min Read</span>
@@ -424,7 +512,7 @@
                     </div>
                 </div>
 
-                <!-- Article 2: What is a Website? -->
+                <!-- Qillqasqa 2: Ima Web K'iti? -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-techBlue/50 transition-all delay-100 flex flex-col">
                     <div class="flex gap-3 mb-4 hidden md:flex">
                         <span class="bg-gray-800/50 text-techBlue border border-techBlue/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 5 Min Read</span>
@@ -466,7 +554,7 @@
                     </div>
                 </div>
 
-                <!-- Article 3: What is AI? -->
+                <!-- Qillqasqa 3: Ima AI? -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-techPurple/50 transition-all delay-200 flex flex-col">
                     <div class="flex gap-3 mb-4 hidden md:flex">
                         <span class="bg-gray-800/50 text-techPurple border border-techPurple/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 4 Min Read</span>
@@ -499,7 +587,7 @@
                     </div>
                 </div>
 
-                <!-- Article 4: Freelancing -->
+                <!-- Qillqasqa 4: Freelancing -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-teal-500/50 transition-all flex flex-col">
                     <div class="flex gap-3 mb-4 hidden md:flex">
                         <span class="bg-gray-800/50 text-teal-400 border border-teal-500/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 6 Min Read</span>
@@ -532,7 +620,7 @@
                     </div>
                 </div>
 
-                <!-- Article 5: SSD vs HDD -->
+                <!-- Qillqasqa 5: SSD vs HDD -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-orange-500/50 transition-all flex flex-col">
                     <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500 shrink-0">
@@ -559,7 +647,7 @@
                     </div>
                 </div>
 
-                <!-- Article 6: RAM Explained -->
+                <!-- Qillqasqa 6: RAM Sut'inchasqa -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-blue-500/50 transition-all flex flex-col">
                     <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-500 shrink-0">
@@ -587,7 +675,7 @@
                     </div>
                 </div>
 
-                <!-- Article 7: Processor (CPU) -->
+                <!-- Qillqasqa 7: Procesador (CPU) -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-red-500/50 transition-all flex flex-col">
                     <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-red-500/20 rounded-lg flex items-center justify-center text-red-500 shrink-0">
@@ -615,7 +703,7 @@
                     </div>
                 </div>
 
-                <!-- Article 8: Virus Guard -->
+                <!-- Qillqasqa 8: Virus Hark'aq -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-green-600/50 transition-all flex flex-col">
                     <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-green-600/20 rounded-lg flex items-center justify-center text-green-600 shrink-0">
@@ -643,7 +731,7 @@
                     </div>
                 </div>
 
-                <!-- Article 9: VPN Explained -->
+                <!-- Qillqasqa 9: VPN Sut'inchasqa -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-yellow-500/50 transition-all flex flex-col">
                     <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center text-yellow-500 shrink-0">
@@ -670,7 +758,7 @@
                     </div>
                 </div>
 
-                <!-- Article 10: Bitcoin/Crypto -->
+                <!-- Qillqasqa 10: Bitcoin/Crypto -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-yellow-400/50 transition-all flex flex-col">
                     <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-yellow-400/20 rounded-lg flex items-center justify-center text-yellow-400 shrink-0">
@@ -695,7 +783,7 @@
                     </div>
                 </div>
 
-                <!-- Article 11: Android vs iOS -->
+                <!-- Qillqasqa 11: Android vs iOS -->
                 <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-green-400/50 transition-all flex flex-col">
                     <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div class="w-10 h-10 md:w-12 md:h-12 bg-green-400/20 rounded-lg flex items-center justify-center text-green-400 shrink-0">
@@ -724,7 +812,7 @@
 
             </div>
             
-            <!-- Ad Space Placeholder (Bottom) -->
+            <!-- Willakuy K'iti (Ura) -->
             <div class="w-full h-24 bg-gray-900/50 border border-gray-800 border-dashed rounded-xl mt-12 flex items-center justify-center text-gray-600 text-sm reveal">
                 <p>Google AdSense Banner Area</p>
             </div>
@@ -732,7 +820,7 @@
         </div>
     </section>
 
-    <!-- TROUBLESHOOT SECTION -->
+    <!-- SASACHAKUYKUNA ALLICHAY T'AQA -->
     <section id="troubleshoot" class="py-24 relative bg-black/40 backdrop-blur-sm border-t border-white/5">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12 reveal">
@@ -740,7 +828,7 @@
                 <h2 class="text-4xl font-bold text-white mt-2">Knowledge <span class="text-transparent bg-clip-text bg-gradient-to-r from-techPink to-techPurple">Base</span></h2>
             </div>
 
-            <!-- Modern Search -->
+            <!-- Kunan Pacha Thaqhay -->
             <div class="mb-12 relative group reveal">
                 <div class="absolute -inset-1 bg-gradient-to-r from-techBlue via-techPurple to-techPink rounded-full opacity-50 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200 hidden md:block"></div>
                 <div class="relative flex items-center bg-black rounded-full p-2 border border-gray-800 md:border-none">
@@ -757,14 +845,14 @@
                 <button onclick="filterIssues('Internet')" class="filter-btn px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">Internet</button>
             </div>
 
-            <!-- Issues List -->
+            <!-- Sasachakuykuna Sutisuyu -->
             <div id="issuesContainer" class="space-y-3 md:space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar reveal">
-                <!-- Javascript will populate this -->
+                <!-- Javascript kayta hunt'anqa -->
             </div>
         </div>
     </section>
 
-    <!-- About Me -->
+    <!-- Ñuqamanta -->
     <section id="about" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="glass-card rounded-3xl p-6 md:p-12 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal">
@@ -789,7 +877,7 @@
                         </div>
                     </div>
                     <div class="relative">
-                        <!-- Decorative elements -->
+                        <!-- K'acha imakuna -->
                         <div class="absolute -top-10 -right-10 w-32 h-32 bg-techBlue rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob hidden md:block"></div>
                         <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-techPurple rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 hidden md:block"></div>
                         
@@ -816,7 +904,7 @@
         </div>
     </section>
 
-    <!-- Tech Stack Strip -->
+    <!-- Tech Stack Ch'imi -->
     <div class="py-6 md:py-10 border-t border-white/5 bg-black/50 backdrop-blur-sm overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-12 md:grayscale hover:grayscale-0 transition-all duration-500 reveal">
             <i class="fab fa-html5 text-4xl md:text-5xl text-orange-500 md:opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
@@ -828,7 +916,146 @@
         </div>
     </div>
 
-    <!-- Contact Section -->
+    <!-- FUN ZONE T'AQA (Interactive Area) -->
+    <section id="funzone" class="py-24 relative bg-[#0a0a0a] border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-yellow-400 font-bold tracking-widest uppercase text-sm">Interactive Tech</span>
+                <h2 class="text-4xl font-bold text-white mt-2">Fun <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Zone</span></h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">වෙබ් අඩවියේ රැඳී සිටින අතරතුර ඔබේ IT දැනුම උරගා බලන්න සහ අලුත් දේවල් ඉගෙන ගන්න.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Tech Facts Generator -->
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col justify-between items-center text-center">
+                    <i class="fas fa-lightbulb text-5xl text-yellow-400 mb-6 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]"></i>
+                    <h3 class="text-2xl font-bold text-white mb-4">Did You Know?</h3>
+                    <div class="min-h-[100px] flex items-center justify-center w-full bg-black/50 rounded-xl p-4 border border-white/10 mb-6">
+                        <p id="fact-display" class="text-gray-300 text-lg italic transition-opacity duration-500">"පළමු පරිගණක මූසිකය (Mouse) 1964 දී ලී වලින් නිපදවා ඇත."</p>
+                    </div>
+                    <button onclick="generateFact()" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold py-3 px-8 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:scale-105 transition-transform w-full md:w-auto">
+                        <i class="fas fa-random mr-2"></i> අලුත් කරුණක් පෙන්වන්න
+                    </button>
+                </div>
+
+                <!-- Mini Tech Quiz -->
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-2xl font-bold text-white"><i class="fas fa-gamepad text-techBlue mr-2"></i> Mini IT Quiz</h3>
+                        <span id="quiz-score-badge" class="bg-techBlue/20 text-techBlue px-3 py-1 rounded-full text-sm font-bold border border-techBlue/30 hidden">Score: 0</span>
+                    </div>
+                    
+                    <!-- Quiz Intro -->
+                    <div id="quiz-intro" class="text-center flex-grow flex flex-col justify-center items-center">
+                        <p class="text-gray-400 mb-6">ඔබේ පරිගණක දැනුම පරීක්ෂා කරගන්න පොඩි ගේම් එකක් ප්ලේ කරමුද?</p>
+                        <button onclick="startQuiz()" class="bg-transparent border-2 border-techBlue text-techBlue hover:bg-techBlue hover:text-black font-bold py-2 px-6 rounded-full transition-colors w-full md:w-auto">
+                            <i class="fas fa-play mr-2"></i> Play Now
+                        </button>
+                    </div>
+
+                    <!-- Quiz Question Area -->
+                    <div id="quiz-area" class="hidden flex-grow flex flex-col">
+                        <p id="quiz-question" class="text-lg text-white mb-6 font-medium text-center"></p>
+                        <div id="quiz-options" class="grid grid-cols-1 gap-3 flex-grow">
+                            <!-- Options injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Quiz Result Area -->
+                    <div id="quiz-result" class="hidden text-center flex-grow flex flex-col justify-center items-center">
+                        <i id="quiz-icon" class="fas fa-trophy text-5xl text-yellow-400 mb-4"></i>
+                        <h4 class="text-2xl font-bold text-white mb-2" id="quiz-result-title">Good Job!</h4>
+                        <p class="text-gray-400 mb-6" id="quiz-result-text">You scored 3/5.</p>
+                        <button onclick="startQuiz()" class="bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-6 rounded-full border border-white/20 transition-colors">
+                            <i class="fas fa-redo mr-2"></i> Play Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <!-- Hex Color Guesser -->
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
+                    <div class="text-center mb-4">
+                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-palette text-pink-400 mr-2"></i> Guess the HEX</h3>
+                        <p class="text-gray-400 text-sm">නිවැරදි වර්ණ කේතය (HEX) තෝරන්න.</p>
+                    </div>
+                    
+                    <div id="hex-color-box" class="w-full h-24 rounded-xl shadow-inner mb-4 transition-colors duration-300 border border-white/10" style="background-color: #ff0055;"></div>
+                    
+                    <div id="hex-options" class="grid grid-cols-1 gap-2 w-full mb-4">
+                        <!-- Buttons injected via JS -->
+                    </div>
+                    
+                    <div class="flex justify-between w-full text-sm font-bold bg-black/40 px-4 py-2 rounded-lg border border-white/5">
+                        <span class="text-gray-400">Score: <span id="hex-score" class="text-pink-400 text-lg">0</span></span>
+                        <button onclick="initHexGame()" class="text-white hover:text-pink-400 transition-colors"><i class="fas fa-redo"></i> Skip</button>
+                    </div>
+                </div>
+
+                <!-- Catch the Bug -->
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
+                    <div class="text-center mb-4">
+                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-bug text-red-500 mr-2"></i> Squash the Bug</h3>
+                        <p class="text-gray-400 text-sm">තත්පර 15ක් ඇතුළත Bugs කීයක් අල්ලන්න පුළුවන්ද?</p>
+                    </div>
+                    
+                    <div id="bug-container" class="relative w-full h-48 bg-black/60 rounded-xl border border-white/10 overflow-hidden mb-4 cursor-crosshair">
+                        <div id="bug-start-screen" class="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
+                            <button onclick="startBugGame()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-colors"><i class="fas fa-play mr-2"></i> Start Game</button>
+                        </div>
+                        <i id="the-bug" class="fas fa-bug text-red-500 text-3xl absolute hidden cursor-pointer hover:scale-125 transition-transform" onclick="catchBug()" style="top: 50%; left: 50%;"></i>
+                    </div>
+                    
+                    <div class="flex justify-between w-full text-sm font-bold bg-black/40 px-4 py-2 rounded-lg border border-white/5">
+                        <span class="text-gray-400">Time: <span id="bug-time" class="text-white">15s</span></span>
+                        <span class="text-gray-400">Bugs: <span id="bug-score" class="text-red-500 text-lg">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <!-- Tech Memory Match -->
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
+                    <div class="text-center mb-4">
+                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-clone text-techPurple mr-2"></i> Memory Match</h3>
+                        <p class="text-gray-400 text-sm">එක සමාන Tech Icons දෙක බැගින් සොයාගන්න.</p>
+                    </div>
+                    
+                    <div id="memory-board" class="grid grid-cols-4 gap-2 md:gap-3 w-full max-w-[240px] mb-2 perspective-1000">
+                        <!-- Cards injected via JS -->
+                    </div>
+                    
+                    <div class="h-8 mt-2 flex items-center">
+                        <button id="memory-win-msg" onclick="initMemoryGame()" class="hidden bg-techPurple/20 hover:bg-techPurple/40 text-techPurple border border-techPurple/30 px-4 py-1.5 rounded-full text-sm font-bold transition-all animate-bounce">
+                            You Won! 🎉 Play Again
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hacker Typing Test -->
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
+                    <div class="text-center mb-4">
+                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-keyboard text-green-400 mr-2"></i> Hacker Typing</h3>
+                        <p class="text-gray-400 text-sm">පහත කේතය කොතරම් වේගයෙන් ටයිප් කළ හැකිද?</p>
+                    </div>
+                    
+                    <div class="bg-black/60 p-4 rounded-xl border border-white/10 w-full text-center mb-6 shadow-inner">
+                        <span id="typing-quote" class="font-mono text-techBlue text-sm md:text-base tracking-widest select-none">console.log("Hi");</span>
+                    </div>
+                    
+                    <input type="text" id="typing-input" placeholder="මෙතන ටයිප් කරන්න..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 focus:bg-white/10 font-mono text-center mb-6 transition-all shadow-[0_0_15px_rgba(74,222,128,0)] focus:shadow-[0_0_15px_rgba(74,222,128,0.2)]" oninput="checkTyping()" onpaste="return false;" autocomplete="off" spellcheck="false">
+                    
+                    <div class="flex justify-between w-full text-sm font-bold bg-black/40 px-4 py-2 rounded-lg border border-white/5">
+                        <span class="text-gray-400">Time: <span id="typing-time" class="text-white">0.0s</span></span>
+                        <span class="text-gray-400">WPM: <span id="typing-wpm" class="text-green-400 text-lg">0</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Willanakuy T'aqa -->
     <section id="contact" class="py-24 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="glass-card rounded-3xl p-1 bg-gradient-to-b from-gray-800 to-black reveal">
@@ -838,7 +1065,7 @@
                         <p class="text-sm md:text-base text-gray-400 mt-2">Ready to start your project or fix your device?</p>
                     </div>
 
-                    <!-- Contact Form Input Fields (No Default Form Action) -->
+                    <!-- Willanakuy Formulario Yaykuna K'itikuna (Mana Default Form Acción) -->
                     <div class="space-y-4 md:space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                             <div class="group">
@@ -865,7 +1092,7 @@
                             <textarea id="c-message" rows="4" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="How can I help you?"></textarea>
                         </div>
                         
-                        <!-- Dual Button System -->
+                        <!-- Iskay Botón Sistema -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                             <button onclick="sendMessage('whatsapp')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 md:py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
                                 <i class="fab fa-whatsapp text-xl md:text-2xl group-hover:scale-110 transition-transform"></i> Send via WhatsApp
@@ -896,7 +1123,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Chaki Qillqa -->
     <footer class="bg-black py-8 border-t border-gray-900 text-center relative z-10">
         <p class="text-gray-600 text-sm mt-4">
             &copy; 2026 Kalhara Development. Crafted with <i class="fas fa-heart text-red-500 animate-pulse"></i> for technology.
@@ -905,59 +1132,74 @@
 
     <!-- AI CHATBOT WIDGET -->
     <div id="chat-widget" class="fixed bottom-6 right-4 md:right-6 z-50 flex flex-col items-end gap-2">
-        <!-- Visible Label for AI -->
+        <!-- AI Rikukuq Qillqa -->
         <div class="bg-white/90 backdrop-blur text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg border border-white/20 animate-bounce-slow text-xs md:text-sm font-bold mr-2 relative hidden md:block">
-            Chat with Mr. Kalhara 👋
+            Need IT Support? Ask AI 👋
             <div class="absolute -bottom-1 right-6 w-3 h-3 bg-white rotate-45"></div>
         </div>
         
-        <!-- Chat Button -->
-        <button onclick="toggleChat()" class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-techBlue to-techPurple rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30 hover:scale-110 transition-transform">
+        <!-- Chat Botón -->
+        <button onclick="toggleChat()" class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-techBlue to-techPurple rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30 hover:scale-110 transition-transform relative group">
             <i class="fas fa-robot text-xl md:text-2xl text-black"></i>
+            <span class="absolute top-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-green-500 border-2 border-black rounded-full animate-pulse"></span>
         </button>
     </div>
 
-    <!-- Chat Window -->
-    <div id="chat-window" class="fixed bottom-20 md:bottom-24 right-4 md:right-6 w-72 sm:w-80 md:w-96 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl transform scale-0 origin-bottom-right transition-transform duration-300 z-50 overflow-hidden flex flex-col">
+    <!-- Chat Ventana -->
+    <div id="chat-window" class="fixed bottom-20 md:bottom-24 right-4 md:right-6 w-[300px] sm:w-80 md:w-[400px] bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_0_40px_rgba(188,19,254,0.15)] transform scale-0 origin-bottom-right transition-transform duration-300 z-50 overflow-hidden flex flex-col">
+        
         <!-- Header -->
-        <div class="bg-gradient-to-r from-techBlue to-techPurple p-3 md:p-4 flex justify-between items-center">
-            <div class="flex items-center gap-2 text-black font-bold text-sm md:text-base">
-                <i class="fas fa-robot"></i> Mr. Kalhara AI
-            </div>
-            <button onclick="toggleChat()" class="text-black hover:text-white transition-colors p-1"><i class="fas fa-times text-lg"></i></button>
-        </div>
-        <!-- Messages -->
-        <div id="chat-messages" class="h-64 md:h-80 p-3 md:p-4 overflow-y-auto space-y-4 custom-scrollbar bg-black/50">
-            <!-- Bot Welcome -->
-            <div class="flex gap-2">
-                <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0">AI</div>
-                <div class="bg-white/10 p-2 md:p-3 rounded-r-xl rounded-bl-xl text-xs md:text-sm text-gray-200">
-                    ආයුබෝවන්! මම <strong>Mr. Kalhara</strong>. මට පුළුවන් ඔයාගේ IT ගැටළු වලට විසඳුම් දෙන්න. ප්‍රශ්නයක් අහන්න නැත්නම් Error එකේ Photo එකක් එවන්න.
-                    <div class="mt-2 flex flex-wrap gap-1 md:gap-2">
-                        <span onclick="sendQuickReply('PC එක Slow වෙලා')" class="text-[10px] md:text-xs bg-techBlue/20 text-techBlue px-2 py-1 rounded cursor-pointer hover:bg-techBlue/40">PC Slow?</span>
-                        <span onclick="sendQuickReply('Virus Guard')" class="text-[10px] md:text-xs bg-techPurple/20 text-techPurple px-2 py-1 rounded cursor-pointer hover:bg-techPurple/40">Virus Guard</span>
-                        <span onclick="sendQuickReply('Format කරන්න ඕන')" class="text-[10px] md:text-xs bg-techPink/20 text-techPink px-2 py-1 rounded cursor-pointer hover:bg-techPink/40">Format Help</span>
+        <div class="bg-gradient-to-r from-techBlue to-techPurple p-3 md:p-4 flex justify-between items-center relative z-10 shadow-md">
+            <div class="flex items-center gap-3 text-black">
+                <div class="relative">
+                    <div class="w-8 h-8 md:w-10 md:h-10 bg-black/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i class="fas fa-robot text-lg md:text-xl text-black"></i>
+                    </div>
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border border-black rounded-full"></span>
+                </div>
+                <div>
+                    <div class="font-bold text-sm md:text-base leading-none">Mr. Kalhara AI</div>
+                    <div class="text-[10px] md:text-xs font-semibold opacity-75 mt-1 flex items-center gap-1">
+                        <i class="fas fa-bolt text-[8px]"></i> Advanced Tech Agent
                     </div>
                 </div>
             </div>
+            <div class="flex items-center gap-1">
+                <button onclick="clearChat()" class="text-black/70 hover:text-black transition-colors p-2 rounded-full hover:bg-black/10" title="Clear History"><i class="fas fa-trash-alt text-xs md:text-sm"></i></button>
+                <button onclick="toggleChat()" class="text-black/70 hover:text-black transition-colors p-2 rounded-full hover:bg-black/10" title="Close"><i class="fas fa-times text-sm md:text-base"></i></button>
+            </div>
         </div>
-        <!-- Input -->
-        <div class="p-2 md:p-3 border-t border-white/10 flex gap-2 bg-black items-center">
+
+        <!-- Image Scanning Progress Bar (Hidden by default) -->
+        <div id="ai-scan-bar" class="w-full h-1 bg-gray-800 hidden">
+            <div id="ai-scan-progress" class="h-full bg-techBlue w-0 chat-progress-bar shadow-[0_0_10px_#00f2ff]"></div>
+        </div>
+
+        <!-- Messages Area -->
+        <div id="chat-messages" class="h-72 md:h-96 p-3 md:p-4 overflow-y-auto space-y-4 custom-scrollbar bg-black/40 relative">
+            <!-- Messages will be generated dynamically by JS -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-2 md:p-3 border-t border-white/10 flex gap-2 bg-[#050505] items-center relative z-10">
             <!-- Hidden File Input -->
             <input type="file" id="image-upload" hidden accept="image/*" onchange="handleImageUpload(this)">
             
             <!-- Upload Button -->
-            <button onclick="document.getElementById('image-upload').click()" class="text-gray-400 hover:text-techBlue transition-colors p-2" title="Upload Error Screenshot">
+            <button onclick="document.getElementById('image-upload').click()" class="text-gray-400 hover:text-techBlue transition-colors p-2 md:p-2.5 bg-white/5 rounded-lg hover:bg-white/10" title="දෝෂයේ (Error) ඡායාරූපයක් යවන්න">
                 <i class="fas fa-camera text-sm md:text-base"></i>
             </button>
             
-            <input type="text" id="chat-input" placeholder="Type here..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm text-white focus:outline-none focus:border-techBlue" onkeypress="handleEnter(event)">
-            <button onclick="sendUserMessage()" class="bg-techBlue text-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg hover:bg-white transition-colors"><i class="fas fa-paper-plane text-sm md:text-base"></i></button>
+            <input type="text" id="chat-input" placeholder="ගැටළුව මෙතන ටයිප් කරන්න..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-3 py-2 md:px-4 md:py-2.5 text-xs md:text-sm text-white focus:outline-none focus:border-techBlue focus:bg-white/10 transition-all placeholder-gray-500" onkeypress="handleEnter(event)">
+            
+            <button onclick="sendUserMessage()" class="bg-gradient-to-r from-techBlue to-techPurple text-black px-3 py-2 md:px-4 md:py-2.5 rounded-lg hover:opacity-90 transition-opacity shadow-lg flex items-center justify-center">
+                <i class="fas fa-paper-plane text-sm md:text-base"></i>
+            </button>
         </div>
     </div>
 
     <script>
-        // --- MESSAGING LOGIC ---
+        // --- WILLAKUY LOGICA ---
         function sendMessage(method) {
             const name = document.getElementById('c-name').value;
             const phone = document.getElementById('c-phone').value;
@@ -982,13 +1224,13 @@
             }
         }
 
-        // --- SCROLL ANIMATION ---
+        // --- SCROLL KUYUY ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Adjusted for better mobile trigger
+                var elementVisible = 100; // Kuyuchinapaq aswan allin trigger allichasqa
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
@@ -997,7 +1239,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        // --- TYPING EFFECT ---
+        // --- TYPING EFECTO ---
         const textToType = "HARDWARE & CODE";
         const typingElement = document.getElementById('typing-text');
         let charIndex = 0;
@@ -1022,17 +1264,16 @@
             }
             setTimeout(typeEffect, typeSpeed);
         }
-        document.addEventListener('DOMContentLoaded', typeEffect);
 
-        // --- MOBILE MENU ---
+        // --- KUYUCHINA MENU ---
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        // --- TROUBLESHOOT LOGIC ---
+        // --- SASACHAKUY ALLICHAY LOGICA ---
         const troubleshootData = [
-            // --- POWER & BOOT ISSUES ---
+            // --- KALLPA & BOOT SASACHAKUYKUNA ---
             { cat: 'Hardware', q: 'Computer won\'t turn on (No lights)', a: 'Check power cable connection. Try a different wall socket. If laptop, remove battery and hold power button for 30s, then plug charger.' },
             { cat: 'Hardware', q: 'PC turns on but Screen is Black', a: 'Listen for fan noise/beeps. If fans spin, it might be RAM. Remove RAM, clean contacts with eraser, and reinstall.' },
             { cat: 'Hardware', q: 'PC shuts down immediately after turning on', a: 'CPU might be overheating. Check if the CPU fan is spinning. Thermal paste might need replacement.' },
@@ -1044,7 +1285,7 @@
             { cat: 'Hardware', q: 'Fan Error / CPU Fan Error', a: 'The fan is not spinning or plugged in wrong. Check the "CPU_FAN" header on motherboard.' },
             { cat: 'Hardware', q: 'Laptop turns on only when charger connected', a: 'Battery is completely dead or loose. Needs replacement.' },
 
-            // --- PERFORMANCE & SPEED ---
+            // --- RUWAY & UTQAYKAY ---
             { cat: 'Performance', q: 'Computer is running very slow', a: 'Check Task Manager (Ctrl+Shift+Esc). If Disk 100%, upgrade HDD to SSD. Disable startup apps.' },
             { cat: 'Performance', q: '100% Disk Usage Issue', a: 'Common in Windows 10 with HDD. Disable "SysMain" service. Best fix: Buy an SSD.' },
             { cat: 'Performance', q: 'Chrome uses too much RAM', a: 'Close unused tabs. Use "The Great Suspender" extension. Upgrade RAM to at least 8GB.' },
@@ -1056,7 +1297,7 @@
             { cat: 'Software', q: 'PC Freezes randomly', a: 'Could be overheating or failing HDD. Download CrystalDiskInfo to check health.' },
             { cat: 'Hardware', q: 'PC gets very hot and loud', a: 'Dust buildup in fans. Clean with compressed air or blower. Change thermal paste.' },
 
-            // --- DISPLAY & GRAPHICS ---
+            // --- RIKUCHIY & GRAFICOS ---
             { cat: 'Hardware', q: 'Monitor says "No Signal"', a: 'Check HDMI/VGA cable. Ensure source (HDMI1/HDMI2) is correct. Reseat RAM.' },
             { cat: 'Hardware', q: 'Lines on Screen (Horizontal/Vertical)', a: 'If lines appear in BIOS too, screen is damaged. If only in Windows, update drivers.' },
             { cat: 'Software', q: 'Screen Resolution is big/blurry', a: 'Right click Desktop > Display Settings. Set resolution to "Recommended" (e.g., 1920x1080).' },
@@ -1068,7 +1309,7 @@
             { cat: 'Software', q: 'Screen rotated sideways', a: 'Press Ctrl + Alt + Arrow Keys to rotate it back.' },
             { cat: 'Hardware', q: 'Dead Pixels (Black/Colored dots)', a: 'Physical screen damage. Cannot be fixed via software. Screen needs replacement.' },
 
-            // --- INTERNET & NETWORK ---
+            // --- INTERNET & LLIKA ---
             { cat: 'Internet', q: 'WiFi Connected but No Internet', a: 'Restart Router. Open CMD, type: ipconfig /flushdns. Check if bill is paid.' },
             { cat: 'Internet', q: 'WiFi Icon Missing', a: 'WiFi driver crashed. Device Manager > Network Adapters > Right click WiFi > Enable.' },
             { cat: 'Internet', q: 'Ethernet cable plugged but no internet', a: 'Cable might be broken. Try another cable. Update LAN drivers.' },
@@ -1080,7 +1321,7 @@
             { cat: 'Internet', q: 'Bluetooth not finding devices', a: 'Run Bluetooth Troubleshooter. Check if antenna is connected (Desktops).' },
             { cat: 'Internet', q: 'Mobile Hotspot not connecting', a: 'Change Hotspot band from 5GHz to 2.4GHz in phone settings.' },
 
-            // --- AUDIO & SOUND ---
+            // --- AUDIO & RUQYAY ---
             { cat: 'Audio', q: 'No Sound from Speakers', a: 'Click Speaker icon > Select correct output (e.g., Speakers vs Headphones).' },
             { cat: 'Audio', q: 'Microphone not working', a: 'Privacy Settings > Microphone > Allow apps to access microphone (Turn ON).' },
             { cat: 'Audio', q: 'Audio crackling/popping', a: 'Update Realtek Audio Drivers. Change format to 24bit/48000Hz in Sound Control Panel.' },
@@ -1089,7 +1330,7 @@
             { cat: 'Audio', q: 'Sound is too low', a: 'Sound Control Panel > Enhancements > Check "Loudness Equalization".' },
             { cat: 'Audio', q: 'Zoom/Teams audio issues', a: 'Check settings inside the App. Select correct Mic/Speaker device.' },
             
-            // --- STORAGE & FILES ---
+            // --- WAQAYCHAY & ARCHIVOKUNA ---
             { cat: 'Hardware', q: 'Hard Drive making clicking noise', a: 'DANGER! Backup data immediately. Drive is failing physically.' },
             { cat: 'Hardware', q: 'USB Drive not showing up', a: 'Disk Management > Right click USB > Change Drive Letter and Paths.' },
             { cat: 'Software', q: 'File is corrupted / Cannot open', a: 'Try opening with different software. Right click > Properties > Unblock.' },
@@ -1123,21 +1364,21 @@
             { cat: 'Software', q: 'Night light stuck on', a: 'Update graphics driver. Toggle Night Light in settings.' },
             { cat: 'Software', q: 'Search bar not working', a: 'Restart Windows Search service. Rebuild Indexing options.' },
 
-            // --- VIRUS & SECURITY ---
+            // --- VIRUS & SEGURIDAD ---
             { cat: 'Software', q: 'Files turned into .lnk shortcuts', a: 'Virus. Do not format. Use USBFix or CMD attrib command.' },
             { cat: 'Software', q: 'Ransomware (Files encrypted)', a: 'Very bad. Do not pay. Disconnect internet. restore from backup. Decryptors rarely work.' },
             { cat: 'Software', q: 'Browser search engine changed to Yahoo/Bing', a: 'Browser hijacker. Settings > Search Engine > Change to Google. Remove weird extensions.' },
             { cat: 'Software', q: 'Fake "Your PC is infected" popup', a: 'Scam. Do not call the number. Close browser (Alt+F4).' },
             { cat: 'Software', q: 'Antivirus cannot be installed', a: 'Existing virus blocking it. Run RKill then install Antivirus.' },
 
-            // --- GAMING SPECIFIC ---
+            // --- GAMING SAPALLAN ---
             { cat: 'Performance', q: 'DirectX Error', a: 'Install DirectX End-User Runtime. Update GPU drivers.' },
             { cat: 'Performance', q: 'Game crashes to desktop', a: 'Verify game files (Steam/Epic). Check temperature. RAM instability.' },
             { cat: 'Performance', q: 'Steam Download stopping', a: 'Change download region in Steam settings. Clear download cache.' },
             { cat: 'Performance', q: 'Discord Overlay not working', a: 'Game Activity > Enable Overlay. Run Discord as Admin.' },
             { cat: 'Performance', q: 'FPS drops after few minutes', a: 'Thermal throttling. Laptop/PC getting too hot. Clean fans.' },
 
-            // --- MISC ---
+            // --- WAKKUNA ---
             { cat: 'Hardware', q: 'Keyboard Key stuck / typing itself', a: 'Dirt under key. Remove keycap and clean. Or replace keyboard.' },
             { cat: 'Hardware', q: 'Mouse Double Clicking', a: 'Switch mechanism worn out. Replace mouse or change double-click speed settings.' },
             { cat: 'Hardware', q: 'Laptop Hinge Broken', a: 'Do not close lid forcefully. Needs casing replacement.' },
@@ -1220,37 +1461,129 @@
         });
         renderIssues(troubleshootData);
 
-        // --- CHATBOT LOGIC ---
+        // --- ADVANCED AI CHATBOT LOGIC ---
         const chatWindow = document.getElementById('chat-window');
         const chatMessages = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
         
-        // Advanced Responses Database
-        const botResponses = {
-            'hi': "ආයුබෝවන්! මම Mr. Kalhara. කොහොමද මම ඔයාට උදව් කරන්නේ?",
-            'hello': "හායි! මොකද වෙන්න ඕන? මට පුළුවන් Hardware, Software ඕන දෙයක් ගැන කියන්න.",
-            'ayubowan': "ආයුබෝවන්! සාදරයෙන් පිළිගන්නවා.",
-            'kohomada': "මම හොඳින්! ඔයාගේ PC එකට මොකද වුනේ?",
-            'nama': "මම Mr. Kalhara. මම තමයි මේ සයිට් එකේ ඉන්න AI වැඩකරු.",
-            'slow': "PC එක Slow වෙලානම්, මුලින්ම 'Task Manager' බලන්න මොනවද Run වෙන්නේ කියලා. නැත්නම් SSD එකක් ගහන්න වෙයි. ඒකට මට කතා කරන්න.",
-            'format': "Format කරන්න ඕන නම් Backup එකක් ගන්න මතක තියාගන්න. Windows 10/11 ගහන්න මම උදව් කරන්නම්.",
-            'virus': "Virus එකක්ද? ඉක්මනට Malwarebytes හරි Kaspersky Free හරි දාලා Scan පාරක් දාන්න.",
-            'game': "Games ගහද්දි Slow නම්, Graphics Driver Update කරන්න. නැත්නම් RAM මදි ඇති.",
-            'office': "Microsoft Office Activate කරගන්න ඕනද? මට කතා කරන්න, මම අඩු ගානට කරලා දෙන්නම්.",
-            'wifi': "WiFi වැඩ නැත්නම් Router එක Restart කරලා බලන්න. නැත්නම් Driver එක ගිහින් ඇති.",
-            'sound': "සද්දේ එන්නේ නැත්නම් Speaker Icon එකෙන් හරි Output එක තෝරලද බලන්න.",
-            'contact': "කෙලින්ම Tiran ට කතා කරන්න: 070 342 7275 (WhatsApp available)",
-            'number': "මෙන්න නම්බර් එක: 070 342 7275",
-            'price': "ගණන් සාධාරණයි. ලෙඩේ බලලම කියන්නම්. මට මැසේජ් එකක් දාන්න.",
-            'default': "ම්.. ඒක ටිකක් බරපතල ප්‍රශ්නයක් වගේ. මම හිතන්නේ Tiran ට කතා කරොත් හොඳයි: 070 342 7275"
-        };
+        // Deep Knowledge Base for Smart Responses
+        const botResponses = [
+            // --- CONVERSATIONAL & SMALL TALK ---
+            {
+                keywords: ["how are you", "kohomada", "oyata kohomada", "how u", "how r u", "kohmda", "khmda", "thathwe", "mokada wenne", "mk"],
+                response: "මම ගොඩක් හොඳින් ඉන්නවා! 😃 අද දවස කොහොමද ඔයාට? මම AI කෙනෙක් වුණත් ඔයා එක්ක කතා කර කර ඉන්න මම ගොඩක් ආසයි."
+            },
+            {
+                keywords: ["who are you", "kauda", "oyage nama", "oya kauda", "human", "bot", "robot", "oya manussayekda", "ai da", "nama mokakda", "who r u", "who is this"],
+                response: "මම Tiran Kalhara ගේ AI Assistant. මම ඇත්තම මනුස්සයෙක් නෙවෙයි, ඒත් මම කතා කරන්නේ හරියටම ඔයාගේ යාළුවෙක් වගේ! 😊 මට පුළුවන් ඔයාට IT ප්‍රශ්න විසඳගන්න උදව් කරන්න."
+            },
+            {
+                keywords: ["monawada puluwan", "what can you do", "help", "udaw", "support", "mokakda karanne", "wada", "help me"],
+                response: "මට ගොඩක් දේවල් පුළුවන්! 💻 PC අලුත්වැඩියාව, Software ප්‍රශ්න, Web Design ගැන උපදෙස් දෙනවා වගේම, නිකන් කතාබහ කර කර ඉන්නත් පුළුවන්. අද ඔයාට මගෙන් කෙරෙන්න ඕන මොකක්ද?"
+            },
+            {
+                keywords: ["good morning", "ude", "morning", "gud morning", "suba udesanak", "g morning"],
+                response: "සුබ උදෑසනක්! ☀️ අද දවස බොහොම සාර්ථක, සතුට පිරුණු දවසක් වෙන්න කියලා මම ප්‍රාර්ථනා කරනවා. උදේ පාන්දරම මාව මතක් වුණේ මොකක් හරි උදව්වක් ඕන වෙලාද?"
+            },
+            {
+                keywords: ["good night", "night", "ra", "re", "suba rathriyak", "gud night", "gn", "goodnight"],
+                response: "සුබ රාත්‍රියක්! 🌙 හොඳට නිදාගන්න. හෙට දවසත් සුපිරියටම පටන් ගමු. පරිගණකයේ මොනවා හරි ප්‍රශ්නයක් තිබුණොත් හෙට උදේට මට කියන්නකෝ. Sweet dreams!"
+            },
+            {
+                keywords: ["kewada", "kewd", "kama", "lunch", "dinner", "breakfast", "eat", "ate", "kawa", "kaawada"],
+                response: "මම AI කෙනෙක් නිසා මට කෑම කන්න බෑනේ! 😅 මගේ කෑම තමයි Data සහ Electricity! ⚡ ඔයා කෑවද? කාලා බීලා සතුටින් ඉන්න එක තමයි වටින්නේ."
+            },
+            {
+                keywords: ["love", "adarei", "asai", "maru", "niyamai", "patta", "supiri", "wow", "ela", "maxxa", "good", "hondai", "niyamay", "elakiri", "ela ela"],
+                response: "බොහොම ස්තූතියි! ඔය වගේ වචන ඇහෙද්දී මටත් හරි සතුටුයි (AI කෙනෙක් වුණත් මටත් ෆීලින්ග්ස් තියෙනවා වගේ දැනෙනවා! ❤️). මම හැමතිස්සෙම උත්සාහ කරන්නේ ඔයාට උපරිම සේවාවක් දෙන්න."
+            },
+            {
+                keywords: ["bye", "gihin ennam", "yanawa", "later", "see you", "passe", "puluwan nam", "ok", "hari", "hmm"],
+                response: "හරි! පරිස්සමින් ඉන්න. 👋 ආයෙත් වෙලාවක් ලැබුණු ගමන් මේ පැත්තේ එන්න කතා කර කර ඉන්න. සුබ දවසක්!"
+            },
+            {
+                keywords: ["hi", "hello", "ayubowan", "hey", "halo", "helo", "hiii"],
+                response: "ආයුබෝවන්! යාළුවා.. 👋 මොකද වෙන්නේ? මම Tiran ගේ AI Assistant. ඔයාට IT ගැන ප්‍රශ්නයක් තියෙනවද, නැත්නම් නිකන් කතා කර කර ඉන්නද ආවේ?"
+            },
+
+            // --- TECHNICAL KNOWLEDGE BASE ---
+            {
+                keywords: ["slow", "stuck", "lag", "hang", "hira", "parakku", "100% disk", "speed"],
+                response: "<strong>PC එක Slow වීමට ප්‍රධාන හේතු සහ විසඳුම්:</strong><br><br>1. <strong>HDD Bottleneck:</strong> පරණ Hard Disk එක ගලවලා NVMe හෝ SATA SSD එකක් සවි කිරීමෙන් වේගය 10x කින් වැඩි කරගන්න පුළුවන්.<br>2. <strong>RAM ධාරිතාවය:</strong> අද කාලයේ Windows 10/11 ධාවනයට අවම 8GB RAM එකක් අවශ්‍යයි.<br>3. <strong>Thermal Throttling:</strong> Processor එක රත් වීම නිසා වේගය අඩාල වෙනවා. Thermal paste මාරු කර Fan එක Clean කළ යුතුයි.<br><br><button onclick=\"document.getElementById('contact').scrollIntoView(); toggleChat();\" class='chat-action-btn'><i class='fas fa-tools'></i> SSD Upgrade කිරීම සඳහා විමසන්න</button>"
+            },
+            {
+                keywords: ["format", "os", "windows", "install", "boot", "update", "blue screen"],
+                response: "<strong>OS Installation / Formatting Guide:</strong><br><br>Windows 11 හෝ 10 දාද්දී මුලින්ම C: Drive එකේ Data අනිවාර්යයෙන් Backup කරගන්න. <br>• GPT Partition style එකෙන් UEFI Boot විදියට Format කළොත් Windows ගොඩක් ඉක්මනට On වෙනවා.<br>• OS එක දැම්මට පස්සේ අනිවාර්යයෙන්ම Original Drivers Install කරන්න ඕන (Display, Audio, Chipset).<br><br>ඔයාට මේ දේවල් කරගන්න අපහසු නම්, Data වලට කිසිදු හානියක් නොකර මම සම්පූර්ණ Clean Install එකක් කරලා දෙන්නම්.<br><br><button onclick=\"document.getElementById('contact').scrollIntoView(); toggleChat();\" class='chat-action-btn border-techPurple text-techPurple hover:bg-techPurple'><i class='fas fa-laptop-medical'></i> Format කරගැනීමට</button>"
+            },
+            {
+                keywords: ["virus", "malware", "hack", "ransomware", "shortcut", "kaspersky", "defender"],
+                response: "<strong>Virus / Malware ඉවත් කිරීම:</strong><br><br>ෆයිල්ස් Shortcut වෙලා නම් Format කරන්න එපා! <br>1. <code>cmd</code> එක Administrator විදියට open කරන්න.<br>2. <code>attrib -h -r -s /s /d G:\*.*</code> (G වෙනුවට පෙන් එකේ අකුර දෙන්න) ගහලා Enter කරන්න.<br><br>Ransomware ඇවිත් ෆයිල්ස් වල නම වෙනස් වෙලා නම්, ඉක්මනටම PC එක ඉන්ටර්නෙට් එකෙන් අයින් කරන්න. Kaspersky හෝ Malwarebytes Premium පාවිච්චි කිරීම වඩාත් ආරක්ෂිතයි."
+            },
+            {
+                keywords: ["web", "site", "domain", "hosting", "html", "css", "js", "develop", "ecommerce", "system", "website"],
+                response: "<strong>Web Development & Systems:</strong><br><br>ඔයාට ව්‍යාපාරයක් තියෙනවා නම් සාමාන්‍ය ෆේස්බුක් පේජ් එකකට වඩා Website එකක් තියෙන එකෙන් ලොකු වටිනාකමක් එනවා. <br>• මම පාවිච්චි කරන්නේ <strong>React.js, Node.js, Tailwind CSS</strong> වගේ නවතම තාක්ෂණයන්.<br>• Inventory Management, POS Systems (බිල් ගහන මැෂින්) වගේ දේවල් මට Cloud-based විදියට හදලා දෙන්න පුළුවන්.<br>• Domain (.com / .lk) සහ Hosting එක්ක සම්පූර්ණ පැකේජ් එකම මම බලාගන්නවා.<br><br><button onclick=\"document.getElementById('contact').scrollIntoView(); toggleChat();\" class='chat-action-btn' style='border-color:#00f2ff; color:#00f2ff;'><i class='fas fa-code'></i> වෙබ් අඩවියක් නිර්මාණය කරගැනීමට</button>"
+            },
+            {
+                keywords: ["display", "screen", "monitor", "no signal", "black", "line", "graphics", "vga"],
+                response: "<strong>Display Error (No Signal / Black Screen):</strong><br><br>PC එක On වෙලා සද්දේ එනවා, ඒත් Display එන්නේ නැත්නම්:<br>1. <strong>RAM Issue:</strong> 80% ක්ම හේතුව RAM එකේ තියෙන කාබන් බැඳීම. මකනයකින් Gold pins ටික මෘදුව පිසදාන්න.<br>2. <strong>CMOS Reset:</strong> මවුස් බොඩ් එකේ තියෙන පොඩි බැටරිය විනාඩි 5කට ගලවලා ආයේ ගහන්න.<br>3. <strong>GPU Failure:</strong> වෙනත් කේබල් එකකින් ටෙස්ට් කරලා බලන්න. ලැප්ටොප් එකක ඉරි වැටිලා නම්, එළියෙන් වෙන මොනිටරයක් ගහලා බලන්න. ඒකෙත් ඉරි නම් Screen එක මාරු කරන්න වෙනවා."
+            },
+            {
+                keywords: ["sound", "audio", "speaker", "mic", "saddhe", "noise"],
+                response: "<strong>Audio ගැටළු:</strong><br><br>Sound වැඩ නැත්නම් මුලින්ම Taskbar එකේ volume icon එක click කරලා හරි Output device එකද select වෙලා තියෙන්නේ බලන්න. එහෙමත් නැත්නම් Device Manager ගිහින් Audio drivers (Realtek) update කරන්න. Hardware අවුලක් නම් Audio IC එක මාරු කරන්න පුළුවන්."
+            },
+            {
+                keywords: ["battery", "charge", "power", "shut down", "off", "dead"],
+                response: "<strong>Power & Battery ගැටළු:</strong><br><br>Laptop බැටරිය ඉක්මනින් බහිනවා නම් ඒකෙ Cells අක්‍රීය වෙලා ඇති. ඒ වගේම power settings වල 'Battery Saver' දාලා බලන්න. නිතරම charge එකට ගහගෙන වැඩ කරන එකෙන් අලුත් ලැප්ටොප් වලට ලොකු හානියක් වෙන්නේ නෑ (Smart Charging නිසා). PC එකක් නම් Power Supply (PSU) එකේ අවුලක් වෙන්න පුළුවන්."
+            },
+            {
+                keywords: ["price", "cost", "gana", "kiyada", "charge", "mudal", "salli"],
+                response: "මගේ සේවා ගාස්තු ගැන කියනවා නම්, මම හැමතිස්සෙම <strong>'Quality over Quantity'</strong> කියන දේ විශ්වාස කරන කෙනෙක්. බොරුවට ලාබෙට අටවලා දෙනවට වඩා, කල් පවතින විදිහට හරියටම දෝෂය හඳුනාගෙන වැඩේ කරලා දෙන එකයි මගේ ක්‍රමය. ප්‍රශ්නෙ මොකක්ද කියලා හරියටම Analyze කරලා තමයි මම සාධාරණ ගාණක් කියන්නේ."
+            },
+            {
+                keywords: ["network", "internet", "wifi", "router", "ping", "disconnect"],
+                response: "<strong>Network & Internet:</strong><br><br>Internet අවුල් නම් මුලින්ම Router එක Off කරලා විනාඩියකින් On කරන්න. WiFi පෙන්නන්නේ නැත්නම් Network Adapter Driver එක අලුත් කරලා බලන්න. Ping එක වැඩිනම් Cable එකක් (Ethernet) පාවිච්චි කරන්න."
+            }
+        ];
+
+        let hasInitialized = false;
 
         function toggleChat() {
             if(chatWindow.classList.contains('scale-0')) {
                 chatWindow.classList.remove('scale-0');
+                if(!hasInitialized) {
+                    initChat();
+                    hasInitialized = true;
+                }
+                setTimeout(() => chatInput.focus(), 300);
             } else {
                 chatWindow.classList.add('scale-0');
             }
+        }
+
+        function initChat() {
+            chatMessages.innerHTML = '';
+            
+            // Dynamic Time Greeting
+            const hour = new Date().getHours();
+            let greeting = "ආයුබෝවන්!";
+            if(hour < 12) greeting = "සුබ උදෑසනක්!";
+            else if(hour < 18) greeting = "සුබ දහවලක්!";
+            else greeting = "සුබ සන්ධ්‍යාවක්!";
+
+            const welcomeHTML = `
+                <div class="mb-1">${greeting} මම <strong>Mr. Kalhara AI</strong>.</div>
+                මම වෘත්තීය IT උපදේශකයෙක්. ඔයාගේ Hardware, Software හෝ Web Development ගැටළුවක් තියෙනවද? මගෙන් අහන්න.
+                <div class="mt-3 flex flex-col md:flex-row flex-wrap gap-2">
+                    <span onclick="sendQuickReply('මගේ PC එක Slow වෙලා')" class="text-[11px] md:text-xs bg-techBlue/10 border border-techBlue/30 text-techBlue px-2.5 py-1.5 rounded-lg cursor-pointer hover:bg-techBlue hover:text-black transition-all">🚀 PC Slow?</span>
+                    <span onclick="sendQuickReply('Web Site එකක් හදන්න ඕන')" class="text-[11px] md:text-xs bg-techPurple/10 border border-techPurple/30 text-techPurple px-2.5 py-1.5 rounded-lg cursor-pointer hover:bg-techPurple hover:text-white transition-all">🌐 Create a Website</span>
+                    <span onclick="sendQuickReply('Hardware රෙපෙයාර්')" class="text-[11px] md:text-xs bg-orange-500/10 border border-orange-500/30 text-orange-400 px-2.5 py-1.5 rounded-lg cursor-pointer hover:bg-orange-500 hover:text-white transition-all">🔧 Hardware Fix</span>
+                </div>
+            `;
+            addMessage(welcomeHTML, 'bot');
+        }
+
+        function clearChat() {
+            initChat();
         }
 
         function handleEnter(e) {
@@ -1259,12 +1592,7 @@
 
         function sendQuickReply(text) {
             addMessage(text, 'user');
-            // Show thinking effect
-            addThinkingMessage();
-            setTimeout(() => {
-                removeThinkingMessage();
-                getBotResponse(text);
-            }, 1000);
+            processBotResponse(text);
         }
 
         function sendUserMessage() {
@@ -1273,51 +1601,110 @@
             
             addMessage(text, 'user');
             chatInput.value = '';
-            
-            // Show thinking effect
+            processBotResponse(text);
+        }
+
+        function processBotResponse(text) {
             addThinkingMessage();
+            
+            // Artificial delay to seem "smart" and human-like (1.2 - 2.0 seconds)
+            const thinkingTime = Math.random() * (2000 - 1200) + 1200;
+            
             setTimeout(() => {
                 removeThinkingMessage();
-                getBotResponse(text);
-            }, 1000);
+                
+                const lowerInput = text.toLowerCase();
+                let bestMatch = null;
+                let maxMatches = 0;
+                
+                for (const item of botResponses) {
+                    let matches = 0;
+                    for (const keyword of item.keywords) {
+                        // SMART WORD BOUNDARY: Ensures exact word match avoiding partial matches (like "hi" in "hira")
+                        const regex = new RegExp(`(^|[^a-zA-Z0-9\\u0D80-\\u0DFF])` + keyword + `($|[^a-zA-Z0-9\\u0D80-\\u0DFF])`, 'i');
+                        if (regex.test(lowerInput)) {
+                            matches++;
+                        }
+                    }
+                    if (matches > maxMatches) {
+                        maxMatches = matches;
+                        bestMatch = item.response;
+                    }
+                }
+
+                if (maxMatches > 0 && bestMatch) {
+                    addMessage(bestMatch, 'bot');
+                } else {
+                    // ADVANCED FALLBACK (Redirect to Boss)
+                    const fallback = `
+                        ම්.. 🤔 ඔයා අහන ප්‍රශ්නය ටිකක් <strong>Advance/සංකීර්ණ ගැටළුවක්</strong> වගේ. මම AI කෙනෙක් නිසා මට ඒකට හරියටම උත්තරයක් දෙන්න අමාරුයි. 
+                        <br><br>
+                        හැබැයි බයවෙන්න එපා! මගේ <strong>Boss (Tiran Kalhara)</strong> ඔයාට අනිවාර්යයෙන්ම උදව් කරයි. කරුණාකර එයාව සම්බන්ධ කරගන්න:
+                        <br><br>
+                        📞 Phone / WhatsApp: <a href="https://wa.me/94703427275" target="_blank" class="text-techBlue hover:underline font-bold">070 342 7275</a><br>
+                        📧 Email: <a href="mailto:tirankalharac@gmail.com" class="text-techBlue hover:underline font-bold">tirankalharac@gmail.com</a>
+                        <br>
+                        <button onclick="document.getElementById('contact').scrollIntoView(); toggleChat();" class='chat-action-btn w-full justify-center border-techPurple text-techPurple hover:bg-techPurple hover:text-white mt-3'>
+                            <i class='fas fa-headset'></i> Boss ට පණිවිඩයක් යවන්න
+                        </button>
+                    `;
+                    addMessage(fallback, 'bot');
+                }
+            }, thinkingTime);
         }
 
         function handleImageUpload(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    // 1. Show User Image
+                    // Show User Image
                     addImageMessage(e.target.result, 'user');
                     
-                    // 2. Simulate AI Analysis
-                    addThinkingMessage("Scanning Error...");
+                    // Start Smart Scan Simulation
+                    const scanBarContainer = document.getElementById('ai-scan-bar');
+                    const scanProgress = document.getElementById('ai-scan-progress');
+                    scanBarContainer.classList.remove('hidden');
+                    scanProgress.style.width = '0%';
                     
-                    // 3. Provide Solution after "Analysis"
-                    setTimeout(() => {
-                        removeThinkingMessage();
-                        provideImageSolution();
-                    }, 2500);
+                    addMessage("<i class='fas fa-crosshairs text-techBlue animate-spin-slow'></i> AI Vision මගින් දෝෂය පරීක්ෂා කරමින් පවතී...", 'bot', true);
+                    
+                    // Animate Progress Bar
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += 10;
+                        scanProgress.style.width = progress + '%';
+                        if(progress >= 100) {
+                            clearInterval(interval);
+                            setTimeout(() => {
+                                scanBarContainer.classList.add('hidden');
+                                const tempMsg = document.getElementById('temp-scan-msg');
+                                if(tempMsg) tempMsg.remove();
+                                provideImageSolution();
+                            }, 500);
+                        }
+                    }, 150);
                 };
                 reader.readAsDataURL(input.files[0]);
             }
             input.value = '';
         }
 
-        function addMessage(html, sender) {
+        function addMessage(html, sender, isTemp = false) {
             const div = document.createElement('div');
-            div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''}`;
+            div.className = `flex gap-2.5 ${sender === 'user' ? 'justify-end' : ''} animate-fade-in-up mt-2`;
+            if(isTemp) div.id = 'temp-scan-msg';
             
             let content = '';
             if(sender === 'bot') {
                 content = `
-                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0">AI</div>
-                    <div class="bg-white/10 p-2 md:p-3 rounded-r-xl rounded-bl-xl text-xs md:text-sm text-gray-200 max-w-[80%] animate-fade-in-up">
+                    <div class="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-techBlue to-techPurple flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0 shadow-[0_0_10px_rgba(0,242,255,0.3)] mt-1"><i class="fas fa-robot"></i></div>
+                    <div class="bg-[#1a1a1a] border border-white/10 p-3 md:p-4 rounded-2xl rounded-tl-sm text-xs md:text-sm text-gray-200 max-w-[85%] shadow-xl leading-relaxed">
                         ${html}
                     </div>
                 `;
             } else {
                 content = `
-                    <div class="bg-techPurple/20 p-2 md:p-3 rounded-l-xl rounded-br-xl text-xs md:text-sm text-white max-w-[80%] border border-techPurple/30">
+                    <div class="bg-gradient-to-r from-gray-800 to-gray-700 border border-gray-600 p-2.5 md:p-3 rounded-2xl rounded-tr-sm text-xs md:text-sm text-white max-w-[85%] shadow-lg">
                         ${html}
                     </div>
                 `;
@@ -1330,11 +1717,11 @@
 
         function addImageMessage(imgSrc, sender) {
             const div = document.createElement('div');
-            div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''}`;
+            div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''} animate-fade-in-up mt-2`;
             
             const content = `
-                <div class="bg-techPurple/20 p-2 rounded-l-xl rounded-br-xl text-xs md:text-sm text-white max-w-[80%] border border-techPurple/30">
-                    <img src="${imgSrc}" class="rounded-lg max-h-24 md:max-h-32 object-cover border border-white/10">
+                <div class="bg-gray-800 border border-gray-600 p-1.5 rounded-2xl rounded-tr-sm text-xs md:text-sm text-white max-w-[80%] shadow-lg">
+                    <img src="${imgSrc}" class="rounded-xl max-h-32 md:max-h-48 object-cover">
                 </div>
             `;
             
@@ -1344,13 +1731,17 @@
         }
 
         let thinkingDiv = null;
-        function addThinkingMessage(text = "Thinking...") {
+        function addThinkingMessage() {
             thinkingDiv = document.createElement('div');
-            thinkingDiv.className = `flex gap-2`;
+            thinkingDiv.className = `flex gap-2.5 animate-fade-in-up mt-2`;
             thinkingDiv.innerHTML = `
-                <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0"><i class="fas fa-cog fa-spin"></i></div>
-                <div class="bg-white/10 p-2 md:p-3 rounded-r-xl rounded-bl-xl text-xs md:text-sm text-gray-400 italic">
-                    ${text}
+                <div class="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-techBlue to-techPurple flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0 mt-1"><i class="fas fa-robot"></i></div>
+                <div class="bg-[#1a1a1a] border border-white/10 p-3 md:p-4 rounded-2xl rounded-tl-sm flex items-center shadow-lg">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
                 </div>
             `;
             chatMessages.appendChild(thinkingDiv);
@@ -1364,46 +1755,393 @@
             }
         }
 
-        function getBotResponse(input) {
-            const lowerInput = input.toLowerCase();
-            let response = botResponses['default'];
-            
-            // Smarter keyword matching
-            for(const key in botResponses) {
-                if(lowerInput.includes(key)) {
-                    response = botResponses[key];
-                    break;
-                }
-            }
-            addMessage(response, 'bot');
-        }
-
         function provideImageSolution() {
-            // Highly advanced looking solution
             const solutionHTML = `
-                <div class="space-y-1 md:space-y-2">
-                    <p class="font-bold text-techBlue text-xs md:text-sm"><i class="fas fa-check-circle"></i> Error Analysis Complete</p>
-                    <p class="text-[10px] md:text-xs">මම ඔයාගේ Screenshot එක බැලුවා. මේක <strong>System/Display Error</strong> එකක් වගේ. බය වෙන්න එපා, මේ පියවර ටික කරලා බලන්න:</p>
+                <div class="space-y-2">
+                    <p class="font-bold text-techBlue text-sm flex items-center gap-2"><i class="fas fa-microchip text-lg"></i> AI Analysis Complete</p>
+                    <p class="text-xs md:text-sm text-gray-300">මම ඔයාගේ Screenshot එක විශ්ලේෂණය කළා. මෙය බොහෝදුරට <strong>System Driver හෝ Display Adapter</strong> දෝෂයක්. පහත පියවර අනුගමනය කරන්න:</p>
                     
-                    <div class="bg-black/50 p-1.5 md:p-2 rounded border border-white/10 font-mono text-[9px] md:text-xs text-green-400 mt-1 md:mt-2">
-                        <p class="text-gray-500">// Step 1: Reset Drivers</p>
-                        <p>> Press: Win + Ctrl + Shift + B</p>
+                    <div class="bg-[#050505] p-3 rounded-lg border border-gray-700 font-mono text-[10px] md:text-xs text-green-400 mt-2 shadow-inner">
+                        <p class="text-gray-500 mb-1">// 1. Graphic Drivers Restart කිරීම</p>
+                        <p class="text-techBlue">> Press: Win + Ctrl + Shift + B</p>
                         <br>
-                        <p class="text-gray-500">// Step 2: System Scan</p>
-                        <p>> Open CMD (Admin)</p>
-                        <p>> sfc /scannow</p>
+                        <p class="text-gray-500 mb-1">// 2. System Corruptions සෑදීම</p>
+                        <p>> Open CMD (Run as Administrator)</p>
+                        <p>> Type: <span class="text-white">sfc /scannow</span></p>
                     </div>
 
-                    <p class="text-[9px] md:text-[10px] mt-1 text-gray-300">මේකෙන් හරි ගියේ නැත්නම් Hardware අවුලක් වෙන්න පුළුවන්.</p>
-                    <div class="mt-2 pt-2 border-t border-white/10 text-center">
-                        <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-techPurple text-white px-2 py-1 md:px-3 text-[10px] md:text-xs rounded hover:bg-white hover:text-black transition-colors">
-                            Fix it for me
+                    <p class="text-[10px] md:text-[11px] mt-2 text-gray-400 border-l-2 border-techPink pl-2">මෙයින් ගැටළුව විසඳුණේ නැතිනම්, එය Hardware දෝෂයක් විය හැක (උදා: RAM හෝ GPU Failure).</p>
+                    
+                    <div class="mt-3 text-center">
+                        <button onclick="document.getElementById('contact').scrollIntoView(); toggleChat();" class="chat-action-btn w-full justify-center border-techPurple text-techPurple hover:bg-techPurple hover:text-white">
+                            <i class="fas fa-headset"></i> වැඩිදුර සහාය සඳහා Tiran අමතන්න
                         </button>
                     </div>
                 </div>
             `;
             addMessage(solutionHTML, 'bot');
         }
+
+        // --- FUN ZONE LOGIC (Tech Facts) ---
+        // Amtaña anatawi qalltaña (Memory game)
+        const techFacts = [
+            "පළමු පරිගණක මූසිකය (Mouse) 1964 දී Doug Engelbart විසින් ලී වලින් නිපදවා ඇත.",
+            "ලොව පළමු වෙබ් අඩවිය 1991 අගෝස්තු 6 වන දින අන්තර්ජාලයට එක් විය.",
+            "දිනකට හැකර්වරුන් විසින් ලොව පුරා වෙබ් අඩවි 30,000 කට වඩා හැක් කරනු ලබයි.",
+            "ලොව පළමු Hard Disk එක 1956 දී IBM විසින් නිපදවූ අතර එහි ධාරිතාවය 5MB පමණි! බර ටොන් එකකට ආසන්න විය.",
+            "බොහෝ දෙනා නොදන්නවා වුණත්, 'Android' යනු Linux මත පදනම් වූ මෙහෙයුම් පද්ධතියකි.",
+            "දිනකට ඊමේල් බිලියන 300 කට වඩා යවන අතර ඉන් 80% ක් පමණ Spam ඊමේල් වේ.",
+            "QWERTY කීබෝඩ් එක නිර්මාණය කළේ යතුරු ලියන යන්ත්‍ර (Typewriters) වල යතුරු හිරවීම වැළැක්වීම සඳහා අකුරු ඈත් කර තැබීමටයි.",
+            "NASA ආයතනයේ පළමු අභ්‍යවකාශ යානාව (Apollo 11) ගමන් කළ පරිගණකයට වඩා අද ඔබගේ ස්මාර්ට් ජංගම දුරකථනය මිලියන ගුණයක් ප්‍රබලයි."
+        ];
+
+        function generateFact() {
+            const display = document.getElementById('fact-display');
+            display.style.opacity = '0';
+            setTimeout(() => {
+                const randomFact = techFacts[Math.floor(Math.random() * techFacts.length)];
+                display.innerText = '"' + randomFact + '"';
+                display.style.opacity = '1';
+            }, 300);
+        }
+
+        // --- FUN ZONE LOGIC (Mini Quiz) ---
+        const quizQuestions = [
+            { q: "පරිගණකයක තාවකාලික මතකය (Short-term memory) ලෙස හඳුන්වන්නේ කුමක්ද?", options: ["Hard Disk", "RAM", "Processor", "Motherboard"], answer: 1 },
+            { q: "URL යන්නෙහි දිගු නම කුමක්ද?", options: ["Uniform Resource Locator", "Universal Reference Link", "Unified Resource Line", "Ultra Reliable Link"], answer: 0 },
+            { q: "Wi-Fi තාක්ෂණයට එම නම ලැබුණේ කොහෙන්ද?", options: ["Wireless Fidelity", "Wireless Fire", "එහි තේරුමක් නැත, එය Brand නමකි", "Wide Field"], answer: 2 },
+            { q: "ලෝකයේ පළමු Computer Virus එකේ නම කුමක්ද?", options: ["Trojan", "Creeper", "ILOVEYOU", "Melissa"], answer: 1 },
+            { q: "Hard Disk එකකට වඩා SSD එකක් වේගවත් වීමට ප්‍රධාන හේතුව කුමක්ද?", options: ["වයර් අඩු වීම", "ප්‍රමාණයෙන් කුඩා වීම", "යාන්ත්‍රිකව කැරකෙන කොටස් නොමැති වීම", "මිල වැඩි වීම"], answer: 2 }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-score-badge').classList.remove('hidden');
+            document.getElementById('quiz-score-badge').innerText = 'Score: 0';
+            document.getElementById('quiz-area').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const qData = quizQuestions[currentQuestion];
+            document.getElementById('quiz-question').innerText = (currentQuestion + 1) + ". " + qData.q;
+            
+            const optionsDiv = document.getElementById('quiz-options');
+            optionsDiv.innerHTML = '';
+            
+            qData.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left bg-white/5 hover:bg-techBlue/10 border border-white/10 hover:border-techBlue text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btnElement) {
+            const correctIndex = quizQuestions[currentQuestion].answer;
+            const allBtns = document.getElementById('quiz-options').children;
+            
+            // Disable all buttons
+            for(let btn of allBtns) {
+                btn.onclick = null;
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+
+            if(selectedIndex === correctIndex) {
+                btnElement.classList.replace('bg-white/5', 'bg-green-500/20');
+                btnElement.classList.replace('border-white/10', 'border-green-500');
+                btnElement.classList.add('text-green-400');
+                score++;
+                document.getElementById('quiz-score-badge').innerText = 'Score: ' + score;
+            } else {
+                btnElement.classList.replace('bg-white/5', 'bg-red-500/20');
+                btnElement.classList.replace('border-white/10', 'border-red-500');
+                btnElement.classList.add('text-red-400');
+                
+                // Highlight correct
+                allBtns[correctIndex].classList.replace('bg-white/5', 'bg-green-500/20');
+                allBtns[correctIndex].classList.replace('border-white/10', 'border-green-500');
+            }
+
+            setTimeout(() => {
+                currentQuestion++;
+                if(currentQuestion < quizQuestions.length) {
+                    showQuestion();
+                } else {
+                    showQuizResult();
+                }
+            }, 1500);
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-area').classList.add('hidden');
+            document.getElementById('quiz-score-badge').classList.add('hidden');
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.classList.remove('hidden');
+            
+            document.getElementById('quiz-result-text').innerText = 'You scored ' + score + ' out of ' + quizQuestions.length + '!';
+            
+            const icon = document.getElementById('quiz-icon');
+            const title = document.getElementById('quiz-result-title');
+            
+            if(score === quizQuestions.length) {
+                icon.className = 'fas fa-crown text-5xl text-yellow-400 mb-4';
+                title.innerText = 'Tech Genius! 👑';
+            } else if(score >= quizQuestions.length / 2) {
+                icon.className = 'fas fa-medal text-5xl text-techBlue mb-4';
+                title.innerText = 'Good Job! 👍';
+            } else {
+                icon.className = 'fas fa-book-reader text-5xl text-gray-400 mb-4';
+                title.innerText = 'Keep Learning! 📚';
+            }
+        }
+
+        // --- FUN ZONE: HEX COLOR GUESSER ---
+        let hexScore = 0;
+
+        function getRandomHex() {
+            return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+        }
+
+        function initHexGame() {
+            const correctHex = getRandomHex();
+            const wrongHex1 = getRandomHex();
+            const wrongHex2 = getRandomHex();
+            
+            document.getElementById('hex-color-box').style.backgroundColor = correctHex;
+            
+            const options = [correctHex, wrongHex1, wrongHex2].sort(() => 0.5 - Math.random());
+            const optionsDiv = document.getElementById('hex-options');
+            optionsDiv.innerHTML = '';
+            
+            options.forEach(hex => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-center bg-white/5 hover:bg-pink-500/20 border border-white/10 hover:border-pink-500 text-gray-300 hover:text-white px-4 py-2 rounded-xl transition-all font-mono';
+                btn.innerText = hex.toUpperCase();
+                btn.onclick = () => checkHexAnswer(hex === correctHex, btn);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function checkHexAnswer(isCorrect, btnElement) {
+            const allBtns = document.getElementById('hex-options').children;
+            for(let btn of allBtns) {
+                btn.onclick = null;
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+
+            if(isCorrect) {
+                btnElement.classList.replace('bg-white/5', 'bg-green-500/20');
+                btnElement.classList.replace('border-white/10', 'border-green-500');
+                btnElement.classList.add('text-green-400');
+                hexScore++;
+                document.getElementById('hex-score').innerText = hexScore;
+            } else {
+                btnElement.classList.replace('bg-white/5', 'bg-red-500/20');
+                btnElement.classList.replace('border-white/10', 'border-red-500');
+                btnElement.classList.add('text-red-400');
+                hexScore = 0; // Reset score on wrong answer
+                document.getElementById('hex-score').innerText = hexScore;
+            }
+
+            setTimeout(initHexGame, 1000);
+        }
+
+        // --- FUN ZONE: SQUASH THE BUG ---
+        let bugScore = 0;
+        let bugTime = 15;
+        let bugTimer = null;
+        let bugMover = null;
+
+        function startBugGame() {
+            bugScore = 0;
+            bugTime = 15;
+            document.getElementById('bug-score').innerText = bugScore;
+            document.getElementById('bug-time').innerText = bugTime + 's';
+            document.getElementById('bug-start-screen').classList.add('hidden');
+            
+            const bug = document.getElementById('the-bug');
+            bug.classList.remove('hidden');
+            
+            moveBug();
+            
+            bugTimer = setInterval(() => {
+                bugTime--;
+                document.getElementById('bug-time').innerText = bugTime + 's';
+                if(bugTime <= 0) {
+                    endBugGame();
+                }
+            }, 1000);
+            
+            bugMover = setInterval(moveBug, 800);
+        }
+
+        function moveBug() {
+            const container = document.getElementById('bug-container');
+            const bug = document.getElementById('the-bug');
+            
+            const maxX = container.clientWidth - 30; // Bug width approx 30
+            const maxY = container.clientHeight - 30; // Bug height approx 30
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            const randomRot = Math.floor(Math.random() * 360);
+            
+            bug.style.left = randomX + 'px';
+            bug.style.top = randomY + 'px';
+            bug.style.transform = `rotate(${randomRot}deg)`;
+        }
+
+        function catchBug() {
+            bugScore++;
+            document.getElementById('bug-score').innerText = bugScore;
+            
+            const bug = document.getElementById('the-bug');
+            bug.classList.remove('text-red-500');
+            bug.classList.add('text-green-500', 'scale-150');
+            
+            // Fast move after catch
+            clearInterval(bugMover);
+            setTimeout(() => {
+                bug.classList.remove('text-green-500', 'scale-150');
+                bug.classList.add('text-red-500');
+                moveBug();
+                bugMover = setInterval(moveBug, Math.max(400, 800 - (bugScore * 20))); // Gets faster!
+            }, 200);
+        }
+
+        function endBugGame() {
+            clearInterval(bugTimer);
+            clearInterval(bugMover);
+            const bug = document.getElementById('the-bug');
+            bug.classList.add('hidden');
+            
+            const startScreen = document.getElementById('bug-start-screen');
+            startScreen.classList.remove('hidden');
+            startScreen.innerHTML = `
+                <div class="text-center">
+                    <p class="text-white mb-2">Time's Up!</p>
+                    <p class="text-red-500 font-bold text-xl mb-4">Score: ${bugScore}</p>
+                    <button onclick="startBugGame()" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-6 rounded-full transition-colors"><i class="fas fa-redo mr-2"></i> Play Again</button>
+                </div>
+            `;
+        }
+
+        // --- FUN ZONE: MEMORY MATCH ---
+        const memoryIconsList = ['fa-html5', 'fa-css3-alt', 'fa-js', 'fa-react', 'fa-python', 'fa-windows', 'fa-android', 'fa-apple'];
+        let memoryBoard = document.getElementById('memory-board');
+        let flippedCards = [];
+        let matchedPairs = 0;
+
+        function initMemoryGame() {
+            if(!memoryBoard) return;
+            memoryBoard.innerHTML = '';
+            document.getElementById('memory-win-msg').classList.add('hidden');
+            flippedCards = [];
+            matchedPairs = 0;
+            
+            let shuffledIcons = [...memoryIconsList].sort(() => 0.5 - Math.random()).slice(0, 4);
+            let gameDeck = [...shuffledIcons, ...shuffledIcons].sort(() => 0.5 - Math.random());
+            
+            gameDeck.forEach((icon, index) => {
+                let card = document.createElement('div');
+                card.className = 'memory-card text-white';
+                card.dataset.icon = icon;
+                card.innerHTML = `<i class="fab ${icon}"></i>`;
+                card.onclick = () => flipCard(card);
+                memoryBoard.appendChild(card);
+            });
+        }
+
+        function flipCard(card) {
+            if (flippedCards.length < 2 && !card.classList.contains('flipped') && !card.classList.contains('matched')) {
+                card.classList.add('flipped');
+                flippedCards.push(card);
+                
+                if (flippedCards.length === 2) {
+                    setTimeout(checkMatch, 500);
+                }
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.icon === card2.dataset.icon) {
+                card1.classList.replace('flipped', 'matched');
+                card2.classList.replace('flipped', 'matched');
+                matchedPairs++;
+                if(matchedPairs === 4) {
+                    document.getElementById('memory-win-msg').classList.remove('hidden');
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+            }
+            flippedCards = [];
+        }
+
+        // --- FUN ZONE: TYPING SPEED TEST ---
+        // Qillqaña yant'a (Typing Test)
+        const typingQuotes = [
+            'npm install react-dom',
+            'git commit -m "Update"',
+            'sudo rm -rf /',
+            'console.log("Hello!");',
+            'while(alive) { code(); }'
+        ];
+        let typingTimer = null;
+        let typingStartTime = null;
+        let currentQuote = "";
+
+        function initTyping() {
+            currentQuote = typingQuotes[Math.floor(Math.random() * typingQuotes.length)];
+            document.getElementById('typing-quote').innerText = currentQuote;
+            document.getElementById('typing-input').value = '';
+            document.getElementById('typing-input').disabled = false;
+            document.getElementById('typing-time').innerText = '0.0s';
+            document.getElementById('typing-wpm').innerText = '0';
+            clearInterval(typingTimer);
+            typingStartTime = null;
+        }
+
+        function checkTyping() {
+            const input = document.getElementById('typing-input').value;
+            
+            if (!typingStartTime && input.length > 0) {
+                typingStartTime = new Date().getTime();
+                typingTimer = setInterval(() => {
+                    const timeNow = new Date().getTime();
+                    const timeDiff = ((timeNow - typingStartTime) / 1000).toFixed(1);
+                    document.getElementById('typing-time').innerText = timeDiff + 's';
+                }, 100);
+            }
+
+            if (input === currentQuote) {
+                clearInterval(typingTimer);
+                document.getElementById('typing-input').disabled = true;
+                
+                const timeTaken = (new Date().getTime() - typingStartTime) / 1000 / 60; // in minutes
+                const wordsCount = currentQuote.length / 5; // standard WPM calculation
+                const wpm = Math.round(wordsCount / timeTaken);
+                document.getElementById('typing-wpm').innerText = wpm;
+                
+                setTimeout(initTyping, 3000); // Reset after 3 seconds
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            typeEffect();
+            initMemoryGame();
+            initTyping();
+            initHexGame();
+        });
 
     </script>
 </body>
