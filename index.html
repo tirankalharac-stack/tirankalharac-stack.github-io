@@ -73,6 +73,7 @@
             transform: translateY(0);
         }
 
+        /* Orbs Background */
         .orb-1, .orb-2, .orb-3 {
             position: fixed;
             border-radius: 50%;
@@ -85,21 +86,37 @@
         .orb-2 { top: 20%; right: -20%; width: 400px; height: 400px; background: #00f2ff; animation-delay: 2s; }
         .orb-3 { bottom: -10%; left: 20%; width: 600px; height: 600px; background: #ff0055; animation-delay: 4s; }
 
+        /* Mobile Performance Fixes */
+        @media (max-width: 768px) {
+            .orb-1, .orb-2, .orb-3 {
+                filter: blur(50px);
+                animation: none; /* Stop animation on mobile to save GPU/Battery */
+                opacity: 0.2;
+            }
+        }
+
         .neon-text {
             text-shadow: 0 0 10px rgba(188, 19, 254, 0.7), 0 0 20px rgba(0, 242, 255, 0.5);
         }
 
+        /* Glass Card with Mobile Optimization */
         .glass-card {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(20, 20, 20, 0.85); /* Solid dark color for mobile to prevent scroll lag */
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
         }
-        .glass-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: #00f2ff;
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2), inset 0 0 20px rgba(0, 242, 255, 0.05);
+        
+        @media (min-width: 768px) {
+            .glass-card {
+                background: rgba(20, 20, 20, 0.6);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+            .glass-card:hover {
+                transform: translateY(-10px) scale(1.03);
+                border-color: #00f2ff;
+                box-shadow: 0 10px 40px -10px rgba(0, 242, 255, 0.3), inset 0 0 20px rgba(0, 242, 255, 0.05);
+            }
         }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -143,9 +160,18 @@
         }
         .faq-item.active i.fa-chevron-down { transform: rotate(180deg); }
         .faq-item.active { border-color: #bc13fe; background: rgba(188, 19, 254, 0.1); }
+
+        /* PC Only Custom Grid Background */
+        .pc-grid-bg {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+        }
     </style>
 </head>
-<body class="bg-techDark text-white selection:bg-techPink selection:text-white">
+<body class="bg-techDark text-white selection:bg-techPink selection:text-white relative">
 
     <!-- Background Orbs -->
     <div class="orb-1"></div>
@@ -157,7 +183,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 cursor-pointer group flex items-center gap-3">
-                    <!-- LOGO IMAGE (Needs logo.png uploaded to GitHub) -->
+                    <!-- LOGO IMAGE -->
                     <img src="logo.png" alt="KD" class="h-10 w-10 rounded-full border-2 border-techBlue object-cover shadow-[0_0_10px_rgba(0,242,255,0.5)]" onerror="this.style.display='none'">
                     
                     <span class="text-2xl font-black tracking-wider text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-techBlue group-hover:to-techPurple transition-all duration-300">
@@ -205,13 +231,16 @@
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
+        <!-- PC Only High-Tech Grid -->
+        <div class="hidden md:block absolute inset-0 pc-grid-bg z-0 pointer-events-none"></div>
+
         <div class="text-center z-10 max-w-5xl mx-auto">
             <div class="reveal active inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-techPurple/50 bg-techPurple/10 text-techBlue text-sm font-bold uppercase tracking-widest animate-pulse">
                 <span class="w-2 h-2 rounded-full bg-techBlue"></span>
                 Full Stack IT Solutions
             </div>
             
-            <h1 class="reveal active delay-100 text-6xl md:text-8xl font-black text-white mb-6 leading-tight tracking-tight">
+            <h1 class="reveal active delay-100 text-6xl md:text-8xl font-black text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
                 MASTERING <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue via-techPurple to-techPink neon-text typing-cursor" id="typing-text">HARDWARE & CODE</span>
             </h1>
@@ -221,7 +250,7 @@
             </p>
             
             <div class="reveal active delay-300 mt-12 flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#services" class="btn-glow px-10 py-4 rounded-full bg-white text-black font-extrabold text-lg transition-all hover:bg-gray-200">
+                <a href="#services" class="btn-glow px-10 py-4 rounded-full bg-white text-black font-extrabold text-lg transition-all hover:bg-gray-200 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                     Explore Services <i class="fas fa-arrow-right ml-2 text-techPurple"></i>
                 </a>
                 <a href="#troubleshoot" class="px-10 py-4 rounded-full border border-gray-500 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 text-white font-bold text-lg transition-all backdrop-blur-sm">
@@ -237,77 +266,107 @@
 
     <!-- Services Section -->
     <section id="services" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Elite <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">Services</span></h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-techBlue to-techPurple mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Hardware -->
-                <div class="glass-card p-8 rounded-2xl relative group reveal">
-                    <div class="w-16 h-16 bg-gradient-to-br from-techBlue to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-microchip text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal flex flex-col">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-techBlue to-blue-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-microchip text-2xl md:text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-techBlue transition-colors">Hardware Repair</h3>
-                    <p class="text-gray-400 mb-6">Chip-level diagnostics and repair for motherboards, power units, and intricate circuitry.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-techBlue transition-colors">Hardware Repair</h3>
+                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Chip-level diagnostics and repair for motherboards, power units, and intricate circuitry.</p>
+                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
                         <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-2"></i> Motherboard Recovery</li>
                         <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-2"></i> Power Supply Fixing</li>
                     </ul>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <span class="text-techBlue text-sm font-semibold cursor-pointer">Request Repair <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    </div>
                 </div>
 
                 <!-- Web Dev -->
-                <div class="glass-card p-8 rounded-2xl relative group reveal delay-100">
-                    <div class="w-16 h-16 bg-gradient-to-br from-techPurple to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-code text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-100 flex flex-col">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-techPurple to-pink-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-2xl md:text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-techPurple transition-colors">Web Development</h3>
-                    <p class="text-gray-400 mb-6">Stunning, high-performance websites tailored to elevate your digital presence.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-techPurple transition-colors">Web Development</h3>
+                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Stunning, high-performance websites tailored to elevate your digital presence.</p>
+                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
                         <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-2"></i> Responsive Design</li>
                         <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-2"></i> E-Commerce Ready</li>
                     </ul>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <span class="text-techPurple text-sm font-semibold cursor-pointer">Build a Site <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    </div>
                 </div>
 
                 <!-- Software Dev -->
-                <div class="glass-card p-8 rounded-2xl relative group reveal delay-200">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-green-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-terminal text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-200 flex flex-col">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-green-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-terminal text-2xl md:text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">Software Solutions</h3>
-                    <p class="text-gray-400 mb-6">Custom-built software for POS, inventory management, and business automation.</p>
-                    <ul class="text-sm text-gray-400 space-y-2">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-green-400 transition-colors">Software Solutions</h3>
+                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Custom-built software for POS, inventory management, and business automation.</p>
+                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
                         <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Custom POS Systems</li>
                         <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Inventory Tools</li>
                     </ul>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <span class="text-green-400 text-sm font-semibold cursor-pointer">Get Software <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    </div>
                 </div>
 
                 <!-- Networking -->
-                <div class="glass-card p-8 rounded-2xl relative group reveal">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-network-wired text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal flex flex-col">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-orange-400 to-red-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-network-wired text-2xl md:text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">System & Network</h3>
-                    <p class="text-gray-400 mb-6">Robust network infrastructure, server management, and CCTV security installations.</p>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-orange-400 transition-colors">System & Network</h3>
+                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Robust network infrastructure, server management, and CCTV security installations.</p>
+                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Server Setup</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> CCTV Configuration</li>
+                    </ul>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <span class="text-orange-400 text-sm font-semibold cursor-pointer">Setup Network <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    </div>
                 </div>
 
                 <!-- OS & Format -->
-                <div class="glass-card p-8 rounded-2xl relative group reveal delay-100">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fab fa-windows text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-100 flex flex-col">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fab fa-windows text-2xl md:text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">OS & Formatting</h3>
-                    <p class="text-gray-400 mb-6">Complete OS installation (Windows/Linux/Mac) with driver optimization.</p>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-400 transition-colors">OS & Formatting</h3>
+                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Complete OS installation (Windows/Linux/Mac) with driver optimization.</p>
+                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Clean Installation</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Virus Cleanup</li>
+                    </ul>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <span class="text-blue-400 text-sm font-semibold cursor-pointer">Format PC <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    </div>
                 </div>
 
                 <!-- Data Recovery -->
-                <div class="glass-card p-8 rounded-2xl relative group reveal delay-200">
-                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-rose-700 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-red-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-database text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-200 flex flex-col">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-red-500 to-rose-700 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-red-500/30 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-database text-2xl md:text-3xl text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-red-500 transition-colors">Data Recovery</h3>
-                    <p class="text-gray-400 mb-6">Advanced recovery techniques for lost data from damaged storage devices.</p>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-red-500 transition-colors">Data Recovery</h3>
+                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Advanced recovery techniques for lost data from damaged storage devices.</p>
+                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-2"></i> Hard Drive Recovery</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-2"></i> Deleted File Restore</li>
+                    </ul>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
+                        <span class="text-red-500 text-sm font-semibold cursor-pointer">Recover Data <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -315,7 +374,7 @@
 
     <!-- LEARN TECH SECTION (BLOG / ARTICLES) -->
     <section id="learn" class="py-24 relative bg-black/50 backdrop-blur-sm border-t border-white/5">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
                 <span class="text-green-400 font-bold tracking-widest uppercase text-sm">Knowledge Hub</span>
                 <h2 class="text-4xl font-bold text-white mt-2">Learn <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-techBlue">Technology</span></h2>
@@ -327,37 +386,36 @@
                 <p>Google AdSense Banner Area (This earns you money)</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                 
                 <!-- Article 1: What is Software? -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-green-500/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Software කියන්නේ මොකක්ද?</h3>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-green-500/50 transition-all flex flex-col">
+                    <div class="flex gap-3 mb-4 hidden md:flex">
+                        <span class="bg-gray-800/50 text-green-400 border border-green-500/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 3 Min Read</span>
+                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Basics</span>
                     </div>
-                    
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400 shrink-0">
+                            <i class="fas fa-code text-lg md:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">Software කියන්නේ මොකක්ද?</h3>
+                    </div>
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
                             සරලවම කිව්වොත්, <strong>Software (මෘදුකාංග)</strong> කියන්නේ පරිගණකයට හෝ ෆෝන් එකට "මොකක්ද කරන්න ඕන" කියලා කියලා දෙන උපදෙස් මාලාවක්. අපි දකින Hardware (මවුස්, කීබෝඩ්) වලට පණ දෙන්නේ මේ සොෆ්ට්වෙයාර් තමයි.
                         </p>
-                        
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න (Read More)</span>
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
+                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
                                 <p class="mb-3"><strong>Software ප්‍රධාන වර්ග 3ක් ඇත:</strong></p>
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
                                     <li><strong>System Software:</strong> මේවා තමයි පරිගණකයේ අඩිතාලම. Hardware පාලනය කරන්නේ මේවායින්. උදාහරණ: Windows, macOS, Android, Linux. මේවා නැතුව පරිගණකයක් On වෙන්නේ නෑ.</li>
-                                    <li><strong>Application Software:</strong> අපි අපේ එදිනෙදා වැඩ කරගන්න දාගන්න මෘදුකාංග. උදාහරණ: MS Word, Photoshop, Google Chrome, Games. මේවා නැති වුනාට පරිගණකය වැඩ කරනවා, හැබැයි අපේ වැඩ කරගන්න බෑ.</li>
+                                    <li><strong>Application Software:</strong> අපි අපේ එදිනෙදා වැඩ කරගන්න දාගන්න මෘදුකාංග. උදාහරණ: MS Word, Photoshop, Google Chrome, Games.</li>
                                     <li><strong>Programming Software:</strong> අනිත් මෘදුකාංග හදන්න උදව් වෙන මෘදුකාංග. උදාහරණ: VS Code, Python Compilers.</li>
                                 </ul>
-                                <p class="mb-3"><strong>කොහොමද Software හැදෙන්නේ?</strong></p>
-                                <p>මෘදුකාංග ඉංජිනේරුවන් (Software Engineers) විවිධ පරිගණක භාෂා (Coding Languages) පාවිච්චි කරලා තමයි මේවා ලියන්නේ. Java, C++, Python, JavaScript වගේ භාෂා දහස් ගණනක් ලෝකයේ තියෙනවා.</p>
-                                
                                 <div class="w-full h-20 bg-gray-900/30 border border-gray-800 border-dashed rounded-lg my-4 flex items-center justify-center text-gray-600 text-xs">
                                     <p>In-Article Ad Space</p>
                                 </div>
@@ -367,325 +425,302 @@
                 </div>
 
                 <!-- Article 2: What is a Website? -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-techBlue/50 transition-all delay-100">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-techBlue/20 rounded-lg flex items-center justify-center text-techBlue">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Web Site එකක් හැදෙන්නේ කොහොමද?</h3>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-techBlue/50 transition-all delay-100 flex flex-col">
+                    <div class="flex gap-3 mb-4 hidden md:flex">
+                        <span class="bg-gray-800/50 text-techBlue border border-techBlue/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 5 Min Read</span>
+                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Web</span>
                     </div>
-                    
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            Website (වෙබ් අඩවියක්) කියන්නේ අන්තර්ජාලය හරහා ලෝකයේ ඕනෑම කෙනෙක්ට පිවිසිය හැකි, එකිනෙකට සම්බන්ධ පිටු (Web Pages) සමූහයක්. මේක හරියට අන්තර්ජාලයේ තියෙන ඩිජිටල් පොතක් වගේ. ව්‍යාපාරයකට, පාසලකට හෝ පුද්ගලයෙක්ට තමන්ගේම අනන්‍යතාවයක් හදාගන්න වෙබ් සයිට් එකක් අත්‍යවශ්‍යයි.
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-techBlue/20 rounded-lg flex items-center justify-center text-techBlue shrink-0">
+                            <i class="fas fa-globe text-lg md:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">Web Site එකක් හැදෙන්නේ කොහොමද?</h3>
+                    </div>
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            Website (වෙබ් අඩවියක්) කියන්නේ අන්තර්ජාලය හරහා ලෝකයේ ඕනෑම කෙනෙක්ට පිවිසිය හැකි, එකිනෙකට සම්බන්ධ පිටු (Web Pages) සමූහයක්. මේක හරියට අන්තර්ජාලයේ තියෙන ඩිජිටල් පොතක් වගේ.
                         </p>
-
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න (Read More)</span>
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
+                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
                                 <p class="mb-3"><strong>වෙබ් අඩවියක් හදන්න ප්‍රධාන තාක්ෂණ 3ක් ඕන වෙනවා:</strong></p>
                                 <ul class="list-none space-y-3 mb-4">
                                     <li class="flex gap-3">
-                                        <span class="font-bold text-orange-500">HTML (HyperText Markup Language):</span>
+                                        <span class="font-bold text-orange-500 hidden md:block">HTML:</span>
                                         <span>ගෙයක් හදද්දී බිත්ති බඳිනවා වගේ, වෙබ් සයිට් එකේ ඇටසැකිල්ල (Structure) හදන්නේ HTML වලින්.</span>
                                     </li>
                                     <li class="flex gap-3">
-                                        <span class="font-bold text-blue-500">CSS (Cascading Style Sheets):</span>
-                                        <span>ගෙදර පාට කරලා, ලස්සන කරලා, සැරසිලි කරනවා වගේ වැඩේ කරන්නේ CSS වලින්. පාට, ෆොන්ට්, හැඩතල ඔක්කොම තීරණය කරන්නේ මේකෙන්.</span>
+                                        <span class="font-bold text-blue-500 hidden md:block">CSS:</span>
+                                        <span>ගෙදර පාට කරලා, ලස්සන කරලා, සැරසිලි කරනවා වගේ වැඩේ කරන්නේ CSS වලින්.</span>
                                     </li>
                                     <li class="flex gap-3">
-                                        <span class="font-bold text-yellow-400">JavaScript (JS):</span>
-                                        <span>ගෙදරට විදුලිය දීලා, ෆෑන්, ලයිට් වැඩ කරන තත්ත්වයට ගන්නවා වගේ, වෙබ් සයිට් එකට "පණ දෙන්නේ" JS වලින්. උදාහරණයකට බටන් එකක් එබුවම වෙන දේ තීරණය කරන්නේ JS.</span>
+                                        <span class="font-bold text-yellow-400 hidden md:block">JavaScript:</span>
+                                        <span>ගෙදරට විදුලිය දීලා, ෆෑන්, ලයිට් වැඩ කරන තත්ත්වයට ගන්නවා වගේ, වෙබ් සයිට් එකට "පණ දෙන්නේ" JS වලින්.</span>
                                     </li>
                                 </ul>
-                                <p><strong>Hosting සහ Domain:</strong> සයිට් එකක් හැදුවට විතරක් මදි, ඒක ලෝකෙට පෙන්නන්න "Server" එකක දාන්න ඕන (Hosting). ඒ වගේම ඒකට යන්න ලිපිනයක් ඕන (Domain Name - උදා: google.com).</p>
-                                <div class="w-full h-20 bg-gray-900/30 border border-gray-800 border-dashed rounded-lg my-4 flex items-center justify-center text-gray-600 text-xs">
-                                    <p>In-Article Ad Space</p>
-                                </div>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 3: What is AI? -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-techPurple/50 transition-all delay-200">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-techPurple/20 rounded-lg flex items-center justify-center text-techPurple">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">AI (කෘතිම බුද්ධිය) යනු කුමක්ද?</h3>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-techPurple/50 transition-all delay-200 flex flex-col">
+                    <div class="flex gap-3 mb-4 hidden md:flex">
+                        <span class="bg-gray-800/50 text-techPurple border border-techPurple/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 4 Min Read</span>
+                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Future</span>
                     </div>
-                    
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            AI හෙවත් Artificial Intelligence කියන්නේ පරිගණකයකට හෝ යන්ත්‍රයකට මිනිසෙකු මෙන් සිතීමට, ඉගෙන ගැනීමට සහ තීරණ ගැනීමට හැකි හැකියාව ලබා දීමයි. මෙය අනාගත ලෝකය සම්පූර්ණයෙන්ම වෙනස් කරන තාක්ෂණයක්. අද වන විට Phone එකේ Face Unlock එකේ සිට ස්වයංක්‍රීයව යන කාර් (Self-driving cars) දක්වා හැමතැනම AI තියෙනවා.
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-techPurple/20 rounded-lg flex items-center justify-center text-techPurple shrink-0">
+                            <i class="fas fa-robot text-lg md:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">AI (කෘතිම බුද්ධිය) යනු කුමක්ද?</h3>
+                    </div>
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            AI හෙවත් Artificial Intelligence කියන්නේ පරිගණකයකට හෝ යන්ත්‍රයකට මිනිසෙකු මෙන් සිතීමට, ඉගෙන ගැනීමට සහ තීරණ ගැනීමට හැකි හැකියාව ලබා දීමයි. අද වන විට Phone එකේ Face Unlock එකේ සිට ස්වයංක්‍රීයව යන කාර් දක්වා හැමතැනම AI තියෙනවා.
                         </p>
-
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න (Read More)</span>
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
+                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>AI වැඩ කරන්නේ කොහොමද?</strong></p>
-                                <p class="mb-3">AI එකක් ඉගෙන ගන්නේ දත්ත (Data) වලින්. අපි දරුවෙක්ට "මේ පූසෙක්, මේ බල්ලෙක්" කියලා පින්තූර පෙන්නලා උගන්වනවා වගේ, පරිගණකයට දත්ත කෝටි ගණනක් දීලා රටාවන් (Patterns) හඳුනාගන්න පුරුදු කරනවා. මේකට Machine Learning කියලා කියනවා.</p>
+                                <p class="mb-3 hidden md:block"><strong>AI වැඩ කරන්නේ කොහොමද?</strong><br>AI එකක් ඉගෙන ගන්නේ දත්ත (Data) වලින්. මේකට Machine Learning කියලා කියනවා.</p>
                                 <p class="mb-3"><strong>AI වර්ග:</strong></p>
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
                                     <li><strong>Narrow AI:</strong> එක වැඩක් විතරක් කරන්න පුළුවන් AI. උදා: Siri, Google Assistant, ChatGPT. මේවාට හැඟීම් දැනෙන්නේ නෑ.</li>
                                     <li><strong>General AI:</strong> මිනිහෙක් වගේම ඕනම වැඩක් කරන්න පුළුවන්, තනිවම හිතන්න පුළුවන් AI. මේවා තාම පර්යේෂණ මට්ටමේ තියෙන්නේ.</li>
                                 </ul>
-                                <p>අනාගතයේදී වෛද්‍ය විද්‍යාව, අධ්‍යාපනය, ප්‍රවාහනය වගේ හැම ක්ෂේත්‍රයක්ම AI නිසා දියුණු වෙනවා වගේම, සමහර රැකියා නැතිවෙන්නත් පුළුවන්.</p>
-                                <div class="w-full h-20 bg-gray-900/30 border border-gray-800 border-dashed rounded-lg my-4 flex items-center justify-center text-gray-600 text-xs">
-                                    <p>In-Article Ad Space</p>
-                                </div>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 4: Freelancing -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-teal-500/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-teal-500/20 rounded-lg flex items-center justify-center text-teal-500">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Freelancing (අන්තර්ජාලයෙන් මුදල්)</h3>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-teal-500/50 transition-all flex flex-col">
+                    <div class="flex gap-3 mb-4 hidden md:flex">
+                        <span class="bg-gray-800/50 text-teal-400 border border-teal-500/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 6 Min Read</span>
+                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Money</span>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            Freelancing කියන්නේ ස්ථිර බොස් කෙනෙක් යටතේ රස්සාවක් නොකර, තමන්ට කැමති වෙලාවක, තමන් දන්නා හැකියාව පාවිච්චි කරලා අන්තර්ජාලය හරහා විවිධ රටවල පුද්ගලයින්ට වැඩ කරලා මුදල් උපයන ක්‍රමයක්. ලංකාවේ ගොඩක් තරුණ තරුණියන් මේ වන විට ඩොලර් මිලියන ගණන් මේ හරහා උපයනවා.
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-teal-500/20 rounded-lg flex items-center justify-center text-teal-500 shrink-0">
+                            <i class="fas fa-dollar-sign text-lg md:text-xl"></i>
+                        </div>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">Freelancing සරලව</h3>
+                    </div>
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            Freelancing කියන්නේ ස්ථිර බොස් කෙනෙක් යටතේ රස්සාවක් නොකර, තමන්ට කැමති වෙලාවක, තමන් දන්නා හැකියාව පාවිච්චි කරලා අන්තර්ජාලය හරහා විවිධ රටවල පුද්ගලයින්ට වැඩ කරලා මුදල් උපයන ක්‍රමයක්.
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න (Read More)</span>
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
+                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
                                 <p class="mb-3"><strong>පටන් ගන්නේ කොහොමද?</strong></p>
                                 <ol class="list-decimal pl-5 space-y-2 mb-4">
-                                    <li><strong>හැකියාවක් හදාගන්න:</strong> Graphic Design, Web Development, Video Editing, Content Writing, Data Entry වගේ දෙයක් මුලින්ම හොඳට ඉගෙන ගන්න.</li>
-                                    <li><strong>Profile එකක් හදන්න:</strong> Fiverr, Upwork, Freelancer.com වගේ වෙබ් අඩවියක ගිණුමක් හදාගෙන තමන්ට පුළුවන් දේවල් දාන්න.</li>
+                                    <li><strong>හැකියාවක් හදාගන්න:</strong> Graphic Design, Web Development, Video Editing වගේ දෙයක් මුලින්ම හොඳට ඉගෙන ගන්න.</li>
+                                    <li><strong>Profile එකක් හදන්න:</strong> Fiverr, Upwork, Freelancer.com වගේ වෙබ් අඩවියක ගිණුමක් හදාගන්න.</li>
                                     <li><strong>Orders ලබාගන්න:</strong> හොඳ Portfolio එකක් පෙන්නලා පාරිභෝගිකයන් ආකර්ෂණය කරගන්න.</li>
                                 </ol>
-                                <p>මේක එක රැයකින් පොහොසත් වෙන්න පුළුවන් ක්‍රමයක් නෙවෙයි. ඉවසීම, කැපවීම සහ ඉංග්‍රීසි භාෂා දැනුම අත්‍යවශ්‍යයි.</p>
-                                <div class="w-full h-20 bg-gray-900/30 border border-gray-800 border-dashed rounded-lg my-4 flex items-center justify-center text-gray-600 text-xs">
-                                    <p>In-Article Ad Space</p>
-                                </div>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 5: SSD vs HDD -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-orange-500/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500">
-                            <i class="fas fa-hdd"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-orange-500/50 transition-all flex flex-col">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500 shrink-0">
+                            <i class="fas fa-hdd text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">SSD සහ HDD අතර වෙනස</h3>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">SSD සහ HDD අතර වෙනස</h3>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            පරිගණකයක් Slow වෙන්න ප්‍රධානම හේතුවක් තමයි පරණ HDD (Hard Disk Drive) තාක්ෂණය භාවිතා කිරීම. අද කාලේ අලුත් පරිගණක වල එන්නේ SSD (Solid State Drive). මේ දෙකම කරන්නේ දත්ත ගබඩා කිරීම වුනාට, මේ දෙක වැඩ කරන විදිය අහසට පොළව වගේ වෙනස්.
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            පරිගණකයක් Slow වෙන්න ප්‍රධානම හේතුවක් තමයි පරණ HDD (Hard Disk Drive) තාක්ෂණය භාවිතා කිරීම. අද කාලේ අලුත් පරිගණක වල එන්නේ SSD (Solid State Drive).
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
                                 <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
-                                    <li><strong>HDD (Hard Disk Drive):</strong> මේක ඇතුලේ තියෙන්නේ වේගයෙන් කැරකෙන චුම්බක තැටි (Magnetic Disks). ඩේටා කියවන්න පොඩි ඉඳිකටුවක් වගේ කොටසක් තැටිය උඩ එහා මෙහා යනවා. මේක යාන්ත්‍රික (Mechanical) නිසා වේගය අඩුයි, සද්දේ එනවා, වැටුනොත් ඉක්මනට කැඩෙනවා.</li>
-                                    <li><strong>SSD (Solid State Drive):</strong> මේකේ කැරකෙන කොටස් මුකුත් නෑ. Pen Drive එකක් වගේ මෙමරි චිප්ස් වලින් හැදිලා තියෙන්නේ. ඒ නිසා HDD එකට වඩා 10 ගුණයක් විතර වේගවත්. පරිගණකය On වෙන්න යන්නේ තත්පර ගානයි.</li>
+                                    <li><strong>HDD (Hard Disk Drive):</strong> මේක ඇතුලේ තියෙන්නේ වේගයෙන් කැරකෙන චුම්බක තැටි. මේක යාන්ත්‍රික නිසා වේගය අඩුයි.</li>
+                                    <li><strong>SSD (Solid State Drive):</strong> මේකේ කැරකෙන කොටස් මුකුත් නෑ. Pen Drive එකක් වගේ මෙමරි චිප්ස් වලින් හැදිලා තියෙන්නේ. ඒ නිසා HDD එකට වඩා 10 ගුණයක් විතර වේගවත්.</li>
                                 </ul>
-                                <p>ඔයාගේ ලැප්ටොප් එක Slow නම්, අලුත් එකක් ගන්න කලින් HDD එක ගලවලා SSD එකක් දාලා බලන්න. ඒක අලුත් මැෂින් එකක් වගේ වැඩ කරයි.</p>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 6: RAM Explained -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-blue-500/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-500">
-                            <i class="fas fa-memory"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-blue-500/50 transition-all flex flex-col">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-500 shrink-0">
+                            <i class="fas fa-memory text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">RAM එක කියන්නේ මොකක්ද?</h3>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">RAM එක කියන්නේ මොකක්ද?</h3>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            RAM (Random Access Memory) කියන්නේ පරිගණකයේ "කෙටි කාලීන මතකය" (Short-term memory). ඔයා දැනට කරමින් පවතින වැඩ, ඕපන් කරලා තියෙන සොෆ්ට්වෙයාර් තාවකාලිකව ගබඩා වෙලා තියෙන්නේ මේකේ. පරිගණකය Off කරපු ගමන් RAM එකේ තියෙන දේවල් මැකෙනවා.
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            RAM (Random Access Memory) කියන්නේ පරිගණකයේ "කෙටි කාලීන මතකය". ඔයා දැනට කරමින් පවතින වැඩ තාවකාලිකව ගබඩා වෙලා තියෙන්නේ මේකේ.
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
                                 <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>ඇයි RAM එක වැදගත්?</strong></p>
-                                <p class="mb-3">RAM එක වැඩි වෙන තරමට ඔයාට එකපාර වැඩ ගොඩක් කරන්න පුළුවන් (Multitasking). උදාහරණයක් විදියට Chrome එකේ Tabs 10ක්, Photoshop සහ Word එකපාර ඕපන් කරලා තියන්න RAM එක ලොකු වෙන්න ඕන.</p>
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
                                     <li><strong>4GB:</strong> සාමාන්‍ය Office වැඩ සහ ඉන්ටර්නෙට් යන්න ඇති.</li>
-                                    <li><strong>8GB:</strong> අද කාලේ අවම අවශ්‍යතාවය මෙයයි. Games ගහන්න, පොඩි Design වැඩ වලට හොඳයි.</li>
+                                    <li><strong>8GB:</strong> අද කාලේ අවම අවශ්‍යතාවය මෙයයි. Games ගහන්න හොඳයි.</li>
                                     <li><strong>16GB+:</strong> Video Editing, Gaming සහ බර වැඩ වලට අනිවාර්යයි.</li>
                                 </ul>
-                                <p>RAM එකේ වේගය මනින්නේ MHz වලින්. DDR3, DDR4, DDR5 කියලා පරම්පරා තියෙනවා. අලුත් පරම්පරාව වේගවත්.</p>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 7: Processor (CPU) -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-red-500/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center text-red-500">
-                            <i class="fas fa-microchip"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-red-500/50 transition-all flex flex-col">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-red-500/20 rounded-lg flex items-center justify-center text-red-500 shrink-0">
+                            <i class="fas fa-microchip text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">Processor (CPU) ගැන දැනගමු</h3>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">Processor (CPU) ගැන දැනගමු</h3>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            CPU (Central Processing Unit) කියන්නේ පරිගණකයේ "මොළය". අපි පරිගණකයට දෙන හැම විධානයක්ම ක්‍රියාත්මක කරන්නේ, ගණන් හදන්නේ මේකෙන්. මැෂින් එකේ වේගය තීරණය කරන ප්‍රධානම සාධකය මෙයයි. ලෝකයේ ප්‍රධාන CPU වර්ග දෙකක් තියෙනවා: Intel සහ AMD.
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            CPU (Central Processing Unit) කියන්නේ පරිගණකයේ "මොළය". අපි පරිගණකයට දෙන හැම විධානයක්ම ක්‍රියාත්මක කරන්නේ මේකෙන්. ලෝකයේ ප්‍රධාන CPU වර්ග දෙකක් තියෙනවා: Intel සහ AMD.
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
                                 <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>Core සහ Threads:</strong></p>
-                                <p class="mb-3">Processor එකක් ඇතුලේ තව පොඩි Processors ගොඩක් තියෙනවා වගේ හිතන්න. ඒවාට කියන්නේ Cores කියලා (Dual Core, Quad Core). Cores වැඩි වෙන තරමට එකපාර කරන්න පුළුවන් වැඩ ප්‍රමාණය වැඩියි.</p>
-                                <p class="mb-3"><strong>Intel වර්ගීකරණය:</strong></p>
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
                                     <li><strong>i3:</strong> සාමාන්‍ය ගෙදර සහ ඔෆිස් වැඩ වලට.</li>
-                                    <li><strong>i5:</strong> මධ්‍යම ප්‍රමාණයේ වැඩ, Games සහ සාමාන්‍ය Editing වලට. (බහුලවම පාවිච්චි වෙන්නේ මෙයයි).</li>
+                                    <li><strong>i5:</strong> මධ්‍යම ප්‍රමාණයේ වැඩ, Games සහ සාමාන්‍ය Editing වලට.</li>
                                     <li><strong>i7/i9:</strong> බරසාර වැඩ, 4K Video Editing, 3D Rendering සඳහා.</li>
                                 </ul>
-                                <p>Generation (පරම්පරාව) අලුත් වෙන තරමට (උදා: 10th Gen vs 13th Gen) වේගය සහ කාර්යක්ෂමතාවය වැඩියි.</p>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 8: Virus Guard -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-green-600/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center text-green-600">
-                            <i class="fas fa-shield-virus"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-green-600/50 transition-all flex flex-col">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-green-600/20 rounded-lg flex items-center justify-center text-green-600 shrink-0">
+                            <i class="fas fa-shield-virus text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">Virus Guard එකක් අත්‍යවශ්‍යද?</h3>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">Virus Guard එකක් අත්‍යවශ්‍යද?</h3>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            ඉස්සර කාලේ (Windows XP/7) වගේ නම් Virus Guard එකක් නැතුව ඉන්ටර්නෙට් යන එක ලොකු අවදානමක්. නමුත් දැන් එන Windows 10 සහ 11 එක්ක එන "Windows Defender" එක ඉතාමත් ප්‍රබලයි. ඒක සාමාන්‍ය පරිශීලකයෙක්ට හොඳටම ප්‍රමාණවත්.
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            දැන් එන Windows 10 සහ 11 එක්ක එන "Windows Defender" එක ඉතාමත් ප්‍රබලයි. ඒක සාමාන්‍ය පරිශීලකයෙක්ට හොඳටම ප්‍රමාණවත්. වෙනම Virus Guard එකක් දාන්න ඕන කාටද?
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
                                 <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>වෙනම Virus Guard එකක් දාන්න ඕන කාටද?</strong></p>
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
                                     <li>ඔයා නිතරම Crack Software, Torrent Games ඩවුන්ලෝඩ් කරනවා නම්.</li>
                                     <li>පොදු ස්ථාන වල පෙන් ඩ්‍රයිව් ගහනවා නම්.</li>
-                                    <li>ඉතාමත් වැදගත් ව්‍යාපාරික දත්ත පරිගණකයේ තියෙනවා නම්.</li>
                                 </ul>
-                                <p class="mb-3">එහෙම අයට <strong>Kaspersky, Bitdefender</strong> හෝ <strong>Malwarebytes</strong> වගේ මුදල් ගෙවා ගන්නා ආරක්ෂිත මෘදුකාංගයක් නිර්දේශ කරනවා. Free දෙන Virus Guard වලින් බොහෝ විට වෙන්නේ පරිගණකය Slow වෙන එක විතරයි.</p>
+                                <p class="mb-3">එහෙම අයට <strong>Kaspersky, Bitdefender</strong> හෝ <strong>Malwarebytes</strong> වගේ ආරක්ෂිත මෘදුකාංගයක් නිර්දේශ කරනවා.</p>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 9: VPN Explained -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-yellow-500/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center text-yellow-500">
-                            <i class="fas fa-user-secret"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-yellow-500/50 transition-all flex flex-col">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center text-yellow-500 shrink-0">
+                            <i class="fas fa-user-secret text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">VPN පාවිච්චි කරන්නේ ඇයි?</h3>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">VPN පාවිච්චි කරන්නේ ඇයි?</h3>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            VPN (Virtual Private Network) මගින් කරන්නේ ඔයාගේ අන්තර්ජාල සම්බන්ධතාවය ආරක්ෂිත උමගක් (Tunnel) හරහා යවන එක. සරලවම කිව්වොත්, ඔයා ඉන්ටර්නෙට් එකේ කරන දේවල් වෙන අයට (Service Provider ට හෝ Hacker ලට) පේන්නේ නෑ. ඔයා ඉන්න රට වෙනස් කරලා පෙන්නන්නත් මේකෙන් පුළුවන්.
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            VPN මගින් කරන්නේ ඔයාගේ අන්තර්ජාල සම්බන්ධතාවය ආරක්ෂිත උමගක් හරහා යවන එක. ඔයා ඉන්ටර්නෙට් එකේ කරන දේවල් වෙන අයට පේන්නේ නෑ.
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
                                 <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>VPN පාවිච්චි කරන්න හොඳ වෙලාවල්:</strong></p>
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
-                                    <li><strong>Public WiFi පාවිච්චි කරනකොට:</strong> හෝටල් වල, පාක් වල තියෙන Free WiFi ආරක්ෂිත නෑ. හොරුන්ට ඔයාගේ Data ගන්න පුළුවන්. VPN එකක් දැම්මම ඒක වළකිනවා.</li>
+                                    <li><strong>Public WiFi පාවිච්චි කරනකොට:</strong> හෝටල් වල, පාක් වල තියෙන Free WiFi ආරක්ෂිත නෑ. හොරුන්ට ඔයාගේ Data ගන්න පුළුවන්.</li>
                                     <li><strong>Blocked Sites වලට යන්න:</strong> සමහර රටවල Block කරපු වෙබ් අඩවි වලට යන්න VPN උදව් වෙනවා.</li>
-                                    <li><strong>Privacy ආරක්ෂා කරගන්න:</strong> ඔයා කරන දේවල් ගැන ඔත්තු බලන එක නවත්තන්න.</li>
                                 </ul>
-                                <p>Free VPN පාවිච්චි කරද්දී පරිස්සම් වෙන්න, මොකද සමහර ඒවා අපේ Data හොරෙන් ගන්නවා.</p>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 10: Bitcoin/Crypto -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-yellow-400/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-yellow-400/20 rounded-lg flex items-center justify-center text-yellow-400">
-                            <i class="fab fa-bitcoin"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-yellow-400/50 transition-all flex flex-col">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-yellow-400/20 rounded-lg flex items-center justify-center text-yellow-400 shrink-0">
+                            <i class="fab fa-bitcoin text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">Bitcoin සහ Crypto සරලව</h3>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">Bitcoin සහ Crypto සරලව</h3>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            Cryptocurrency කියන්නේ ඩිජිටල් මුදල් වර්ගයක්. රුපියල්, ඩොලර් වගේ නෙවෙයි, මේවා අතින් අල්ලන්න බෑ. මේවා පවතින්නේ පරිගණක ජාලයක් තුළ (Blockchain). Bitcoin කියන්නේ ලෝකයේ පළමු සහ ජනප්‍රියම Crypto වර්ගයයි. මේවා පාලනය කරන්න බැංකුවක් හෝ ආණ්ඩුවක් නෑ.
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            Cryptocurrency කියන්නේ ඩිජිටල් මුදල් වර්ගයක්. රුපියල්, ඩොලර් වගේ නෙවෙයි, මේවා අතින් අල්ලන්න බෑ. මේවා පවතින්නේ පරිගණක ජාලයක් තුළ (Blockchain).
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
                                 <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>කොහොමද මේවා වැඩ කරන්නේ?</strong></p>
-                                <p class="mb-3">Blockchain තාක්ෂණය හරහා තමයි මේ හැම ගනුදෙනුවක්ම සටහන් වෙන්නේ. ඒ නිසා හොර කරන්න අමාරුයි. ලෝකේ ඕනම කෙනෙක්ට තත්පර ගානකින් සල්ලි යවන්න මේකෙන් පුළුවන්.</p>
-                                <p class="mb-3"><strong>අවදානම:</strong></p>
-                                <p>Crypto වල වටිනාකම ඉතා ඉක්මනින් ඉහළ පහළ යනවා. අද ලක්ෂයක් වටිනා දේ හෙට දාහක් වෙන්න පුළුවන්. ඒ වගේම මේ ක්ෂේත්‍රයේ වංචාකරුවන් (Scammers) බහුලයි. ඒ නිසා හොඳට ඉගෙන ගෙන මිසක් ආයෝජනය කරන්න එපා.</p>
+                                <p class="mb-3">Blockchain තාක්ෂණය හරහා තමයි මේ හැම ගනුදෙනුවක්ම සටහන් වෙන්නේ. ඒ නිසා හොර කරන්න අමාරුයි.</p>
+                                <p><strong>අවදානම:</strong> Crypto වල වටිනාකම ඉතා ඉක්මනින් ඉහළ පහළ යනවා. ඒ වගේම මේ ක්ෂේත්‍රයේ වංචාකරුවන් බහුලයි.</p>
                             </div>
                         </details>
                     </div>
                 </div>
 
                 <!-- Article 11: Android vs iOS -->
-                <div class="glass-card p-8 rounded-2xl reveal group hover:border-green-400/50 transition-all">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-green-400/20 rounded-lg flex items-center justify-center text-green-400">
-                            <i class="fab fa-android"></i>
+                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-green-400/50 transition-all flex flex-col">
+                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-green-400/20 rounded-lg flex items-center justify-center text-green-400 shrink-0">
+                            <i class="fab fa-android text-lg md:text-xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-white">Android ද? iPhone (iOS) ද?</h3>
+                        <h3 class="text-lg md:text-2xl font-bold text-white">Android ද? iPhone (iOS) ද?</h3>
                     </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed">
-                        <p class="mb-4">
-                            ස්මාර්ට් ෆෝන් ලෝකයේ තියෙන ලොකුම තරඟය. Google ලගේ Android සහ Apple ලගේ iOS. මේ දෙකේම වාසි අවාසි තියෙනවා. ඔයාට හරියන්නේ මොකක්ද කියලා තීරණය කරන්න මේ කරුණු උදව් වෙයි.
+                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
+                            ස්මාර්ට් ෆෝන් ලෝකයේ තියෙන ලොකුම තරඟය. Google ලගේ Android සහ Apple ලගේ iOS. මේ දෙකේම වාසි අවාසි තියෙනවා. ඔයාට හරියන්නේ මොකක්ද?
                         </p>
                         <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors">
+                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
                                 <span>සම්පූර්ණ විස්තරය කියවන්න</span>
                                 <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
                             </summary>
                             <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
                                 <ul class="list-disc pl-5 space-y-2 mb-4">
-                                    <li><strong>Android (Samsung, Xiaomi, Pixel):</strong> නිදහස වැඩියි. අපිට ඕන විදියට ෆෝන් එක වෙනස් කරගන්න (Customize) පුළුවන්. මිල ගණන් පරාසය පුළුල් (ලාබෙටත් තියෙනවා). Apps හිඟයක් නෑ. හැබැයි සමහර විට ලෙඩ දෙන ගතිය වැඩියි.</li>
-                                    <li><strong>iOS (iPhone):</strong> ඉතාම සරලයි (User Friendly). ආරක්ෂාව (Security) අතින් ඉතා ඉහළයි. අවුරුදු ගානක් ගියත් ෆෝන් එක Slow වෙන්නේ නෑ. Video Quality එක සුපිරි. හැබැයි මිල අධිකයි වගේම නිදහස සීමිතයි.</li>
+                                    <li><strong>Android:</strong> නිදහස වැඩියි. අපිට ඕන විදියට ෆෝන් එක වෙනස් කරගන්න පුළුවන්. මිල ගණන් පරාසය පුළුල්.</li>
+                                    <li><strong>iOS (iPhone):</strong> ඉතාම සරලයි. ආරක්ෂාව අතින් ඉතා ඉහළයි. අවුරුදු ගානක් ගියත් ෆෝන් එක Slow වෙන්නේ නෑ.</li>
                                 </ul>
-                                <p>සරලවම: ඔයාට වැඩ කෑලි දාලා ෆෝන් එක එක්ක සෙල්ලම් කරන්න ඕන නම් Android. ඔයාට කරදරයක් නැතුව වැඩේ කරගන්න සහ හොඳ කැමරාවක් ඕන නම් iPhone.</p>
                             </div>
                         </details>
                     </div>
                 </div>
-
-                <!-- ... (More articles following the same detailed format) ... -->
 
             </div>
             
@@ -699,7 +734,7 @@
 
     <!-- TROUBLESHOOT SECTION -->
     <section id="troubleshoot" class="py-24 relative bg-black/40 backdrop-blur-sm border-t border-white/5">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12 reveal">
                 <span class="text-techPink font-bold tracking-widest uppercase text-sm">Self Help Center</span>
                 <h2 class="text-4xl font-bold text-white mt-2">Knowledge <span class="text-transparent bg-clip-text bg-gradient-to-r from-techPink to-techPurple">Base</span></h2>
@@ -707,23 +742,23 @@
 
             <!-- Modern Search -->
             <div class="mb-12 relative group reveal">
-                <div class="absolute -inset-1 bg-gradient-to-r from-techBlue via-techPurple to-techPink rounded-full opacity-50 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <div class="relative flex items-center bg-black rounded-full p-2">
+                <div class="absolute -inset-1 bg-gradient-to-r from-techBlue via-techPurple to-techPink rounded-full opacity-50 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200 hidden md:block"></div>
+                <div class="relative flex items-center bg-black rounded-full p-2 border border-gray-800 md:border-none">
                     <i class="fas fa-search text-gray-400 ml-4 text-xl"></i>
                     <input type="text" id="searchInput" placeholder="Describe your issue (e.g. 'No Sound', 'Blue Screen')..." 
-                        class="w-full bg-transparent text-white px-4 py-3 text-lg focus:outline-none placeholder-gray-600">
+                        class="w-full bg-transparent text-white px-4 py-3 text-base md:text-lg focus:outline-none placeholder-gray-600">
                 </div>
             </div>
 
-            <div class="flex justify-center gap-4 mb-8 flex-wrap reveal">
-                <button onclick="filterIssues('all')" class="filter-btn active px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">All Issues</button>
-                <button onclick="filterIssues('Hardware')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">Hardware</button>
-                <button onclick="filterIssues('Software')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">Software</button>
-                <button onclick="filterIssues('Internet')" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all font-medium">Internet</button>
+            <div class="flex justify-center gap-2 md:gap-4 mb-8 flex-wrap reveal">
+                <button onclick="filterIssues('all')" class="filter-btn active px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">All Issues</button>
+                <button onclick="filterIssues('Hardware')" class="filter-btn px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">Hardware</button>
+                <button onclick="filterIssues('Software')" class="filter-btn px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">Software</button>
+                <button onclick="filterIssues('Internet')" class="filter-btn px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">Internet</button>
             </div>
 
             <!-- Issues List -->
-            <div id="issuesContainer" class="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar reveal">
+            <div id="issuesContainer" class="space-y-3 md:space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar reveal">
                 <!-- Javascript will populate this -->
             </div>
         </div>
@@ -731,46 +766,46 @@
 
     <!-- About Me -->
     <section id="about" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="glass-card rounded-3xl p-8 md:p-12 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-3xl p-6 md:p-12 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h2 class="text-4xl font-bold text-white mb-6">About <span class="text-techBlue">Tiran Kalhara</span></h2>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About <span class="text-techBlue">Tiran Kalhara</span></h2>
                         
-                        <div class="space-y-6 text-gray-300 text-lg leading-relaxed">
+                        <div class="space-y-4 md:space-y-6 text-gray-300 text-base md:text-lg leading-relaxed">
                             <p>
                                 I am not just a technician or a developer; I am someone who genuinely cares about technology and the people who use it. I started this journey out of pure passion for understanding how things work—from the tiniest microchip to complex software codes.
                             </p>
                             <p>
                                 My philosophy is simple: <strong>Quality over Quantity</strong>. When you hand over a laptop for repair or trust me with a website project, I treat it as my own. I don't believe in quick fixes, shortcuts, or hidden costs. I believe in doing the job right the first time.
                             </p>
-                            <p>
+                            <p class="hidden md:block">
                                 Whether it's reviving a dead computer or building a system for your business, my goal is to give you a solution that you can rely on. If I can't fix it, I'll be honest about it. My reputation is built on trust, transparency, and a genuine desire to help.
                             </p>
                         </div>
 
-                        <div class="mt-8 pt-6 border-t border-gray-800">
+                        <div class="mt-8 pt-6 border-t border-gray-800 hidden md:block">
                             <p class="text-gray-400 italic">"Technology is complicated, but finding a reliable person to handle it shouldn't be."</p>
                         </div>
                     </div>
                     <div class="relative">
                         <!-- Decorative elements -->
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-techBlue rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-                        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-techPurple rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-techBlue rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob hidden md:block"></div>
+                        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-techPurple rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 hidden md:block"></div>
                         
-                        <div class="grid grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techBlue transition-colors animate-float">
-                                <i class="fas fa-brain text-4xl text-techBlue mb-4"></i>
+                                <i class="fas fa-brain text-3xl md:text-4xl text-techBlue mb-4"></i>
                                 <h4 class="text-white font-bold">Deep Analysis</h4>
                                 <p class="text-xs text-gray-500 mt-2">I find the root cause, not just the symptom.</p>
                             </div>
-                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techPurple transition-colors mt-8 animate-float" style="animation-delay: 1s;">
-                                <i class="fas fa-layer-group text-4xl text-techPurple mb-4"></i>
+                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techPurple transition-colors md:mt-8 animate-float hidden sm:block" style="animation-delay: 1s;">
+                                <i class="fas fa-layer-group text-3xl md:text-4xl text-techPurple mb-4"></i>
                                 <h4 class="text-white font-bold">Full Dedication</h4>
                                 <p class="text-xs text-gray-500 mt-2">Every project gets my 100% attention.</p>
                             </div>
                             <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techPink transition-colors animate-float" style="animation-delay: 2s;">
-                                <i class="fas fa-handshake text-4xl text-techPink mb-4"></i>
+                                <i class="fas fa-handshake text-3xl md:text-4xl text-techPink mb-4"></i>
                                 <h4 class="text-white font-bold">Honest Work</h4>
                                 <p class="text-xs text-gray-500 mt-2">Transparent pricing and genuine advice.</p>
                             </div>
@@ -782,30 +817,30 @@
     </section>
 
     <!-- Tech Stack Strip -->
-    <div class="py-10 border-t border-white/5 bg-black/50 backdrop-blur-sm">
-        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-12 grayscale hover:grayscale-0 transition-all duration-500 reveal">
-            <i class="fab fa-html5 text-5xl text-orange-500 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-css3-alt text-5xl text-blue-500 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-js text-5xl text-yellow-400 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-react text-5xl text-cyan-400 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-python text-5xl text-blue-300 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
-            <i class="fab fa-windows text-5xl text-blue-600 opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+    <div class="py-6 md:py-10 border-t border-white/5 bg-black/50 backdrop-blur-sm overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-12 md:grayscale hover:grayscale-0 transition-all duration-500 reveal">
+            <i class="fab fa-html5 text-4xl md:text-5xl text-orange-500 md:opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-css3-alt text-4xl md:text-5xl text-blue-500 md:opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-js text-4xl md:text-5xl text-yellow-400 md:opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-react text-4xl md:text-5xl text-cyan-400 md:opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-python text-4xl md:text-5xl text-blue-300 md:opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
+            <i class="fab fa-windows text-4xl md:text-5xl text-blue-600 md:opacity-50 hover:opacity-100 hover:scale-110 transition-all"></i>
         </div>
     </div>
 
     <!-- Contact Section -->
     <section id="contact" class="py-24 relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="glass-card rounded-3xl p-1 bg-gradient-to-b from-gray-800 to-black reveal">
-                <div class="bg-black/80 rounded-[22px] p-8 md:p-12 backdrop-blur-xl">
+                <div class="bg-black/80 rounded-[22px] p-6 md:p-12 md:backdrop-blur-xl">
                     <div class="text-center mb-10">
-                        <h2 class="text-4xl font-bold text-white">Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">Connect</span></h2>
-                        <p class="text-gray-400 mt-2">Ready to start your project or fix your device?</p>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">Connect</span></h2>
+                        <p class="text-sm md:text-base text-gray-400 mt-2">Ready to start your project or fix your device?</p>
                     </div>
 
                     <!-- Contact Form Input Fields (No Default Form Action) -->
-                    <div class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                             <div class="group">
                                 <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Name</label>
                                 <input type="text" id="c-name" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="John Doe">
@@ -832,27 +867,27 @@
                         
                         <!-- Dual Button System -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                            <button onclick="sendMessage('whatsapp')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
-                                <i class="fab fa-whatsapp text-2xl group-hover:scale-110 transition-transform"></i> Send via WhatsApp
+                            <button onclick="sendMessage('whatsapp')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 md:py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
+                                <i class="fab fa-whatsapp text-xl md:text-2xl group-hover:scale-110 transition-transform"></i> Send via WhatsApp
                             </button>
-                            <button onclick="sendMessage('email')" class="w-full bg-gradient-to-r from-techBlue to-techPurple hover:opacity-90 text-black font-bold py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
-                                <i class="fas fa-envelope text-xl group-hover:scale-110 transition-transform"></i> Send via Email
+                            <button onclick="sendMessage('email')" class="w-full bg-gradient-to-r from-techBlue to-techPurple hover:opacity-90 text-black font-bold py-3 md:py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
+                                <i class="fas fa-envelope text-lg md:text-xl group-hover:scale-110 transition-transform"></i> Send via Email
                             </button>
                         </div>
                     </div>
 
-                    <div class="mt-12 pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                    <div class="mt-12 pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center md:text-left">
                         <div>
-                            <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Email</p>
-                            <p class="text-white hover:text-techBlue transition-colors">tirankalharac@gmail.com</p>
+                            <p class="text-xs md:text-sm text-gray-500 uppercase tracking-widest mb-1">Email</p>
+                            <p class="text-sm md:text-base text-white hover:text-techBlue transition-colors">tirankalharac@gmail.com</p>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">Phone</p>
-                            <p class="text-white hover:text-techBlue transition-colors">070 342 7275</p>
+                            <p class="text-xs md:text-sm text-gray-500 uppercase tracking-widest mb-1">Phone</p>
+                            <p class="text-sm md:text-base text-white hover:text-techBlue transition-colors">070 342 7275</p>
                         </div>
                         <div class="md:text-right">
-                            <a href="https://www.facebook.com/" target="_blank" class="inline-flex items-center text-blue-500 hover:text-white transition-colors">
-                                <i class="fab fa-facebook text-2xl mr-2"></i> Find me on Facebook
+                            <a href="https://www.facebook.com/" target="_blank" class="inline-flex items-center text-sm md:text-base text-blue-500 hover:text-white transition-colors">
+                                <i class="fab fa-facebook text-xl md:text-2xl mr-2"></i> Find me on Facebook
                             </a>
                         </div>
                     </div>
@@ -862,62 +897,62 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-gray-900 text-center relative">
+    <footer class="bg-black py-8 border-t border-gray-900 text-center relative z-10">
         <p class="text-gray-600 text-sm mt-4">
             &copy; 2026 Kalhara Development. Crafted with <i class="fas fa-heart text-red-500 animate-pulse"></i> for technology.
         </p>
     </footer>
 
     <!-- AI CHATBOT WIDGET -->
-    <div id="chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div id="chat-widget" class="fixed bottom-6 right-4 md:right-6 z-50 flex flex-col items-end gap-2">
         <!-- Visible Label for AI -->
-        <div class="bg-white/90 backdrop-blur text-black px-4 py-2 rounded-xl shadow-lg border border-white/20 animate-bounce-slow text-sm font-bold mr-2 relative">
+        <div class="bg-white/90 backdrop-blur text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg border border-white/20 animate-bounce-slow text-xs md:text-sm font-bold mr-2 relative hidden md:block">
             Chat with Mr. Kalhara 👋
             <div class="absolute -bottom-1 right-6 w-3 h-3 bg-white rotate-45"></div>
         </div>
         
         <!-- Chat Button -->
-        <button onclick="toggleChat()" class="w-16 h-16 bg-gradient-to-r from-techBlue to-techPurple rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30 hover:scale-110 transition-transform">
-            <i class="fas fa-robot text-2xl text-black"></i>
+        <button onclick="toggleChat()" class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-techBlue to-techPurple rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30 hover:scale-110 transition-transform">
+            <i class="fas fa-robot text-xl md:text-2xl text-black"></i>
         </button>
     </div>
 
     <!-- Chat Window -->
-    <div id="chat-window" class="fixed bottom-24 right-6 w-80 sm:w-96 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl transform scale-0 origin-bottom-right transition-transform duration-300 z-50 overflow-hidden flex flex-col">
+    <div id="chat-window" class="fixed bottom-20 md:bottom-24 right-4 md:right-6 w-72 sm:w-80 md:w-96 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl transform scale-0 origin-bottom-right transition-transform duration-300 z-50 overflow-hidden flex flex-col">
         <!-- Header -->
-        <div class="bg-gradient-to-r from-techBlue to-techPurple p-4 flex justify-between items-center">
-            <div class="flex items-center gap-2 text-black font-bold">
+        <div class="bg-gradient-to-r from-techBlue to-techPurple p-3 md:p-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-black font-bold text-sm md:text-base">
                 <i class="fas fa-robot"></i> Mr. Kalhara AI
             </div>
-            <button onclick="toggleChat()" class="text-black hover:text-white transition-colors"><i class="fas fa-times text-lg"></i></button>
+            <button onclick="toggleChat()" class="text-black hover:text-white transition-colors p-1"><i class="fas fa-times text-lg"></i></button>
         </div>
         <!-- Messages -->
-        <div id="chat-messages" class="h-80 p-4 overflow-y-auto space-y-4 custom-scrollbar bg-black/50">
+        <div id="chat-messages" class="h-64 md:h-80 p-3 md:p-4 overflow-y-auto space-y-4 custom-scrollbar bg-black/50">
             <!-- Bot Welcome -->
             <div class="flex gap-2">
-                <div class="w-8 h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-xs font-bold flex-shrink-0">AI</div>
-                <div class="bg-white/10 p-3 rounded-r-xl rounded-bl-xl text-sm text-gray-200">
+                <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0">AI</div>
+                <div class="bg-white/10 p-2 md:p-3 rounded-r-xl rounded-bl-xl text-xs md:text-sm text-gray-200">
                     ආයුබෝවන්! මම <strong>Mr. Kalhara</strong>. මට පුළුවන් ඔයාගේ IT ගැටළු වලට විසඳුම් දෙන්න. ප්‍රශ්නයක් අහන්න නැත්නම් Error එකේ Photo එකක් එවන්න.
-                    <div class="mt-2 flex flex-wrap gap-2">
-                        <span onclick="sendQuickReply('PC එක Slow වෙලා')" class="text-xs bg-techBlue/20 text-techBlue px-2 py-1 rounded cursor-pointer hover:bg-techBlue/40">PC Slow?</span>
-                        <span onclick="sendQuickReply('Virus Guard')" class="text-xs bg-techPurple/20 text-techPurple px-2 py-1 rounded cursor-pointer hover:bg-techPurple/40">Virus Guard</span>
-                        <span onclick="sendQuickReply('Format කරන්න ඕන')" class="text-xs bg-techPink/20 text-techPink px-2 py-1 rounded cursor-pointer hover:bg-techPink/40">Format Help</span>
+                    <div class="mt-2 flex flex-wrap gap-1 md:gap-2">
+                        <span onclick="sendQuickReply('PC එක Slow වෙලා')" class="text-[10px] md:text-xs bg-techBlue/20 text-techBlue px-2 py-1 rounded cursor-pointer hover:bg-techBlue/40">PC Slow?</span>
+                        <span onclick="sendQuickReply('Virus Guard')" class="text-[10px] md:text-xs bg-techPurple/20 text-techPurple px-2 py-1 rounded cursor-pointer hover:bg-techPurple/40">Virus Guard</span>
+                        <span onclick="sendQuickReply('Format කරන්න ඕන')" class="text-[10px] md:text-xs bg-techPink/20 text-techPink px-2 py-1 rounded cursor-pointer hover:bg-techPink/40">Format Help</span>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Input -->
-        <div class="p-3 border-t border-white/10 flex gap-2 bg-black items-center">
+        <div class="p-2 md:p-3 border-t border-white/10 flex gap-2 bg-black items-center">
             <!-- Hidden File Input -->
             <input type="file" id="image-upload" hidden accept="image/*" onchange="handleImageUpload(this)">
             
             <!-- Upload Button -->
             <button onclick="document.getElementById('image-upload').click()" class="text-gray-400 hover:text-techBlue transition-colors p-2" title="Upload Error Screenshot">
-                <i class="fas fa-camera"></i>
+                <i class="fas fa-camera text-sm md:text-base"></i>
             </button>
             
-            <input type="text" id="chat-input" placeholder="Type here..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-techBlue" onkeypress="handleEnter(event)">
-            <button onclick="sendUserMessage()" class="bg-techBlue text-black px-4 py-2 rounded-lg hover:bg-white transition-colors"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="chat-input" placeholder="Type here..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-2 py-1 md:px-3 md:py-2 text-xs md:text-sm text-white focus:outline-none focus:border-techBlue" onkeypress="handleEnter(event)">
+            <button onclick="sendUserMessage()" class="bg-techBlue text-black px-3 py-1.5 md:px-4 md:py-2 rounded-lg hover:bg-white transition-colors"><i class="fas fa-paper-plane text-sm md:text-base"></i></button>
         </div>
     </div>
 
@@ -953,7 +988,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
+                var elementVisible = 100; // Adjusted for better mobile trigger
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
@@ -1063,7 +1098,7 @@
             { cat: 'Software', q: 'Cannot delete folder (In use)', a: 'Restart PC. Or use "Unlocker" software to force delete.' },
             { cat: 'Software', q: 'External Hard Disk slow', a: 'Use USB 3.0 port (Blue color). Check cable.' },
             { cat: 'Hardware', q: 'SD Card Write Protected', a: 'Check the tiny physical switch on the side of the SD card. Slide it up.' },
-            { cat: 'Software', q: 'Pendrive shows shortcuts instead of files', a: 'Shortcut Virus. Run CMD: attrib -h -r -s /s /d G:\*.* (Replace G with drive letter).' },
+            { cat: 'Software', q: 'Pendrive shows shortcuts instead of files', a: 'Shortcut Virus. Run CMD: attrib -h -r -s /s /d G:\\*.* (Replace G with drive letter).' },
             { cat: 'Software', q: 'Lost partition / Drive missing', a: 'Open Disk Management. If space is "Unallocated", create New Simple Volume.' },
 
             // --- SOFTWARE & WINDOWS ---
@@ -1121,7 +1156,7 @@
             }
             data.forEach((issue) => {
                 const item = document.createElement('div');
-                item.className = 'faq-item bg-white/5 border border-white/10 rounded-xl px-6 py-4 cursor-pointer hover:bg-white/10 transition-all group';
+                item.className = 'faq-item bg-white/5 border border-white/10 rounded-xl px-4 md:px-6 py-3 md:py-4 cursor-pointer hover:bg-white/10 transition-all group';
                 item.onclick = () => toggleAnswer(item);
                 
                 let iconClass = 'fa-question-circle text-gray-500';
@@ -1131,17 +1166,17 @@
 
                 item.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-4">
-                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
-                                <i class="fas ${iconClass}"></i>
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                                <i class="fas ${iconClass} text-sm md:text-base"></i>
                             </div>
-                            <h4 class="text-white font-medium text-lg group-hover:text-techBlue transition-colors">${issue.q}</h4>
+                            <h4 class="text-white font-medium text-sm md:text-lg group-hover:text-techBlue transition-colors">${issue.q}</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                        <i class="fas fa-chevron-down text-gray-500 text-sm md:text-base transition-transform duration-300 ml-2"></i>
                     </div>
                     <div class="faq-answer text-gray-400 mt-0">
-                        <div class="pt-4 pl-12 border-t border-white/5 mt-3">
-                            <p><span class="text-techBlue font-bold tracking-wide text-sm uppercase">Fix:</span> ${issue.a}</p>
+                        <div class="pt-3 md:pt-4 pl-9 md:pl-12 border-t border-white/5 mt-2 md:mt-3">
+                            <p class="text-xs md:text-base"><span class="text-techBlue font-bold tracking-wide text-xs uppercase">Fix:</span> ${issue.a}</p>
                         </div>
                     </div>
                 `;
@@ -1275,14 +1310,14 @@
             let content = '';
             if(sender === 'bot') {
                 content = `
-                    <div class="w-8 h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-xs font-bold flex-shrink-0">AI</div>
-                    <div class="bg-white/10 p-3 rounded-r-xl rounded-bl-xl text-sm text-gray-200 max-w-[80%] animate-fade-in-up">
+                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0">AI</div>
+                    <div class="bg-white/10 p-2 md:p-3 rounded-r-xl rounded-bl-xl text-xs md:text-sm text-gray-200 max-w-[80%] animate-fade-in-up">
                         ${html}
                     </div>
                 `;
             } else {
                 content = `
-                    <div class="bg-techPurple/20 p-3 rounded-l-xl rounded-br-xl text-sm text-white max-w-[80%] border border-techPurple/30">
+                    <div class="bg-techPurple/20 p-2 md:p-3 rounded-l-xl rounded-br-xl text-xs md:text-sm text-white max-w-[80%] border border-techPurple/30">
                         ${html}
                     </div>
                 `;
@@ -1298,8 +1333,8 @@
             div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''}`;
             
             const content = `
-                <div class="bg-techPurple/20 p-2 rounded-l-xl rounded-br-xl text-sm text-white max-w-[80%] border border-techPurple/30">
-                    <img src="${imgSrc}" class="rounded-lg max-h-32 object-cover border border-white/10">
+                <div class="bg-techPurple/20 p-2 rounded-l-xl rounded-br-xl text-xs md:text-sm text-white max-w-[80%] border border-techPurple/30">
+                    <img src="${imgSrc}" class="rounded-lg max-h-24 md:max-h-32 object-cover border border-white/10">
                 </div>
             `;
             
@@ -1313,8 +1348,8 @@
             thinkingDiv = document.createElement('div');
             thinkingDiv.className = `flex gap-2`;
             thinkingDiv.innerHTML = `
-                <div class="w-8 h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-xs font-bold flex-shrink-0"><i class="fas fa-cog fa-spin"></i></div>
-                <div class="bg-white/10 p-3 rounded-r-xl rounded-bl-xl text-sm text-gray-400 italic">
+                <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-techBlue flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0"><i class="fas fa-cog fa-spin"></i></div>
+                <div class="bg-white/10 p-2 md:p-3 rounded-r-xl rounded-bl-xl text-xs md:text-sm text-gray-400 italic">
                     ${text}
                 </div>
             `;
@@ -1346,11 +1381,11 @@
         function provideImageSolution() {
             // Highly advanced looking solution
             const solutionHTML = `
-                <div class="space-y-2">
-                    <p class="font-bold text-techBlue"><i class="fas fa-check-circle"></i> Error Analysis Complete</p>
-                    <p class="text-sm">මම ඔයාගේ Screenshot එක බැලුවා. මේක <strong>System/Display Error</strong> එකක් වගේ. බය වෙන්න එපා, මේ පියවර ටික කරලා බලන්න:</p>
+                <div class="space-y-1 md:space-y-2">
+                    <p class="font-bold text-techBlue text-xs md:text-sm"><i class="fas fa-check-circle"></i> Error Analysis Complete</p>
+                    <p class="text-[10px] md:text-xs">මම ඔයාගේ Screenshot එක බැලුවා. මේක <strong>System/Display Error</strong> එකක් වගේ. බය වෙන්න එපා, මේ පියවර ටික කරලා බලන්න:</p>
                     
-                    <div class="bg-black/50 p-2 rounded border border-white/10 font-mono text-xs text-green-400 mt-2">
+                    <div class="bg-black/50 p-1.5 md:p-2 rounded border border-white/10 font-mono text-[9px] md:text-xs text-green-400 mt-1 md:mt-2">
                         <p class="text-gray-500">// Step 1: Reset Drivers</p>
                         <p>> Press: Win + Ctrl + Shift + B</p>
                         <br>
@@ -1359,10 +1394,10 @@
                         <p>> sfc /scannow</p>
                     </div>
 
-                    <p class="text-xs mt-2 text-gray-300">මේකෙන් හරි ගියේ නැත්නම් Hardware අවුලක් වෙන්න පුළුවන්.</p>
-                    <div class="mt-2 pt-2 border-t border-white/10 text-xs text-center">
-                        <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-techPurple text-white px-3 py-1 rounded hover:bg-white hover:text-black transition-colors">
-                            Fix it for me (Contact Tiran)
+                    <p class="text-[9px] md:text-[10px] mt-1 text-gray-300">මේකෙන් හරි ගියේ නැත්නම් Hardware අවුලක් වෙන්න පුළුවන්.</p>
+                    <div class="mt-2 pt-2 border-t border-white/10 text-center">
+                        <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-techPurple text-white px-2 py-1 md:px-3 text-[10px] md:text-xs rounded hover:bg-white hover:text-black transition-colors">
+                            Fix it for me
                         </button>
                     </div>
                 </div>
