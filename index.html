@@ -1089,14 +1089,73 @@
         }
 
         // --- TROUBLESHOOT LOGIC ---
+        // Illi 60 atyanta sadharana IT samasyegalu mattu avugala pariharagalannu serisalagide
         const troubleshootData = [
-            { cat: 'Hardware', q: 'Computer won\'t turn on (No lights)', a: 'Check power cable connection. Try a different wall socket. If laptop, remove battery and hold power button for 30s, then plug charger.' },
-            { cat: 'Hardware', q: 'PC turns on but Screen is Black', a: 'Listen for fan noise/beeps. If fans spin, it might be RAM. Remove RAM, clean contacts with eraser, and reinstall.' },
-            { cat: 'Performance', q: 'Computer is running very slow', a: 'Check Task Manager (Ctrl+Shift+Esc). If Disk 100%, upgrade HDD to SSD. Disable startup apps.' },
-            { cat: 'Internet', q: 'WiFi Connected but No Internet', a: 'Restart Router. Open CMD, type: ipconfig /flushdns. Check if bill is paid.' },
-            { cat: 'Software', q: 'Blue Screen of Death (BSOD)', a: 'Note error code. "MEMORY_MANAGEMENT" = RAM issue. "DRIVER_IRQL" = Driver issue. Restart.' },
-            { cat: 'Software', q: 'Windows stuck on Loading Logo', a: 'Boot into Safe Mode (interrupt startup 3 times). Run Startup Repair.' }
-            // Added truncated list for brevity, the full list was causing size issues, keeping the main ones for demo.
+            // HARDWARE ISSUES
+            { cat: 'Hardware', q: 'Computer won\'t turn on (No lights at all)', a: 'Verify power outlet. Check PSU switch. For laptops, remove battery, hold power button for 30s, plug in charger without battery and try.' },
+            { cat: 'Hardware', q: 'PC turns on, fans spin, but screen is black', a: 'Often a RAM issue. Turn off, open case, remove RAM sticks, clean the gold contacts with a pencil eraser, blow out dust, and firmly reseat them.' },
+            { cat: 'Hardware', q: 'Continuous beeping sound on startup', a: 'Count the beeps. Usually indicates a RAM or GPU error. Reseat both components firmly into their slots.' },
+            { cat: 'Hardware', q: 'Laptop is overheating and shutting down', a: 'Clean air vents with compressed air. Keep laptop on a hard surface. If advanced, apply new thermal paste to the CPU.' },
+            { cat: 'Hardware', q: 'Battery drains very fast', a: 'Lower screen brightness. Close background apps. If old, the battery might be chemically degraded and needs hardware replacement.' },
+            { cat: 'Hardware', q: 'Laptop plugged in, but "Not Charging"', a: 'Open Device Manager, expand Batteries, right-click "Microsoft ACPI-Compliant Control Method Battery", uninstall it, and restart your PC.' },
+            { cat: 'Hardware', q: 'Keyboard keys not typing', a: 'Clean under keys. If laptop, check the internal ribbon cable. If USB, try another port. Use On-Screen Keyboard temporarily.' },
+            { cat: 'Hardware', q: 'Touchpad completely unresponsive', a: 'Check for a touchpad toggle key on your keyboard (e.g., Fn+F7). Go to Settings > Devices > Touchpad and ensure it is enabled.' },
+            { cat: 'Hardware', q: 'USB flash drive not recognized', a: 'Try a different USB port directly on the motherboard. Open Disk Management and assign a new drive letter to the USB.' },
+            { cat: 'Hardware', q: 'Printer shows as "Offline"', a: 'Clear the print queue. Open Services (services.msc), find "Print Spooler", right-click and Restart. Reconnect USB or WiFi.' },
+            { cat: 'Hardware', q: 'No sound from speakers/headphones', a: 'Click the sound icon, ensure the correct playback device is selected. Reinstall audio drivers from Device Manager.' },
+            { cat: 'Hardware', q: 'Microphone not picking up voice', a: 'Go to Windows Privacy settings and "Allow apps to access your microphone". Increase mic boost in sound control panel.' },
+            { cat: 'Hardware', q: 'External monitor says "No Signal"', a: 'Press Win+P and select "Extend" or "Duplicate". Try a different HDMI/VGA cable. Ensure monitor is on the correct input source.' },
+            { cat: 'Hardware', q: 'Loud rattling or grinding noise from case', a: 'A cable might be hitting a spinning fan blade. Open case and tie cables back. If a fan bearing is failing, replace the fan.' },
+            { cat: 'Hardware', q: 'Mouse double-clicks on a single click', a: 'Hardware switch failure. Blow compressed air under the clicker. Try lowering double-click speed in Mouse Settings as a workaround.' },
+            { cat: 'Hardware', q: 'USB Ports not working at all', a: 'Check Device Manager for yellow triangles under Universal Serial Bus controllers. Right-click and Update or Uninstall, then restart.' },
+            { cat: 'Hardware', q: 'CD/DVD Drive not reading discs', a: 'Clean the laser lens carefully with a cotton swab and rubbing alcohol. Check SATA power and data cables inside the PC.' },
+            { cat: 'Hardware', q: 'PC Shuts down randomly while gaming', a: 'Usually a Power Supply (PSU) failing under load or severe GPU overheating. Monitor temperatures using MSI Afterburner.' },
+            { cat: 'Hardware', q: 'Monitor displays weird colors or lines', a: 'Check the display cable (HDMI/DP) connections. Try a different monitor to rule out a dying Graphics Card (GPU).' },
+            { cat: 'Hardware', q: 'Webcam not detected', a: 'Check for a physical privacy switch or camera key (Fn+Camera). Allow camera access in Windows Privacy Settings.' },
+            
+            // SOFTWARE ISSUES
+            { cat: 'Software', q: 'Windows Update stuck downloading', a: 'Run the Windows Update Troubleshooter. Alternatively, clear the "SoftwareDistribution" folder located in C:\\Windows.' },
+            { cat: 'Software', q: 'Program is frozen / Not Responding', a: 'Press Ctrl+Shift+Esc to open Task Manager. Right-click the frozen program and select "End Task".' },
+            { cat: 'Software', q: 'Blue Screen of Death (BSOD)', a: 'Note the error code. "MEMORY_MANAGEMENT" = Test RAM. "IRQL_NOT_LESS_OR_EQUAL" = Update drivers. Boot into Safe Mode to troubleshoot.' },
+            { cat: 'Software', q: 'Forgot Windows Local Password', a: 'If no reset disk, use advanced boot options to access Command Prompt, rename utilman.exe to cmd.exe to reset via lock screen.' },
+            { cat: 'Software', q: '100% Disk Usage in Task Manager', a: 'Disable "SysMain" service. Run "chkdsk /f" in CMD. Strongly consider upgrading your mechanical HDD to an SSD.' },
+            { cat: 'Software', q: '100% CPU Usage slowing PC', a: 'Sort Task Manager by CPU column to find the culprit. Close heavy background apps. Run a full malware scan using Windows Defender.' },
+            { cat: 'Software', q: 'Files opening in the wrong program', a: 'Right-click the file -> "Open with" -> "Choose another app". Select the correct app and check "Always use this app".' },
+            { cat: 'Software', q: 'Accidentally deleted important files', a: 'Check Recycle Bin immediately. If emptied, DO NOT write new files to the drive and use recovery software like Recuva.' },
+            { cat: 'Software', q: 'Can\'t empty Recycle Bin', a: 'Restart PC. Open CMD as administrator and type: rd /s /q %systemdrive%\\$Recycle.bin' },
+            { cat: 'Software', q: 'Desktop icons disappeared', a: 'Right-click on an empty space on the desktop -> View -> Check "Show desktop icons".' },
+            { cat: 'Software', q: 'Taskbar is completely frozen', a: 'Open Task Manager (Ctrl+Shift+Esc), find "Windows Explorer" in the processes list, right-click and select "Restart".' },
+            { cat: 'Software', q: 'PC takes too long to boot (Slow Startup)', a: 'Open Task Manager -> Startup tab. Disable unnecessary programs from starting automatically with Windows.' },
+            { cat: 'Software', q: 'Cannot uninstall a program', a: 'Use Control Panel instead of Settings. If it still fails, use third-party tools like Revo Uninstaller.' },
+            { cat: 'Software', q: 'Activate Windows watermark on screen', a: 'Go to Settings > Update & Security > Activation. Enter your genuine product key or run the activation troubleshooter.' },
+            { cat: 'Software', q: 'File too large for USB drive (Error)', a: 'The USB is likely formatted as FAT32 (4GB file limit). Right-click the USB, format it to NTFS or exFAT.' },
+            { cat: 'Software', q: 'Missing DLL file error on game/app launch', a: 'Run "sfc /scannow" in CMD as admin. Reinstall the program, or install missing Visual C++ Redistributables or DirectX.' },
+            { cat: 'Software', q: 'Desktop background turns black', a: 'Check "Ease of Access" settings to ensure "Show desktop background image" is on. Verify your Windows is activated.' },
+            { cat: 'Software', q: 'Screen resolution is wrong or stretched', a: 'Right-click desktop -> Display settings. Change resolution to "Recommended". If missing, update graphics drivers.' },
+            { cat: 'Software', q: 'Cannot delete a folder (File in use)', a: 'Restart PC. Or use Resource Monitor -> CPU tab -> Associated Handles to find which app is holding the file and end it.' },
+            { cat: 'Software', q: 'Windows Search bar not working', a: 'Press Win+R, type "services.msc", find "Windows Search" service, right-click and Restart the service.' },
+            { cat: 'Software', q: 'C: Drive is red/full but no large files', a: 'Run "Disk Cleanup" -> "Clean up system files". Delete previous Windows installations (Windows.old) and temp files.' },
+            { cat: 'Software', q: 'Mouse cursor disappears entirely', a: 'Press Fn + F-key for touchpad toggle. Unplug and replug mouse. Press Windows key to check if system is responsive.' },
+            
+            // INTERNET & NETWORK ISSUES
+            { cat: 'Internet', q: 'WiFi connected, but No Internet', a: 'Restart router. On PC, open CMD as admin: type "ipconfig /flushdns", press Enter, then "netsh winsock reset". Restart PC.' },
+            { cat: 'Internet', q: 'Internet speed is extremely slow', a: 'Move closer to the router. Disconnect idle devices. Connect via Ethernet cable to verify if it is a WiFi issue or ISP issue.' },
+            { cat: 'Internet', q: 'Can\'t see my WiFi network in the list', a: 'Check if router is on. Update WiFi adapter drivers. Ensure Airplane mode is off. Go to Settings and Network Reset.' },
+            { cat: 'Internet', q: 'DNS server isn\'t responding', a: 'Change adapter settings -> IPv4 properties -> Select "Use the following DNS". Enter Google DNS: 8.8.8.8 and 8.8.4.4.' },
+            { cat: 'Internet', q: 'Web browser is very slow or crashing', a: 'Clear browser cache and cookies. Disable suspicious extensions. Reset browser to default settings if it persists.' },
+            { cat: 'Internet', q: 'Default search engine changed automatically', a: 'You likely have adware/malware. Run Malwarebytes. Go to browser settings and manually reset your default search engine.' },
+            { cat: 'Internet', q: 'IP address conflict detected', a: 'Open CMD as administrator, type: "ipconfig /release" and hit Enter, then type "ipconfig /renew" and hit Enter.' },
+            { cat: 'Internet', q: 'Connection is not private (SSL Error)', a: 'Check if your PC\'s date and time are perfectly accurate. If on public WiFi, open a non-HTTPS site to trigger the login portal.' },
+            { cat: 'Internet', q: 'Router keeps dropping connection', a: 'Update router firmware via its admin panel. Check for overheating. Factory reset the router using a pin in the reset hole.' },
+            { cat: 'Internet', q: 'Cannot access one specific website', a: 'Try a different browser. Clear DNS cache (ipconfig /flushdns). Check if the site is down globally using DownDetector.' },
+            { cat: 'Internet', q: 'Bluetooth icon missing / not working', a: 'Run Windows Bluetooth troubleshooter. Open Device Manager, enable Bluetooth adapter or reinstall its drivers.' },
+            { cat: 'Internet', q: 'High Ping / Lag in Online Games', a: 'Use a wired Ethernet connection instead of WiFi. Close background downloads. Select the game server closest to your country.' },
+            { cat: 'Internet', q: 'Can\'t connect to Network Printer', a: 'Ensure printer is on the exact same WiFi network. Find the printer\'s IP address and add it manually via "Add a printer using IP".' },
+            { cat: 'Internet', q: 'Downloads keep failing or interrupting', a: 'Check internet stability. Ensure enough disk space. If browser fails, try using a dedicated download manager extension.' },
+            { cat: 'Internet', q: 'YouTube/Videos keep buffering endlessly', a: 'Lower video quality gear icon. Run an internet speed test. Disable hardware acceleration in your browser settings.' },
+            { cat: 'Internet', q: 'Windows 11 Wi-Fi option totally disappeared', a: 'Hold power button for 60 seconds to discharge static. Or, download Intel/Realtek WLAN driver on phone, transfer via USB, and install.' },
+            { cat: 'Internet', q: 'VPN not connecting at all', a: 'Change VPN protocol (e.g., from WireGuard to OpenVPN) in app settings. Temporarily disable antivirus firewall. Reinstall VPN.' },
+            { cat: 'Internet', q: 'Ethernet cable plugged in but no internet', a: 'Check if the port lights on the PC and router are blinking. Try another cable. Update Ethernet controller drivers.' }
         ];
 
         const issuesContainer = document.getElementById('issuesContainer');
