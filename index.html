@@ -6,8 +6,10 @@
     <!-- Google Search Console Verification Code -->
     <meta name="google-site-verification" content="IH50WTRSJSWWC5nlEKyXMWr1MMBVKpfKWQPrJA-4hFs" />
     
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="logo.png">
+    <!-- Website Icons (Favicon) -->
+    <link rel="icon" type="image/png" sizes="48x48" href="logo.png">
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
     
     <title>Kalhara Development | High-End IT Solutions</title>
     
@@ -556,7 +558,7 @@
                 </div>
 
                 <!-- Mini IT Quiz -->
-                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col">
+                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col min-h-[450px]">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-2xl font-bold text-white"><i class="fas fa-gamepad text-techBlue mr-2"></i> Mini IT Quiz</h3>
                         <span id="quiz-score-badge" class="bg-techBlue/20 text-techBlue px-3 py-1 rounded-full text-sm font-bold border border-techBlue/30 hidden">Score: 0</span>
@@ -570,6 +572,8 @@
                     <div id="quiz-area" class="hidden flex-grow flex flex-col">
                         <p id="quiz-question" class="text-lg text-white mb-6 font-medium text-center"></p>
                         <div id="quiz-options" class="grid grid-cols-1 gap-3 flex-grow"></div>
+                        <!-- NEW FEEDBACK DIV -->
+                        <div id="quiz-feedback" class="text-center min-h-[60px] flex flex-col items-center justify-center mt-4"></div>
                     </div>
                     <div id="quiz-result" class="hidden text-center flex-grow flex flex-col justify-center items-center">
                         <i id="quiz-icon" class="fas fa-trophy text-5xl text-yellow-400 mb-4"></i>
@@ -717,7 +721,7 @@
                         <p class="text-sm md:text-base text-gray-400 mt-2">Ready to start your project or fix your device?</p>
                     </div>
 
-                    <!-- Contact Form Input Fields (No Default Form Action) -->
+                    <!-- Contact Form Input Fields -->
                     <div class="space-y-4 md:space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                             <div class="group">
@@ -907,6 +911,7 @@
         // --- DYNAMIC LEARN TECH LOGIC ---
         // මෙහි ඇති Array එකට ඔබට අවශ්‍ය ඕනෑම ලිපි ප්‍රමාණයක් (100ක් වුවත්) පහසුවෙන් එකතු කළ හැක.
         const learnTechData = [
+            // (කලින් තිබුණු ලිපි ටික ඒ විදියටම තියෙනවා)
             {
                 category: "Security",
                 time: "8 Min Read",
@@ -924,7 +929,7 @@
                         <li><strong>Ransomware:</strong> ඔබේ පරිගණකයේ ඇති සියලුම ෆොටෝ, වීඩියෝ සහ ෆයිල් ලොක් (Encrypt) කර, ඒවා නැවත ලබාදීමට නම් කප්පම් මුදලක් (බොහෝවිට Bitcoin වලින්) ඉල්ලා සිටින දරුණුම ගණයේ වෛරසයකි.</li>
                         <li><strong>Malware / Trojans:</strong> ඔබට නොදැනෙන සේ පරිගණකයට ඇතුළු වී ඔබේ ක්‍රියාකාරකම් ඔත්තු බලන සහ වෙනත් හැකර්වරුන්ට පරිගණකයට ඇතුල් වීමට දොරටු විවෘත කර දෙන මෘදුකාංග.</li>
                     </ul>
-                    <p><strong>ආරක්ෂා වන්නේ කෙසේද?</strong><br>සෑමවිටම ශක්තිමත් මුරපද (Strong Passwords) භාවිතා කරන්න. Two-Factor Authentication (2FA) අනිවාර්යයෙන් ක්‍රියාත්මක කරන්න. ඔබගේ Operating System එක සහ මෘදුකාංග නිතරම Update කර තබා ගන්න. එමෙන්ම, පිළිගත් Antivirus මෘදුකාංගයක් භාවිතා කිරීමෙන් බොහෝ දුරට මෙම තර්ජන වලින් බේරී සිටිය හැක.</p>
+                    <p><strong>ආරක්ෂා වන්නේ කෙසේද?</strong><br>සෑමවිටම ශක්තිමත් මුරපද (Strong Passwords) භාවිතා කරන්න. Two-Factor Authentication (2FA) අනිවාර්යයෙන් ක්‍රියාත්මක කරන්න. ඔබගේ Operating System එක සහ මෘදුකාංග නිතරම Update කර තබා বুঝতে ගන්න. එමෙන්ම, පිළිගත් Antivirus මෘදුකාංගයක් භාවිතා කිරීමෙන් බොහෝ දුරට මෙම තර්ජන වලින් බේරී සිටිය හැක.</p>
                 `
             },
             {
@@ -1583,19 +1588,49 @@
             }, 300);
         }
 
-        // --- FUN ZONE LOGIC (Mini Quiz) ---
-        const quizQuestions = [
+        // --- FUN ZONE LOGIC (Mini Quiz - UPDATED WITH LARGE QUESTION BANK) ---
+        // විශාල ප්‍රශ්න බැංකුව (මෙහි ප්‍රශ්න 30කට වඩා ඇත)
+        const allQuizQuestions = [
             { q: "පරිගණකයක තාවකාලික මතකය (Short-term memory) ලෙස හඳුන්වන්නේ කුමක්ද?", options: ["Hard Disk", "RAM", "Processor", "Motherboard"], answer: 1 },
             { q: "URL යන්නෙහි දිගු නම කුමක්ද?", options: ["Uniform Resource Locator", "Universal Reference Link", "Unified Resource Line", "Ultra Reliable Link"], answer: 0 },
             { q: "Wi-Fi තාක්ෂණයට එම නම ලැබුණේ කොහෙන්ද?", options: ["Wireless Fidelity", "Wireless Fire", "එහි තේරුමක් නැත, එය Brand නමකි", "Wide Field"], answer: 2 },
             { q: "ලෝකයේ පළමු Computer Virus එකේ නම කුමක්ද?", options: ["Trojan", "Creeper", "ILOVEYOU", "Melissa"], answer: 1 },
-            { q: "Hard Disk එකකට වඩා SSD එකක් වේගවත් වීමට ප්‍රධාන හේතුව කුමක්ද?", options: ["වයර් අඩු වීම", "ප්‍රමාණයෙන් කුඩා වීම", "යාන්ත්‍රිකව කැරකෙන කොටස් නොමැති වීම", "මිල වැඩි වීම"], answer: 2 }
+            { q: "Hard Disk එකකට වඩා SSD එකක් වේගවත් වීමට ප්‍රධාන හේතුව කුමක්ද?", options: ["වයර් අඩු වීම", "ප්‍රමාණයෙන් කුඩා වීම", "යාන්ත්‍රිකව කැරකෙන කොටස් නොමැති වීම", "මිල වැඩි වීම"], answer: 2 },
+            { q: "පරිගණකයේ මොළය (Brain) ලෙස හඳුන්වන්නේ කුමක්ද?", options: ["RAM", "Hard Disk", "CPU (Processor)", "Power Supply"], answer: 2 },
+            { q: "WWW යන්නෙහි තේරුම කුමක්ද?", options: ["World Wide Web", "World Web Wide", "Wide World Web", "Web World Wide"], answer: 0 },
+            { q: "පහත ඒවායින් Input Device එකක් නොවන්නේ කුමක්ද?", options: ["Keyboard", "Mouse", "Monitor", "Microphone"], answer: 2 },
+            { q: "HTML යන්නෙහි දිගු නම කුමක්ද?", options: ["Hyper Text Markup Language", "High Text Making Language", "Hyperlink Text Mark Language", "Home Tool Markup Language"], answer: 0 },
+            { q: "IP Address එකක ප්‍රධාන කාර්යය කුමක්ද?", options: ["පරිගණකය වේගවත් කිරීම", "අන්තර්ජාලයේ උපාංගය හඳුනාගැනීම", "වෛරස් වලින් ආරක්ෂා කිරීම", "විදුලිය පාලනය කිරීම"], answer: 1 },
+            { q: "පහත ඒවායින් Operating System (මෙහෙයුම් පද්ධතියක්) නොවන්නේ කුමක්ද?", options: ["Windows", "Linux", "Microsoft Office", "macOS"], answer: 2 },
+            { q: "පරිගණක ජාල (Networks) සම්බන්ධ කිරීමට භාවිතා කරන ප්‍රධාන උපකරණය කුමක්ද?", options: ["Router", "Monitor", "Printer", "Keyboard"], answer: 0 },
+            { q: "1 Gigabyte (GB) යනු Megabytes (MB) කීයක්ද?", options: ["100 MB", "1000 MB", "1024 MB", "1048 MB"], answer: 2 },
+            { q: "PDF යන්නෙහි තේරුම කුමක්ද?", options: ["Portable Document Format", "Printed Document File", "Public Data File", "Personal Document Format"], answer: 0 },
+            { q: "පරිගණකයක් Restart කිරීම හැඳින්වෙන තාක්ෂණික නම කුමක්ද?", options: ["Cold Booting", "Warm Booting", "Standby", "Hibernation"], answer: 1 },
+            { q: "Microsoft ආයතනයේ ප්‍රධාන නිර්මාතෘවරයා කවුද?", options: ["Steve Jobs", "Mark Zuckerberg", "Bill Gates", "Elon Musk"], answer: 2 },
+            { q: "ලෝකයේ පළමු පරිගණක ක්‍රමලේඛකයා (Programmer) ලෙස සැලකෙන්නේ කවුද?", options: ["Charles Babbage", "Ada Lovelace", "Alan Turing", "Tim Berners-Lee"], answer: 1 },
+            { q: "LAN යන්නෙහි තේරුම කුමක්ද?", options: ["Large Area Network", "Local Area Network", "Long Area Network", "Light Area Network"], answer: 1 },
+            { q: "අන්තර්ජාලයට පිවිසීමට භාවිතා කරන මෘදුකාංගය කුමක්ද?", options: ["Web Browser", "Operating System", "Antivirus", "Media Player"], answer: 0 },
+            { q: "පරිගණක තිරයේ ඇති කුඩාම තිත හඳුන්වන නම කුමක්ද?", options: ["Dot", "Inch", "Pixel", "Resolution"], answer: 2 },
+            { q: "ලොව ජනප්‍රියතම Search Engine එක කුමක්ද?", options: ["Bing", "Yahoo", "Google", "DuckDuckGo"], answer: 2 },
+            { q: "පරිගණකයකට විදුලිය ලබාදෙන ප්‍රධාන කොටස කුමක්ද?", options: ["GPU", "PSU (Power Supply Unit)", "Motherboard", "UPS"], answer: 1 },
+            { q: "Bluetooth තාක්ෂණය භාවිතා වන්නේ කුමක් සඳහාද?", options: ["අන්තර්ජාලය වේගවත් කිරීමට", "පරිගණකය සිසිල් කිරීමට", "කෙටි දුර රැහැන් රහිත දත්ත හුවමාරුවට", "වෛරස් ඉවත් කිරීමට"], answer: 2 },
+            { q: "Android මෙහෙයුම් පද්ධතියේ වර්තමාන හිමිකාරීත්වය දරන සමාගම කුමක්ද?", options: ["Apple", "Samsung", "Nokia", "Google"], answer: 3 },
+            { q: "Mac පරිගණක නිපදවන සමාගම කුමක්ද?", options: ["Microsoft", "IBM", "Intel", "Apple"], answer: 3 },
+            { q: "පරිගණකයක අකුරු හෝ ෆයිල් 'Copy' කිරීමට භාවිතා කරන Keyboard Shortcut එක කුමක්ද?", options: ["Ctrl + V", "Ctrl + C", "Ctrl + X", "Ctrl + S"], answer: 1 },
+            { q: "පරිගණකයක අකුරු හෝ ෆයිල් 'Paste' කිරීමට භාවිතා කරන Keyboard Shortcut එක කුමක්ද?", options: ["Ctrl + P", "Ctrl + C", "Ctrl + V", "Ctrl + Z"], answer: 2 },
+            { q: "Motherboard එක මත ඇති කුඩා බැටරිය (CMOS Battery) මගින් කරන්නේ කුමක්ද?", options: ["පරිගණකයට විදුලිය දීම", "වේලාව සහ දිනය මතක තබා ගැනීම", "RAM එක ක්‍රියාත්මක කිරීම", "Speaker එක වැඩ කිරීම"], answer: 1 },
+            { q: "VPN යන්නෙහි දිගු නම කුමක්ද?", options: ["Virtual Private Network", "Visual Personal Network", "Video Private Network", "Virtual Public Network"], answer: 0 },
+            { q: "පරිගණකය නිපදවීමේ පියා (Father of the Computer) ලෙස සැලකෙන්නේ කවුද?", options: ["Albert Einstein", "Isaac Newton", "Charles Babbage", "Thomas Edison"], answer: 2 }
         ];
 
+        let currentSessionQuestions = [];
         let currentQuestion = 0;
         let score = 0;
 
         function startQuiz() {
+            // ප්‍රශ්න 30න් අහඹු ලෙස (random) ප්‍රශ්න 5ක් තෝරාගැනීම
+            currentSessionQuestions = [...allQuizQuestions].sort(() => 0.5 - Math.random()).slice(0, 5);
+            
             currentQuestion = 0;
             score = 0;
             document.getElementById('quiz-intro').classList.add('hidden');
@@ -1607,11 +1642,14 @@
         }
 
         function showQuestion() {
-            const qData = quizQuestions[currentQuestion];
+            const qData = currentSessionQuestions[currentQuestion];
             document.getElementById('quiz-question').innerText = (currentQuestion + 1) + ". " + qData.q;
             
             const optionsDiv = document.getElementById('quiz-options');
             optionsDiv.innerHTML = '';
+            
+            // කලින් තිබුණ Feedback එක මකා දැමීම
+            document.getElementById('quiz-feedback').innerHTML = '';
             
             qData.options.forEach((opt, index) => {
                 const btn = document.createElement('button');
@@ -1623,37 +1661,56 @@
         }
 
         function checkAnswer(selectedIndex, btnElement) {
-            const correctIndex = quizQuestions[currentQuestion].answer;
+            const qData = currentSessionQuestions[currentQuestion];
+            const correctIndex = qData.answer;
             const allBtns = document.getElementById('quiz-options').children;
+            const feedbackDiv = document.getElementById('quiz-feedback');
             
+            // උත්තරයක් දුන්නට පස්සේ අනිත් බොත්තම් ඔබන්න බැරි වෙන්න හදනවා
             for(let btn of allBtns) {
                 btn.onclick = null;
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
             }
 
             if(selectedIndex === correctIndex) {
+                // නිවැරදි උත්තරයක් දුන් විට
                 btnElement.classList.replace('bg-white/5', 'bg-green-500/20');
                 btnElement.classList.replace('border-white/10', 'border-green-500');
                 btnElement.classList.add('text-green-400');
                 score++;
                 document.getElementById('quiz-score-badge').innerText = 'Score: ' + score;
+                
+                // Feedback පෙන්වීම
+                feedbackDiv.innerHTML = '<p class="text-green-400 font-bold text-lg mt-2 animate-bounce">✅ නිවැරදියි! නියමයි.</p>';
             } else {
+                // වැරදි උත්තරයක් දුන් විට
                 btnElement.classList.replace('bg-white/5', 'bg-red-500/20');
                 btnElement.classList.replace('border-white/10', 'border-red-500');
                 btnElement.classList.add('text-red-400');
                 
+                // නිවැරදි එකට කොළ පාට දැමීම
                 allBtns[correctIndex].classList.replace('bg-white/5', 'bg-green-500/20');
                 allBtns[correctIndex].classList.replace('border-white/10', 'border-green-500');
+                allBtns[correctIndex].classList.add('text-green-400');
+
+                // පැහැදිලිව Feedback පෙන්වීම (වැරදි බව සහ නිවැරදි උත්තරය)
+                feedbackDiv.innerHTML = `
+                    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-3 w-full animate-fade-in-up">
+                        <p class="text-red-400 font-bold text-lg mb-1">❌ වැරදියි!</p>
+                        <p class="text-gray-300 text-sm">නිවැරදි පිළිතුර: <span class="text-green-400 font-bold text-base">${qData.options[correctIndex]}</span></p>
+                    </div>
+                `;
             }
 
+            // තත්පර 2.5ක් නිවැරදි උත්තරය කියවන්න දීලා ඊළඟ ප්‍රශ්නෙට යනවා
             setTimeout(() => {
                 currentQuestion++;
-                if(currentQuestion < quizQuestions.length) {
+                if(currentQuestion < currentSessionQuestions.length) {
                     showQuestion();
                 } else {
                     showQuizResult();
                 }
-            }, 1500);
+            }, 2500);
         }
 
         function showQuizResult() {
@@ -1662,15 +1719,15 @@
             const resultDiv = document.getElementById('quiz-result');
             resultDiv.classList.remove('hidden');
             
-            document.getElementById('quiz-result-text').innerText = 'You scored ' + score + ' out of ' + quizQuestions.length + '!';
+            document.getElementById('quiz-result-text').innerText = 'You scored ' + score + ' out of ' + currentSessionQuestions.length + '!';
             
             const icon = document.getElementById('quiz-icon');
             const title = document.getElementById('quiz-result-title');
             
-            if(score === quizQuestions.length) {
+            if(score === currentSessionQuestions.length) {
                 icon.className = 'fas fa-crown text-5xl text-yellow-400 mb-4';
                 title.innerText = 'Tech Genius! 👑';
-            } else if(score >= quizQuestions.length / 2) {
+            } else if(score >= currentSessionQuestions.length / 2) {
                 icon.className = 'fas fa-medal text-5xl text-techBlue mb-4';
                 title.innerText = 'Good Job! 👍';
             } else {
