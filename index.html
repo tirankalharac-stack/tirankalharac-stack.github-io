@@ -26,28 +26,39 @@
                         techBlue: '#00f2ff',
                         techPurple: '#bc13fe',
                         techPink: '#ff0055',
-                        techDark: '#050505',
-                        techCard: 'rgba(22, 22, 22, 0.7)'
+                        techDark: '#030303', // Slightly darker for better neon contrast
+                        techCard: 'rgba(15, 15, 15, 0.7)'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
                     animation: {
-                        'blob': 'blob 7s infinite',
+                        'blob': 'blob 8s infinite ease-in-out',
                         'float': 'float 6s ease-in-out infinite',
                         'bounce-slow': 'bounce 3s infinite',
-                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 4s linear infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'glow-pulse': 'glowPulse 3s infinite alternate',
                     },
                     keyframes: {
                         blob: {
                             '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '33%': { transform: 'translate(40px, -60px) scale(1.2)' },
+                            '66%': { transform: 'translate(-30px, 30px) scale(0.8)' },
                             '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            'from': { transform: 'translateX(-100%)' },
+                            'to': { transform: 'translateX(200%)' }
+                        },
+                        glowPulse: {
+                            '0%': { boxShadow: '0 0 10px rgba(0, 242, 255, 0.2)' },
+                            '100%': { boxShadow: '0 0 30px rgba(188, 19, 254, 0.6)' }
                         }
                     }
                 }
@@ -59,96 +70,184 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #050505;
+            background-color: #030303;
             color: #ffffff;
             overflow-x: hidden;
+            /* Hide default cursor on PC to use custom one */
+            cursor: default; 
+        }
+
+        /* --- Custom Neon Cursor --- */
+        #custom-cursor {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 30px; height: 30px;
+            border: 2px solid #00f2ff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, border-color 0.2s;
+            z-index: 9999;
+            box-shadow: 0 0 15px #00f2ff, inset 0 0 10px #00f2ff;
+            mix-blend-mode: screen;
+        }
+        #custom-cursor-dot {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 6px; height: 6px;
+            background-color: #bc13fe;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            box-shadow: 0 0 10px #bc13fe;
+        }
+        /* Make cursor expand when hovering over links/buttons */
+        body.hovering #custom-cursor {
+            width: 50px;
+            height: 50px;
+            border-color: #ff0055;
+            box-shadow: 0 0 20px #ff0055, inset 0 0 10px #ff0055;
+            background-color: rgba(255, 0, 85, 0.1);
+        }
+        @media (max-width: 768px) {
+            #custom-cursor, #custom-cursor-dot { display: none; }
+            body { cursor: auto; }
+        }
+
+        /* --- Scroll Progress Bar --- */
+        #scroll-progress-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: rgba(255,255,255,0.05);
+            z-index: 9999;
+        }
+        #scroll-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #00f2ff, #bc13fe, #ff0055);
+            box-shadow: 0 0 15px #bc13fe;
+            transition: width 0.1s ease-out;
         }
 
         /* --- Animations --- */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(60px) scale(0.95);
             transition: all 1s cubic-bezier(0.5, 0, 0, 1);
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        /* Background Orbs */
-        .orb-1, .orb-2, .orb-3 {
+        /* Background Orbs (Enhanced) */
+        .orb-1, .orb-2, .orb-3, .orb-4 {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(90px);
             z-index: -1;
-            opacity: 0.4;
-            animation: blob 10s infinite alternate;
+            opacity: 0.5;
+            animation: blob 12s infinite alternate;
         }
         .orb-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #7000ff; }
-        .orb-2 { top: 20%; right: -20%; width: 400px; height: 400px; background: #00f2ff; animation-delay: 2s; }
-        .orb-3 { bottom: -10%; left: 20%; width: 600px; height: 600px; background: #ff0055; animation-delay: 4s; }
+        .orb-2 { top: 20%; right: -20%; width: 450px; height: 450px; background: #00f2ff; animation-delay: 2s; }
+        .orb-3 { bottom: -10%; left: 10%; width: 600px; height: 600px; background: #ff0055; animation-delay: 4s; }
+        .orb-4 { top: 40%; left: 40%; width: 300px; height: 300px; background: #00ff88; animation-delay: 6s; opacity: 0.3; filter: blur(120px); }
 
-        /* Mobile Performance Fixes */
         @media (max-width: 768px) {
-            .orb-1, .orb-2, .orb-3 {
-                filter: blur(50px);
+            .orb-1, .orb-2, .orb-3, .orb-4 {
+                filter: blur(60px);
                 animation: none; 
-                opacity: 0.2;
+                opacity: 0.25;
             }
         }
 
         .neon-text {
-            text-shadow: 0 0 10px rgba(188, 19, 254, 0.7), 0 0 20px rgba(0, 242, 255, 0.5);
+            text-shadow: 0 0 15px rgba(188, 19, 254, 0.8), 0 0 30px rgba(0, 242, 255, 0.6);
+            animation: textGlow 3s infinite alternate;
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(188, 19, 254, 0.8), 0 0 20px rgba(0, 242, 255, 0.6); }
+            100% { text-shadow: 0 0 20px rgba(188, 19, 254, 1), 0 0 40px rgba(0, 242, 255, 0.9), 0 0 60px rgba(255, 0, 85, 0.5); }
         }
 
-        /* Glass Cards */
+        /* Glass Cards 2.0 (Enhanced Hover) */
         .glass-card {
-            background: rgba(20, 20, 20, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
         }
         
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
         @media (min-width: 768px) {
-            .glass-card {
-                background: rgba(20, 20, 20, 0.6);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-            }
             .glass-card:hover {
-                transform: translateY(-10px) scale(1.03);
-                border-color: #00f2ff;
-                box-shadow: 0 10px 40px -10px rgba(0, 242, 255, 0.3), inset 0 0 20px rgba(0, 242, 255, 0.05);
+                transform: translateY(-12px) scale(1.02);
+                border-color: rgba(0, 242, 255, 0.5);
+                box-shadow: 0 15px 40px -5px rgba(0, 242, 255, 0.4), inset 0 0 20px rgba(188, 19, 254, 0.2);
+                background: rgba(25, 25, 25, 0.85);
             }
+            .glass-card:hover::after {
+                opacity: 1;
+                animation: rotateGradient 10s linear infinite;
+            }
+        }
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #00f2ff, #bc13fe); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #bc13fe, #ff0055); }
 
         .typing-cursor::after {
             content: '|';
             animation: blink 1s step-end infinite;
+            text-shadow: 0 0 10px #fff;
         }
         @keyframes blink { 50% { opacity: 0; } }
 
+        /* Enhanced Shimmer Button */
         .btn-glow {
             position: relative;
             z-index: 1;
             overflow: hidden;
-            transition: 0.3s;
+            transition: 0.4s;
+            background-size: 200% auto;
         }
         .btn-glow::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
             transition: 0.5s;
         }
-        .btn-glow:hover::before { left: 100%; }
+        .btn-glow:hover::before { left: 150%; }
         .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
-            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.8);
+            transform: scale(1.05) translateY(-2px);
+            background-position: right center;
+            color: #fff;
         }
 
         .faq-answer {
@@ -158,162 +257,138 @@
         }
         .faq-item.active .faq-answer {
             max-height: 1000px;
-            transition: max-height 0.4s ease-in-out;
+            transition: max-height 0.5s ease-in-out;
         }
-        .faq-item.active i.fa-chevron-down { transform: rotate(180deg); }
-        .faq-item.active { border-color: #bc13fe; background: rgba(188, 19, 254, 0.1); }
+        .faq-item.active i.fa-chevron-down { transform: rotate(180deg); color: #00f2ff; text-shadow: 0 0 10px #00f2ff;}
+        .faq-item.active { 
+            border-color: #00f2ff; 
+            background: linear-gradient(to right, rgba(0, 242, 255, 0.1), rgba(188, 19, 254, 0.05)); 
+            box-shadow: inset 0 0 10px rgba(0,242,255,0.1);
+        }
 
         /* PC Grid Background */
         .pc-grid-bg {
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            background-image: linear-gradient(to right, rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(188, 19, 254, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            animation: panBg 30s linear infinite;
+        }
+        @keyframes panBg {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
         /* --- Advanced AI Chatbot Styles --- */
-        .chat-progress-bar {
-            transition: width 0.1s linear;
-        }
-        .typing-indicator {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 8px;
-        }
+        .chat-progress-bar { transition: width 0.1s linear; }
+        .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 4px 8px; }
         .typing-dot {
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             background-color: #00f2ff;
             border-radius: 50%;
             animation: typingBounce 1.4s infinite ease-in-out both;
+            box-shadow: 0 0 5px #00f2ff;
         }
         .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; background-color: #bc13fe; box-shadow: 0 0 5px #bc13fe;}
+        .typing-dot:nth-child(3) { background-color: #ff0055; box-shadow: 0 0 5px #ff0055;}
         @keyframes typingBounce {
             0%, 80%, 100% { transform: scale(0); opacity: 0.5;}
-            40% { transform: scale(1); opacity: 1;}
+            40% { transform: scale(1.2); opacity: 1;}
         }
         .chat-action-btn {
-            background: rgba(0, 242, 255, 0.1);
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            color: #00f2ff;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            margin-top: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 600;
+            background: rgba(0, 242, 255, 0.1); border: 1px solid rgba(0, 242, 255, 0.4);
+            color: #00f2ff; padding: 6px 12px; border-radius: 6px; font-size: 12px; margin-top: 12px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;
         }
         .chat-action-btn:hover {
-            background: #00f2ff;
-            color: #000;
-            box-shadow: 0 0 15px rgba(0,242,255,0.4);
+            background: #00f2ff; color: #000; box-shadow: 0 0 20px rgba(0,242,255,0.6); transform: scale(1.02);
         }
 
         /* --- Memory Game Styles --- */
         .memory-card {
-            aspect-ratio: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            transform-style: preserve-3d;
+            aspect-ratio: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: inset 0 0 10px rgba(0,0,0,0.5); transform-style: preserve-3d;
         }
-        .memory-card:hover {
-            background: rgba(255,255,255,0.1);
-        }
+        .memory-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
         .memory-card.flipped {
-            background: rgba(188, 19, 254, 0.2);
-            border-color: #bc13fe;
-            transform: rotateY(180deg);
-            box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
+            background: linear-gradient(135deg, rgba(188, 19, 254, 0.3), rgba(0, 242, 255, 0.2)); border-color: #bc13fe; transform: rotateY(180deg); box-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
         }
         .memory-card.matched {
-            background: rgba(0, 242, 255, 0.2);
-            border-color: #00f2ff;
-            opacity: 0.8;
-            cursor: default;
-            animation: pulse-fast 1s;
+            background: rgba(0, 242, 255, 0.25); border-color: #00f2ff; opacity: 0.9; cursor: default; animation: pulse-fast 1s, float 3s infinite ease-in-out; box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
         }
-        .memory-card i {
-            opacity: 0;
-            transition: opacity 0.2s ease-in-out;
-            transform: rotateY(180deg);
-        }
-        .memory-card.flipped i, .memory-card.matched i {
-            opacity: 1;
-        }
+        .memory-card i { opacity: 0; transition: opacity 0.2s ease-in-out; transform: rotateY(180deg); text-shadow: 0 0 10px currentColor; }
+        .memory-card.flipped i, .memory-card.matched i { opacity: 1; }
+
+        /* Custom selection color */
+        ::selection { background-color: #bc13fe; color: white; text-shadow: 0 0 5px white; }
     </style>
 </head>
-<body class="bg-techDark text-white selection:bg-techPink selection:text-white relative">
+<body class="bg-techDark text-white relative">
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-dot"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
 
     <!-- Background Orbs -->
     <div class="orb-1"></div>
     <div class="orb-2"></div>
     <div class="orb-3"></div>
+    <div class="orb-4"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/70 backdrop-blur-xl border-b border-white/10 transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 transition-all duration-300 hover:bg-black/80 hover:border-techBlue/30" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 cursor-pointer group flex items-center gap-3">
-                    <img src="logo.png" alt="KD" class="h-10 w-10 rounded-full border-2 border-techBlue object-cover shadow-[0_0_10px_rgba(0,242,255,0.5)]" onerror="this.style.display='none'">
+                <div class="flex-shrink-0 cursor-pointer group flex items-center gap-3 interactive-element">
+                    <img src="logo.png" alt="KD" class="h-10 w-10 rounded-full border-2 border-techBlue object-cover shadow-[0_0_15px_rgba(0,242,255,0.6)] group-hover:shadow-[0_0_25px_rgba(188,19,254,0.8)] transition-all duration-500 group-hover:rotate-12" onerror="this.style.display='none'">
                     
-                    <span class="text-2xl font-black tracking-wider text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-techBlue group-hover:to-techPurple transition-all duration-300">
-                        KALHARA <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">DEV</span>
+                    <span class="text-2xl font-black tracking-wider text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-techBlue group-hover:via-techPurple group-hover:to-techPink transition-all duration-300">
+                        KALHARA <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple group-hover:from-techPink group-hover:to-techBlue transition-all duration-500">DEV</span>
                     </span>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-6">
-                        <a href="#home" class="text-gray-300 hover:text-techBlue font-medium transition-colors relative group">
-                            Home <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-techBlue transition-all group-hover:w-full"></span>
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="interactive-element text-gray-300 hover:text-techBlue font-bold tracking-wide transition-all relative group text-sm uppercase">
+                            Home <span class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-techBlue transition-all duration-300 group-hover:w-full group-hover:left-0 shadow-[0_0_8px_#00f2ff]"></span>
                         </a>
-                        <a href="#services" class="text-gray-300 hover:text-techPurple font-medium transition-colors relative group">
-                            Services <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-techPurple transition-all group-hover:w-full"></span>
+                        <a href="#services" class="interactive-element text-gray-300 hover:text-techPurple font-bold tracking-wide transition-all relative group text-sm uppercase">
+                            Services <span class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-techPurple transition-all duration-300 group-hover:w-full group-hover:left-0 shadow-[0_0_8px_#bc13fe]"></span>
                         </a>
-                        <a href="#learn" class="text-gray-300 hover:text-green-400 font-medium transition-colors relative group">
-                            Learn Tech <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all group-hover:w-full"></span>
+                        <a href="#learn" class="interactive-element text-gray-300 hover:text-green-400 font-bold tracking-wide transition-all relative group text-sm uppercase">
+                            Learn Tech <span class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-hover:left-0 shadow-[0_0_8px_#4ade80]"></span>
                         </a>
-                        <a href="#troubleshoot" class="text-gray-300 hover:text-techPink font-medium transition-colors relative group">
-                            Troubleshoot <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-techPink transition-all group-hover:w-full"></span>
+                        <a href="#troubleshoot" class="interactive-element text-gray-300 hover:text-techPink font-bold tracking-wide transition-all relative group text-sm uppercase">
+                            Troubleshoot <span class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-techPink transition-all duration-300 group-hover:w-full group-hover:left-0 shadow-[0_0_8px_#ff0055]"></span>
                         </a>
-                        <a href="#funzone" class="text-gray-300 hover:text-yellow-400 font-medium transition-colors relative group">
-                            Fun Zone <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all group-hover:w-full"></span>
+                        <a href="#funzone" class="interactive-element text-gray-300 hover:text-yellow-400 font-bold tracking-wide transition-all relative group text-sm uppercase">
+                            Fun Zone <span class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full group-hover:left-0 shadow-[0_0_8px_#facc15]"></span>
                         </a>
-                        <a href="#about" class="text-gray-300 hover:text-white font-medium transition-colors">About</a>
-                        <a href="#contact" class="btn-glow bg-gradient-to-r from-techBlue to-techPurple text-black px-6 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-purple-500/20">
+                        <a href="#contact" class="interactive-element btn-glow bg-gradient-to-r from-techBlue via-techPurple to-techPink text-black px-7 py-2.5 rounded-full font-black text-sm shadow-[0_0_15px_rgba(188,19,254,0.4)] tracking-wide hover:shadow-[0_0_25px_rgba(0,242,255,0.6)]">
                             Contact Me
                         </a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <button onclick="toggleMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                    <button onclick="toggleMenu()" class="text-gray-300 hover:text-techBlue focus:outline-none p-2 transition-colors">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-xl border-t border-gray-800 absolute w-full">
-            <div class="px-4 pt-4 pb-6 space-y-2">
-                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Home</a>
-                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Services</a>
-                <a href="#learn" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Learn Tech</a>
-                <a href="#troubleshoot" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Troubleshoot</a>
-                <a href="#funzone" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-white/10 text-white">Fun Zone</a>
-                <a href="#contact" class="block px-3 py-3 mt-4 text-center rounded-md font-bold bg-gradient-to-r from-techBlue to-techPurple text-black">Contact Me</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-xl border-t border-techPurple/30 absolute w-full shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="#home" class="block px-4 py-3 rounded-xl text-base font-bold bg-white/5 hover:bg-techBlue/20 hover:text-techBlue text-white transition-all border border-transparent hover:border-techBlue/50">Home</a>
+                <a href="#services" class="block px-4 py-3 rounded-xl text-base font-bold bg-white/5 hover:bg-techPurple/20 hover:text-techPurple text-white transition-all border border-transparent hover:border-techPurple/50">Services</a>
+                <a href="#learn" class="block px-4 py-3 rounded-xl text-base font-bold bg-white/5 hover:bg-green-500/20 hover:text-green-400 text-white transition-all border border-transparent hover:border-green-500/50">Learn Tech</a>
+                <a href="#troubleshoot" class="block px-4 py-3 rounded-xl text-base font-bold bg-white/5 hover:bg-techPink/20 hover:text-techPink text-white transition-all border border-transparent hover:border-techPink/50">Troubleshoot</a>
+                <a href="#funzone" class="block px-4 py-3 rounded-xl text-base font-bold bg-white/5 hover:bg-yellow-500/20 hover:text-yellow-400 text-white transition-all border border-transparent hover:border-yellow-500/50">Fun Zone</a>
+                <a href="#contact" class="block px-4 py-4 mt-6 text-center rounded-xl font-black bg-gradient-to-r from-techBlue to-techPurple text-black shadow-[0_0_15px_rgba(188,19,254,0.5)]">Contact Me</a>
             </div>
         </div>
     </nav>
@@ -324,31 +399,31 @@
         <div class="hidden md:block absolute inset-0 pc-grid-bg z-0 pointer-events-none"></div>
 
         <div class="text-center z-10 max-w-5xl mx-auto">
-            <div class="reveal active inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-techPurple/50 bg-techPurple/10 text-techBlue text-sm font-bold uppercase tracking-widest animate-pulse">
-                <span class="w-2 h-2 rounded-full bg-techBlue"></span>
+            <div class="reveal active inline-flex items-center gap-3 px-5 py-2.5 mb-8 rounded-full border border-techPurple/50 bg-techPurple/10 text-techBlue text-sm font-bold uppercase tracking-widest animate-glow-pulse shadow-[0_0_20px_rgba(188,19,254,0.2)] interactive-element">
+                <span class="w-2.5 h-2.5 rounded-full bg-techBlue shadow-[0_0_8px_#00f2ff] animate-ping"></span>
                 Full Stack IT Solutions
             </div>
             
-            <h1 class="reveal active delay-100 text-6xl md:text-8xl font-black text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
+            <h1 class="reveal active delay-100 text-6xl md:text-8xl font-black text-white mb-6 leading-tight tracking-tighter drop-shadow-2xl">
                 MASTERING <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue via-techPurple to-techPink neon-text typing-cursor" id="typing-text">HARDWARE & CODE</span>
             </h1>
             
-            <p class="reveal active delay-200 mt-4 max-w-2xl mx-auto text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+            <p class="reveal active delay-200 mt-6 max-w-2xl mx-auto text-xl md:text-2xl text-gray-300 font-light leading-relaxed text-shadow-sm">
                 Experience the perfect fusion of precision hardware repair and next-gen software development.
             </p>
             
             <div class="reveal active delay-300 mt-12 flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#services" class="btn-glow px-10 py-4 rounded-full bg-white text-black font-extrabold text-lg transition-all hover:bg-gray-200 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                    Explore Services <i class="fas fa-arrow-right ml-2 text-techPurple"></i>
+                <a href="#services" class="interactive-element btn-glow px-10 py-4 rounded-full bg-white text-black font-black text-lg transition-all hover:bg-gray-200 shadow-[0_0_30px_rgba(255,255,255,0.4)] flex items-center justify-center">
+                    Explore Services <i class="fas fa-arrow-right ml-3 text-techPurple animate-bounce-horizontal"></i>
                 </a>
-                <a href="#troubleshoot" class="px-10 py-4 rounded-full border border-gray-500 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 text-white font-bold text-lg transition-all backdrop-blur-sm">
-                    Fix a Problem
+                <a href="#troubleshoot" class="interactive-element px-10 py-4 rounded-full border-2 border-gray-600 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 hover:shadow-[0_0_25px_rgba(0,242,255,0.3)] text-white font-bold text-lg transition-all backdrop-blur-md flex items-center justify-center">
+                    <i class="fas fa-tools mr-3"></i> Fix a Problem
                 </a>
             </div>
 
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-500">
-                <i class="fas fa-chevron-down text-2xl"></i>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-techBlue opacity-70 hover:opacity-100 cursor-pointer transition-opacity">
+                <a href="#services"><i class="fas fa-chevron-down text-3xl filter drop-shadow-[0_0_8px_#00f2ff]"></i></a>
             </div>
         </div>
     </section>
@@ -357,104 +432,110 @@
     <section id="services" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Elite <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">Services</span></h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-techBlue to-techPurple mx-auto rounded-full"></div>
+                <h2 class="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight">Elite <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple filter drop-shadow-[0_0_15px_rgba(188,19,254,0.5)]">Services</span></h2>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-techBlue to-techPurple mx-auto rounded-full shadow-[0_0_15px_#00f2ff]"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                 <!-- Hardware -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal flex flex-col">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-techBlue to-blue-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-microchip text-2xl md:text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
+                    <div class="absolute inset-0 bg-gradient-to-br from-techBlue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-techBlue to-blue-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,242,255,0.4)] group-hover:shadow-[0_0_35px_rgba(0,242,255,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:rotate-6 z-10">
+                        <i class="fas fa-microchip text-3xl md:text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-techBlue transition-colors">Hardware Repair</h3>
-                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Chip-level diagnostics and repair for motherboards, power units, and intricate circuitry.</p>
-                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-2"></i> Motherboard Recovery</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-2"></i> Power Supply Fixing</li>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-techBlue transition-colors z-10 tracking-wide">Hardware Repair</h3>
+                    <p class="text-base text-gray-400 mb-6 flex-grow z-10">Chip-level diagnostics and repair for motherboards, power units, and intricate circuitry.</p>
+                    <ul class="hidden md:block text-sm text-gray-300 space-y-3 mb-6 z-10 font-medium">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-3 text-lg drop-shadow-[0_0_5px_#00f2ff]"></i> Motherboard Recovery</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techBlue mr-3 text-lg drop-shadow-[0_0_5px_#00f2ff]"></i> Power Supply Fixing</li>
                     </ul>
-                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
-                        <span class="text-techBlue text-sm font-semibold cursor-pointer">Request Repair <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                        <span class="bg-techBlue/20 text-techBlue border border-techBlue/50 px-5 py-2.5 rounded-full text-sm font-bold flex items-center justify-center w-full hover:bg-techBlue hover:text-black transition-colors">Request Repair <i class="fas fa-arrow-right ml-2 animate-pulse"></i></span>
                     </div>
                 </div>
 
                 <!-- Web Dev -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-100 flex flex-col">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-techPurple to-pink-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-code text-2xl md:text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-100 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
+                    <div class="absolute inset-0 bg-gradient-to-br from-techPurple/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-techPurple to-pink-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(188,19,254,0.4)] group-hover:shadow-[0_0_35px_rgba(188,19,254,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:-rotate-6 z-10">
+                        <i class="fas fa-code text-3xl md:text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-techPurple transition-colors">Web Development</h3>
-                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Stunning, high-performance websites tailored to elevate your digital presence.</p>
-                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-2"></i> Responsive Design</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-2"></i> E-Commerce Ready</li>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-techPurple transition-colors z-10 tracking-wide">Web Development</h3>
+                    <p class="text-base text-gray-400 mb-6 flex-grow z-10">Stunning, high-performance websites tailored to elevate your digital presence.</p>
+                    <ul class="hidden md:block text-sm text-gray-300 space-y-3 mb-6 z-10 font-medium">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-3 text-lg drop-shadow-[0_0_5px_#bc13fe]"></i> Responsive Design</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-techPurple mr-3 text-lg drop-shadow-[0_0_5px_#bc13fe]"></i> E-Commerce Ready</li>
                     </ul>
-                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
-                        <span class="text-techPurple text-sm font-semibold cursor-pointer">Build a Site <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                        <span class="bg-techPurple/20 text-techPurple border border-techPurple/50 px-5 py-2.5 rounded-full text-sm font-bold flex items-center justify-center w-full hover:bg-techPurple hover:text-white transition-colors">Build a Site <i class="fas fa-arrow-right ml-2 animate-pulse"></i></span>
                     </div>
                 </div>
 
                 <!-- Software Dev -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-200 flex flex-col">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-green-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-terminal text-2xl md:text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-200 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-400 to-emerald-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_35px_rgba(74,222,128,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:rotate-6 z-10">
+                        <i class="fas fa-terminal text-3xl md:text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-green-400 transition-colors">Software Solutions</h3>
-                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Custom-built software for POS, inventory management, and business automation.</p>
-                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Custom POS Systems</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Inventory Tools</li>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors z-10 tracking-wide">Software Solutions</h3>
+                    <p class="text-base text-gray-400 mb-6 flex-grow z-10">Custom-built software for POS, inventory management, and business automation.</p>
+                    <ul class="hidden md:block text-sm text-gray-300 space-y-3 mb-6 z-10 font-medium">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3 text-lg drop-shadow-[0_0_5px_#4ade80]"></i> Custom POS Systems</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-3 text-lg drop-shadow-[0_0_5px_#4ade80]"></i> Inventory Tools</li>
                     </ul>
-                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
-                        <span class="text-green-400 text-sm font-semibold cursor-pointer">Get Software <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                        <span class="bg-green-500/20 text-green-400 border border-green-500/50 px-5 py-2.5 rounded-full text-sm font-bold flex items-center justify-center w-full hover:bg-green-500 hover:text-black transition-colors">Get Software <i class="fas fa-arrow-right ml-2 animate-pulse"></i></span>
                     </div>
                 </div>
 
                 <!-- Networking -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal flex flex-col">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-orange-400 to-red-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-network-wired text-2xl md:text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-orange-400 to-red-600 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(251,146,60,0.4)] group-hover:shadow-[0_0_35px_rgba(251,146,60,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:-rotate-6 z-10">
+                        <i class="fas fa-network-wired text-3xl md:text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-orange-400 transition-colors">System & Network</h3>
-                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Robust network infrastructure, server management, and CCTV security installations.</p>
-                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> Server Setup</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-2"></i> CCTV Configuration</li>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors z-10 tracking-wide">System & Network</h3>
+                    <p class="text-base text-gray-400 mb-6 flex-grow z-10">Robust network infrastructure, server management, and CCTV security installations.</p>
+                    <ul class="hidden md:block text-sm text-gray-300 space-y-3 mb-6 z-10 font-medium">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-3 text-lg drop-shadow-[0_0_5px_#fb923c]"></i> Server Setup</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-orange-400 mr-3 text-lg drop-shadow-[0_0_5px_#fb923c]"></i> CCTV Configuration</li>
                     </ul>
-                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
-                        <span class="text-orange-400 text-sm font-semibold cursor-pointer">Setup Network <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                        <span class="bg-orange-500/20 text-orange-400 border border-orange-500/50 px-5 py-2.5 rounded-full text-sm font-bold flex items-center justify-center w-full hover:bg-orange-500 hover:text-black transition-colors">Setup Network <i class="fas fa-arrow-right ml-2 animate-pulse"></i></span>
                     </div>
                 </div>
 
                 <!-- OS & Format -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-100 flex flex-col">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fab fa-windows text-2xl md:text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-100 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-400 to-indigo-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(96,165,250,0.4)] group-hover:shadow-[0_0_35px_rgba(96,165,250,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:rotate-6 z-10">
+                        <i class="fab fa-windows text-3xl md:text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-400 transition-colors">OS & Formatting</h3>
-                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Complete OS installation (Windows/Linux/Mac) with driver optimization.</p>
-                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Clean Installation</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-2"></i> Virus Cleanup</li>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors z-10 tracking-wide">OS & Formatting</h3>
+                    <p class="text-base text-gray-400 mb-6 flex-grow z-10">Complete OS installation (Windows/Linux/Mac) with driver optimization.</p>
+                    <ul class="hidden md:block text-sm text-gray-300 space-y-3 mb-6 z-10 font-medium">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-3 text-lg drop-shadow-[0_0_5px_#60a5fa]"></i> Clean Installation</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-400 mr-3 text-lg drop-shadow-[0_0_5px_#60a5fa]"></i> Virus Cleanup</li>
                     </ul>
-                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
-                        <span class="text-blue-400 text-sm font-semibold cursor-pointer">Format PC <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                        <span class="bg-blue-500/20 text-blue-400 border border-blue-500/50 px-5 py-2.5 rounded-full text-sm font-bold flex items-center justify-center w-full hover:bg-blue-500 hover:text-black transition-colors">Format PC <i class="fas fa-arrow-right ml-2 animate-pulse"></i></span>
                     </div>
                 </div>
 
                 <!-- Data Recovery -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl relative group reveal delay-200 flex flex-col">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-red-500 to-rose-700 rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg shadow-red-500/30 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-database text-2xl md:text-3xl text-white"></i>
+                <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-200 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-red-500 to-rose-800 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(239,68,68,0.4)] group-hover:shadow-[0_0_35px_rgba(239,68,68,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:-rotate-6 z-10">
+                        <i class="fas fa-database text-3xl md:text-4xl text-white"></i>
                     </div>
-                    <h3 class="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-red-500 transition-colors">Data Recovery</h3>
-                    <p class="text-sm md:text-base text-gray-400 mb-0 md:mb-6 line-clamp-2 md:line-clamp-none flex-grow">Advanced recovery techniques for lost data from damaged storage devices.</p>
-                    <ul class="hidden md:block text-sm text-gray-400 space-y-2 mb-4">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-2"></i> Hard Drive Recovery</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-2"></i> Deleted File Restore</li>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-red-500 transition-colors z-10 tracking-wide">Data Recovery</h3>
+                    <p class="text-base text-gray-400 mb-6 flex-grow z-10">Advanced recovery techniques for lost data from damaged storage devices.</p>
+                    <ul class="hidden md:block text-sm text-gray-300 space-y-3 mb-6 z-10 font-medium">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-3 text-lg drop-shadow-[0_0_5px_#ef4444]"></i> Hard Drive Recovery</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-3 text-lg drop-shadow-[0_0_5px_#ef4444]"></i> Deleted File Restore</li>
                     </ul>
-                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
-                        <span class="text-red-500 text-sm font-semibold cursor-pointer">Recover Data <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                    <div class="mt-auto opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-10">
+                        <span class="bg-red-500/20 text-red-400 border border-red-500/50 px-5 py-2.5 rounded-full text-sm font-bold flex items-center justify-center w-full hover:bg-red-500 hover:text-white transition-colors">Recover Data <i class="fas fa-arrow-right ml-2 animate-pulse"></i></span>
                     </div>
                 </div>
             </div>
@@ -462,125 +543,131 @@
     </section>
 
     <!-- NEW DYNAMIC LEARN TECH SECTION -->
-    <section id="learn" class="py-24 relative bg-black/50 backdrop-blur-sm border-t border-white/5">
+    <section id="learn" class="py-24 relative bg-gradient-to-b from-[#050505] to-[#0a0a0a] border-t border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-10 reveal">
-                <span class="text-green-400 font-bold tracking-widest uppercase text-sm">Knowledge Hub</span>
-                <h2 class="text-4xl font-bold text-white mt-2">Learn <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-techBlue">Technology</span></h2>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">සරල සිංහලෙන් තාක්ෂණය ඉගෙන ගන්න. දැන් ලිපි දහස් ගණනක් වුවද මෙතැනින් පහසුවෙන් සොයා කියවිය හැක.</p>
+            <div class="text-center mb-12 reveal">
+                <span class="text-green-400 font-bold tracking-widest uppercase text-sm border border-green-500/30 bg-green-500/10 px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(74,222,128,0.2)]">Knowledge Hub</span>
+                <h2 class="text-5xl font-black text-white mt-6 tracking-tight">Learn <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-techBlue filter drop-shadow-[0_0_15px_rgba(74,222,128,0.4)]">Technology</span></h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">සරල සිංහලෙන් තාක්ෂණය ඉගෙන ගන්න. දැන් ලිපි දහස් ගණනක් වුවද මෙතැනින් පහසුවෙන් සොයා කියවිය හැක.</p>
             </div>
 
             <!-- Learn Tech Search Bar -->
-            <div class="mb-12 max-w-2xl mx-auto relative group reveal">
-                <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-techBlue rounded-full opacity-30 blur group-hover:opacity-60 transition duration-1000 group-hover:duration-200 hidden md:block"></div>
-                <div class="relative flex items-center bg-black/80 rounded-full p-2 border border-gray-700 md:border-none shadow-lg">
-                    <i class="fas fa-search text-green-400 ml-4 text-xl"></i>
+            <div class="mb-16 max-w-3xl mx-auto relative group reveal z-20">
+                <div class="absolute -inset-1.5 bg-gradient-to-r from-green-400 via-techBlue to-techPurple rounded-full opacity-40 blur-lg group-hover:opacity-70 transition duration-500 hidden md:block"></div>
+                <div class="relative flex items-center bg-black/90 backdrop-blur-xl rounded-full p-2.5 border border-gray-600 focus-within:border-green-400 focus-within:shadow-[0_0_25px_rgba(74,222,128,0.3)] transition-all shadow-2xl">
+                    <i class="fas fa-search text-green-400 ml-5 text-2xl animate-pulse"></i>
                     <input type="text" id="learnSearchInput" placeholder="ඔබට ඉගෙනීමට අවශ්‍ය දේ සොයන්න (උදා: Cyber Security, Web)..." 
-                        class="w-full bg-transparent text-white px-4 py-3 text-sm md:text-base focus:outline-none placeholder-gray-500" oninput="filterLearnArticles()">
+                        class="w-full bg-transparent text-white px-5 py-3 text-base md:text-lg font-medium focus:outline-none placeholder-gray-500" oninput="filterLearnArticles()">
                 </div>
             </div>
 
             <!-- Ad Space Top -->
-            <div class="w-full h-24 bg-gray-900/50 border border-gray-800 border-dashed rounded-xl mb-12 flex items-center justify-center text-gray-600 text-sm reveal">
-                <p>Google AdSense Banner Area</p>
+            <div class="w-full h-24 bg-gray-900/40 border border-gray-800/50 border-dashed rounded-2xl mb-12 flex items-center justify-center text-gray-600 text-sm reveal backdrop-blur-sm">
+                <p><i class="fas fa-ad mr-2"></i> Google AdSense Banner Area</p>
             </div>
 
             <!-- Dynamic Articles Container -->
-            <div id="learn-articles-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            <div id="learn-articles-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
                 <!-- Articles will be injected here via JavaScript -->
             </div>
             
-            <div id="no-articles-msg" class="hidden text-center text-gray-500 py-10 w-full col-span-2">
-                ඔබ සෙවූ මාතෘකාවට අදාළ ලිපි කිසිවක් හමු නොවීය. වෙනත් වචනයක් උත්සාහ කරන්න.
+            <div id="no-articles-msg" class="hidden text-center text-gray-400 py-16 w-full col-span-2 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
+                <i class="fas fa-search-minus text-5xl text-gray-600 mb-4"></i>
+                <p class="text-xl font-bold">ඔබ සෙවූ මාතෘකාවට අදාළ ලිපි කිසිවක් හමු නොවීය.</p>
+                <p class="text-sm mt-2 text-gray-500">වෙනත් වචනයක් උත්සාහ කරන්න.</p>
             </div>
             
             <!-- Ad Space Bottom -->
-            <div class="w-full h-24 bg-gray-900/50 border border-gray-800 border-dashed rounded-xl mt-12 flex items-center justify-center text-gray-600 text-sm reveal">
-                <p>Google AdSense Banner Area</p>
+            <div class="w-full h-24 bg-gray-900/40 border border-gray-800/50 border-dashed rounded-2xl mt-12 flex items-center justify-center text-gray-600 text-sm reveal backdrop-blur-sm">
+                <p><i class="fas fa-ad mr-2"></i> Google AdSense Banner Area</p>
             </div>
 
         </div>
     </section>
 
     <!-- TROUBLESHOOT SECTION -->
-    <section id="troubleshoot" class="py-24 relative bg-black/40 backdrop-blur-sm border-t border-white/5">
+    <section id="troubleshoot" class="py-24 relative bg-black/60 backdrop-blur-xl border-t border-techPink/20">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-12 reveal">
-                <span class="text-techPink font-bold tracking-widest uppercase text-sm">Self Help Center</span>
-                <h2 class="text-4xl font-bold text-white mt-2">Knowledge <span class="text-transparent bg-clip-text bg-gradient-to-r from-techPink to-techPurple">Base</span></h2>
+            <div class="text-center mb-16 reveal">
+                <span class="text-techPink font-bold tracking-widest uppercase text-sm border border-techPink/30 bg-techPink/10 px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(255,0,85,0.2)]">Self Help Center</span>
+                <h2 class="text-5xl font-black text-white mt-6 tracking-tight">Knowledge <span class="text-transparent bg-clip-text bg-gradient-to-r from-techPink to-techPurple filter drop-shadow-[0_0_15px_rgba(255,0,85,0.4)]">Base</span></h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">පරිගණකයේ ඇතිවන ගැටළු වලට තනිවම විසඳුම් සොයාගන්න.</p>
             </div>
 
             <!-- Modern Search -->
-            <div class="mb-12 relative group reveal">
-                <div class="absolute -inset-1 bg-gradient-to-r from-techBlue via-techPurple to-techPink rounded-full opacity-50 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200 hidden md:block"></div>
-                <div class="relative flex items-center bg-black rounded-full p-2 border border-gray-800 md:border-none">
-                    <i class="fas fa-search text-gray-400 ml-4 text-xl"></i>
+            <div class="mb-12 relative group reveal z-20">
+                <div class="absolute -inset-1.5 bg-gradient-to-r from-techPink via-techPurple to-techBlue rounded-full opacity-40 blur-lg group-hover:opacity-70 transition duration-500 hidden md:block"></div>
+                <div class="relative flex items-center bg-[#0a0a0a] rounded-full p-2.5 border border-gray-600 focus-within:border-techPink focus-within:shadow-[0_0_25px_rgba(255,0,85,0.3)] transition-all shadow-2xl">
+                    <i class="fas fa-wrench text-techPink ml-5 text-2xl animate-bounce-slow"></i>
                     <input type="text" id="searchInput" placeholder="Describe your issue (e.g. 'No Sound', 'Blue Screen')..." 
-                        class="w-full bg-transparent text-white px-4 py-3 text-base md:text-lg focus:outline-none placeholder-gray-600">
+                        class="w-full bg-transparent text-white px-5 py-3 text-base md:text-lg font-medium focus:outline-none placeholder-gray-600">
                 </div>
             </div>
 
-            <div class="flex justify-center gap-2 md:gap-4 mb-8 flex-wrap reveal">
-                <button onclick="filterIssues('all')" class="filter-btn active px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">All Issues</button>
-                <button onclick="filterIssues('Hardware')" class="filter-btn px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">Hardware</button>
-                <button onclick="filterIssues('Software')" class="filter-btn px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">Software</button>
-                <button onclick="filterIssues('Internet')" class="filter-btn px-4 md:px-6 py-2 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-medium">Internet</button>
+            <div class="flex justify-center gap-3 md:gap-4 mb-10 flex-wrap reveal">
+                <button onclick="filterIssues('all')" class="filter-btn active px-6 md:px-8 py-2.5 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-bold shadow-md interactive-element">All Issues</button>
+                <button onclick="filterIssues('Hardware')" class="filter-btn px-6 md:px-8 py-2.5 rounded-full border border-gray-700 text-gray-300 hover:border-techBlue hover:text-techBlue hover:bg-techBlue/10 transition-all text-sm md:text-base font-bold shadow-md interactive-element"><i class="fas fa-microchip mr-2"></i>Hardware</button>
+                <button onclick="filterIssues('Software')" class="filter-btn px-6 md:px-8 py-2.5 rounded-full border border-gray-700 text-gray-300 hover:border-techPurple hover:text-techPurple hover:bg-techPurple/10 transition-all text-sm md:text-base font-bold shadow-md interactive-element"><i class="fas fa-code mr-2"></i>Software</button>
+                <button onclick="filterIssues('Internet')" class="filter-btn px-6 md:px-8 py-2.5 rounded-full border border-gray-700 text-gray-300 hover:border-techPink hover:text-techPink hover:bg-techPink/10 transition-all text-sm md:text-base font-bold shadow-md interactive-element"><i class="fas fa-wifi mr-2"></i>Internet</button>
             </div>
 
             <!-- Issues List -->
-            <div id="issuesContainer" class="space-y-3 md:space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar reveal">
+            <div id="issuesContainer" class="space-y-4 md:space-y-5 max-h-[650px] overflow-y-auto pr-3 custom-scrollbar reveal">
                 <!-- Javascript will populate this -->
             </div>
         </div>
     </section>
 
     <!-- FUN ZONE SECTION -->
-    <section id="funzone" class="py-24 relative bg-[#0a0a0a] border-t border-white/5">
+    <section id="funzone" class="py-24 relative bg-gradient-to-t from-[#050505] to-[#0a0a0a] border-t border-yellow-500/20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
-                <span class="text-yellow-400 font-bold tracking-widest uppercase text-sm">Interactive Tech</span>
-                <h2 class="text-4xl font-bold text-white mt-2">Fun <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Zone</span></h2>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">වෙබ් අඩවියේ රැඳී සිටින අතරතුර ඔබේ IT දැනුම උරගා බලන්න සහ අලුත් දේවල් ඉගෙන ගන්න.</p>
+                <span class="text-yellow-400 font-bold tracking-widest uppercase text-sm border border-yellow-500/30 bg-yellow-500/10 px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(250,204,21,0.2)]">Interactive Tech</span>
+                <h2 class="text-5xl font-black text-white mt-6 tracking-tight">Fun <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 filter drop-shadow-[0_0_15px_rgba(250,204,21,0.4)]">Zone</span></h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">වෙබ් අඩවියේ රැඳී සිටින අතරතුර ඔබේ IT දැනුම උරගා බලන්න සහ අලුත් දේවල් ඉගෙන ගන්න.</p>
             </div>
 
             <!-- Row 1: Facts & Quiz -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <!-- Tech Facts -->
-                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col justify-between items-center text-center">
-                    <i class="fas fa-lightbulb text-5xl text-yellow-400 mb-6 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]"></i>
-                    <h3 class="text-2xl font-bold text-white mb-4">Did You Know?</h3>
-                    <div class="min-h-[100px] flex items-center justify-center w-full bg-black/50 rounded-xl p-4 border border-white/10 mb-6">
-                        <p id="fact-display" class="text-gray-300 text-lg italic transition-opacity duration-500">"පළමු පරිගණක මූසිකය (Mouse) 1964 දී ලී වලින් නිපදවා ඇත."</p>
+                <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col justify-between items-center text-center group">
+                    <i class="fas fa-lightbulb text-6xl text-yellow-400 mb-6 drop-shadow-[0_0_25px_rgba(250,204,21,0.8)] group-hover:scale-110 transition-transform duration-500 group-hover:rotate-12"></i>
+                    <h3 class="text-3xl font-black text-white mb-4 tracking-wide">Did You Know?</h3>
+                    <div class="min-h-[120px] flex items-center justify-center w-full bg-black/60 rounded-2xl p-6 border border-white/5 mb-8 shadow-inner relative overflow-hidden">
+                        <div class="absolute inset-0 bg-yellow-500/5 mix-blend-overlay"></div>
+                        <p id="fact-display" class="text-yellow-100 text-lg md:text-xl italic transition-opacity duration-500 leading-relaxed z-10 font-medium">"පළමු පරිගණක මූසිකය (Mouse) 1964 දී ලී වලින් නිපදවා ඇත."</p>
                     </div>
-                    <button onclick="generateFact()" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold py-3 px-8 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:scale-105 transition-transform w-full md:w-auto">
-                        <i class="fas fa-random mr-2"></i> අලුත් කරුණක් පෙන්වන්න
+                    <button onclick="generateFact()" class="interactive-element bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-black py-4 px-10 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.4)] hover:shadow-[0_0_30px_rgba(250,204,21,0.6)] hover:scale-105 transition-all w-full md:w-auto text-lg">
+                        <i class="fas fa-random mr-2 animate-spin-slow"></i> අලුත් කරුණක් පෙන්වන්න
                     </button>
                 </div>
 
                 <!-- Mini IT Quiz -->
-                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col min-h-[450px]">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold text-white"><i class="fas fa-gamepad text-techBlue mr-2"></i> Mini IT Quiz</h3>
-                        <span id="quiz-score-badge" class="bg-techBlue/20 text-techBlue px-3 py-1 rounded-full text-sm font-bold border border-techBlue/30 hidden">Score: 0</span>
+                <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col min-h-[500px]">
+                    <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
+                        <h3 class="text-3xl font-black text-white flex items-center tracking-wide"><i class="fas fa-gamepad text-techBlue mr-3 text-4xl drop-shadow-[0_0_15px_#00f2ff]"></i> Mini IT Quiz</h3>
+                        <span id="quiz-score-badge" class="bg-techBlue/20 text-techBlue px-4 py-2 rounded-full text-base font-black border border-techBlue/50 shadow-[0_0_15px_rgba(0,242,255,0.3)] hidden">Score: 0</span>
                     </div>
                     <div id="quiz-intro" class="text-center flex-grow flex flex-col justify-center items-center">
-                        <p class="text-gray-400 mb-6">ඔබේ පරිගණක දැනුම පරීක්ෂා කරගන්න පොඩි ගේම් එකක් ප්ලේ කරමුද?</p>
-                        <button onclick="startQuiz()" class="bg-transparent border-2 border-techBlue text-techBlue hover:bg-techBlue hover:text-black font-bold py-2 px-6 rounded-full transition-colors w-full md:w-auto">
+                        <div class="w-24 h-24 bg-techBlue/10 rounded-full flex items-center justify-center mb-6 animate-pulse border border-techBlue/30">
+                            <i class="fas fa-brain text-4xl text-techBlue"></i>
+                        </div>
+                        <p class="text-gray-300 text-lg mb-8 max-w-xs">ඔබේ පරිගණක දැනුම පරීක්ෂා කරගන්න පොඩි ගේම් එකක් ප්ලේ කරමුද?</p>
+                        <button onclick="startQuiz()" class="interactive-element bg-transparent border-2 border-techBlue text-techBlue hover:bg-techBlue hover:text-black font-black py-3 px-10 rounded-full transition-all duration-300 w-full md:w-auto text-lg hover:shadow-[0_0_25px_rgba(0,242,255,0.5)]">
                             <i class="fas fa-play mr-2"></i> Play Now
                         </button>
                     </div>
                     <div id="quiz-area" class="hidden flex-grow flex flex-col">
-                        <p id="quiz-question" class="text-lg text-white mb-6 font-medium text-center"></p>
-                        <div id="quiz-options" class="grid grid-cols-1 gap-3 flex-grow"></div>
-                        <!-- NEW FEEDBACK DIV -->
-                        <div id="quiz-feedback" class="text-center min-h-[60px] flex flex-col items-center justify-center mt-4"></div>
+                        <p id="quiz-question" class="text-xl text-white mb-8 font-bold text-center leading-relaxed"></p>
+                        <div id="quiz-options" class="grid grid-cols-1 gap-4 flex-grow"></div>
+                        <div id="quiz-feedback" class="text-center min-h-[80px] flex flex-col items-center justify-center mt-6"></div>
                     </div>
                     <div id="quiz-result" class="hidden text-center flex-grow flex flex-col justify-center items-center">
-                        <i id="quiz-icon" class="fas fa-trophy text-5xl text-yellow-400 mb-4"></i>
-                        <h4 class="text-2xl font-bold text-white mb-2" id="quiz-result-title">Good Job!</h4>
-                        <p class="text-gray-400 mb-6" id="quiz-result-text">You scored 3/5.</p>
-                        <button onclick="startQuiz()" class="bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-6 rounded-full border border-white/20 transition-colors">
-                            <i class="fas fa-redo mr-2"></i> Play Again
+                        <i id="quiz-icon" class="fas fa-trophy text-7xl text-yellow-400 mb-6 drop-shadow-[0_0_30px_rgba(250,204,21,0.6)] animate-bounce"></i>
+                        <h4 class="text-4xl font-black text-white mb-3" id="quiz-result-title">Good Job!</h4>
+                        <p class="text-gray-400 text-xl mb-8" id="quiz-result-text">You scored 3/5.</p>
+                        <button onclick="startQuiz()" class="interactive-element bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-8 rounded-full border border-white/30 transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                            <i class="fas fa-redo mr-2 animate-spin-slow"></i> Play Again
                         </button>
                     </div>
                 </div>
@@ -589,32 +676,33 @@
             <!-- Row 2: Memory & Typing -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <!-- Tech Memory Match -->
-                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
-                    <div class="text-center mb-4">
-                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-clone text-techPurple mr-2"></i> Memory Match</h3>
-                        <p class="text-gray-400 text-sm">එක සමාන Tech Icons දෙක බැගින් සොයාගන්න.</p>
+                <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between group">
+                    <div class="text-center mb-6">
+                        <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-clone text-techPurple mr-3 drop-shadow-[0_0_15px_#bc13fe]"></i> Memory Match</h3>
+                        <p class="text-gray-400 text-base">එක සමාන Tech Icons දෙක බැගින් සොයාගන්න.</p>
                     </div>
-                    <div id="memory-board" class="grid grid-cols-4 gap-2 md:gap-3 w-full max-w-[240px] mb-2 perspective-1000"></div>
-                    <div class="h-8 mt-2 flex items-center">
-                        <button id="memory-win-msg" onclick="initMemoryGame()" class="hidden bg-techPurple/20 hover:bg-techPurple/40 text-techPurple border border-techPurple/30 px-4 py-1.5 rounded-full text-sm font-bold transition-all animate-bounce">
+                    <div id="memory-board" class="grid grid-cols-4 gap-3 md:gap-4 w-full max-w-[300px] mb-4 perspective-1000"></div>
+                    <div class="h-10 mt-4 flex items-center">
+                        <button id="memory-win-msg" onclick="initMemoryGame()" class="hidden interactive-element bg-techPurple/20 hover:bg-techPurple/40 text-techPurple border border-techPurple/50 px-6 py-2 rounded-full text-base font-bold transition-all animate-bounce shadow-[0_0_15px_rgba(188,19,254,0.3)]">
                             You Won! 🎉 Play Again
                         </button>
                     </div>
                 </div>
 
                 <!-- Hacker Typing Test -->
-                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
-                    <div class="text-center mb-4">
-                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-keyboard text-green-400 mr-2"></i> Hacker Typing</h3>
-                        <p class="text-gray-400 text-sm">පහත කේතය කොතරම් වේගයෙන් ටයිප් කළ හැකිද?</p>
+                <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
+                    <div class="text-center mb-6">
+                        <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-keyboard text-green-400 mr-3 drop-shadow-[0_0_15px_#4ade80]"></i> Hacker Typing</h3>
+                        <p class="text-gray-400 text-base">පහත කේතය කොතරම් වේගයෙන් ටයිප් කළ හැකිද?</p>
                     </div>
-                    <div class="bg-black/60 p-4 rounded-xl border border-white/10 w-full text-center mb-6 shadow-inner">
-                        <span id="typing-quote" class="font-mono text-techBlue text-sm md:text-base tracking-widest select-none">console.log("Hi");</span>
+                    <div class="bg-black/80 p-5 rounded-2xl border border-gray-700 w-full text-center mb-8 shadow-inner relative overflow-hidden">
+                        <div class="absolute left-0 top-0 w-1 h-full bg-green-500 shadow-[0_0_10px_#4ade80]"></div>
+                        <span id="typing-quote" class="font-mono text-green-400 text-lg md:text-xl tracking-widest select-none font-bold">console.log("Hi");</span>
                     </div>
-                    <input type="text" id="typing-input" placeholder="මෙතන ටයිප් කරන්න..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-green-400 focus:bg-white/10 font-mono text-center mb-6 transition-all shadow-[0_0_15px_rgba(74,222,128,0)] focus:shadow-[0_0_15px_rgba(74,222,128,0.2)]" oninput="checkTyping()" onpaste="return false;" autocomplete="off" spellcheck="false">
-                    <div class="flex justify-between w-full text-sm font-bold bg-black/40 px-4 py-2 rounded-lg border border-white/5">
-                        <span class="text-gray-400">Time: <span id="typing-time" class="text-white">0.0s</span></span>
-                        <span class="text-gray-400">WPM: <span id="typing-wpm" class="text-green-400 text-lg">0</span></span>
+                    <input type="text" id="typing-input" placeholder="මෙතන ටයිප් කරන්න..." class="w-full bg-black/50 border-2 border-gray-700 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-green-400 focus:bg-black/80 font-mono text-center text-lg mb-8 transition-all shadow-[0_0_20px_rgba(74,222,128,0)] focus:shadow-[0_0_25px_rgba(74,222,128,0.2)]" oninput="checkTyping()" onpaste="return false;" autocomplete="off" spellcheck="false">
+                    <div class="flex justify-between w-full text-base font-bold bg-black/60 px-6 py-4 rounded-xl border border-white/5 shadow-inner">
+                        <span class="text-gray-400 flex items-center"><i class="far fa-clock mr-2 text-techBlue"></i> Time: <span id="typing-time" class="text-white ml-2 text-lg">0.0s</span></span>
+                        <span class="text-gray-400 flex items-center"><i class="fas fa-tachometer-alt mr-2 text-techPink"></i> WPM: <span id="typing-wpm" class="text-green-400 ml-2 text-xl font-black drop-shadow-[0_0_5px_#4ade80]">0</span></span>
                     </div>
                 </div>
             </div>
@@ -622,37 +710,43 @@
             <!-- Row 3: Hex Color & Reaction Time -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                 <!-- Password Strength Tester -->
-                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
-                    <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-key text-blue-400 mr-2"></i> Password Tester</h3>
-                        <p class="text-gray-400 text-sm">ඔබේ මුරපදය කෙතරම් ආරක්ෂිතද?</p>
+                <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-key text-blue-400 mr-3 drop-shadow-[0_0_15px_#60a5fa]"></i> Password Tester</h3>
+                        <p class="text-gray-400 text-base">ඔබේ මුරපදය කෙතරම් ආරක්ෂිතද?</p>
                     </div>
                     
                     <div class="w-full max-w-sm flex flex-col items-center flex-grow justify-center">
-                        <input type="password" id="pwd-input" placeholder="මුරපදය ටයිප් කරන්න..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-400 focus:bg-white/10 text-center mb-6 transition-all" oninput="checkPasswordStrength()">
-                        
-                        <div class="w-full bg-gray-800 rounded-full h-3 mb-3 border border-white/5 overflow-hidden">
-                            <div id="pwd-bar" class="bg-gray-600 h-full rounded-full transition-all duration-300 w-0"></div>
+                        <div class="relative w-full mb-8">
+                            <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                            <input type="password" id="pwd-input" placeholder="මුරපදය ටයිප් කරන්න..." class="w-full bg-black/50 border-2 border-gray-700 rounded-xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-blue-400 focus:bg-black/80 transition-all text-center text-lg tracking-widest" oninput="checkPasswordStrength()">
                         </div>
-                        <p id="pwd-text" class="text-gray-500 font-bold text-lg mb-2">---</p>
-                        <p class="text-[10px] text-gray-500 text-center italic mt-auto">Note: අපි ඔබගේ මුරපද සුරක්ෂිතව තබාගන්නා අතර ඒවා කිසිදු සේවාදායකයක (Server) ගබඩා නොකෙරේ.</p>
+                        
+                        <div class="w-full bg-gray-800 rounded-full h-4 mb-4 border border-white/5 overflow-hidden shadow-inner">
+                            <div id="pwd-bar" class="bg-gray-600 h-full rounded-full transition-all duration-500 w-0 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-white/20 w-full h-full animate-shimmer"></div>
+                            </div>
+                        </div>
+                        <p id="pwd-text" class="text-gray-500 font-black text-2xl mb-4 tracking-wider uppercase">---</p>
+                        <p class="text-xs text-gray-500 text-center mt-auto bg-white/5 px-4 py-2 rounded-lg border border-white/5"><i class="fas fa-shield-alt mr-1 text-green-400"></i> Note: අපි ඔබගේ මුරපද සුරක්ෂිතව තබාගන්නා අතර ඒවා කිසිදු සේවාදායකයක (Server) ගබඩා නොකෙරේ.</p>
                     </div>
                 </div>
 
                 <!-- Reaction Time Tester -->
-                <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
-                    <div class="text-center mb-4">
-                        <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-stopwatch text-yellow-500 mr-2"></i> Reaction Time</h3>
-                        <p class="text-gray-400 text-sm">ඔබේ ප්‍රතිචාර වේගය පරීක්ෂා කරන්න.</p>
+                <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
+                    <div class="text-center mb-6">
+                        <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-stopwatch text-yellow-500 mr-3 drop-shadow-[0_0_15px_#eab308]"></i> Reaction Time</h3>
+                        <p class="text-gray-400 text-base">ඔබේ ප්‍රතිචාර වේගය පරීක්ෂා කරන්න.</p>
                     </div>
                     
-                    <div id="reaction-box" class="w-full h-32 md:h-40 rounded-xl bg-blue-600/80 flex items-center justify-center cursor-pointer transition-colors select-none mb-6 border border-white/10 hover:brightness-110 active:scale-95" onmousedown="handleReactionClick()">
-                        <p id="reaction-msg" class="text-white font-bold text-lg md:text-xl pointer-events-none">Click to Start</p>
+                    <div id="reaction-box" class="w-full h-40 md:h-48 rounded-2xl bg-blue-600/80 flex items-center justify-center cursor-pointer transition-all duration-200 select-none mb-8 border-2 border-white/10 hover:brightness-110 active:scale-95 shadow-lg group relative overflow-hidden" onmousedown="handleReactionClick()">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+                        <p id="reaction-msg" class="text-white font-black text-2xl md:text-3xl pointer-events-none z-10 drop-shadow-md group-hover:scale-105 transition-transform">Click to Start</p>
                     </div>
                     
-                    <div class="flex justify-between w-full text-sm font-bold bg-black/40 px-4 py-3 rounded-lg border border-white/5 mt-auto">
-                        <span class="text-gray-400">Best: <span id="reaction-best" class="text-yellow-400 text-lg">0 ms</span></span>
-                        <span class="text-gray-400">Last: <span id="reaction-last" class="text-white text-lg">0 ms</span></span>
+                    <div class="flex justify-between w-full text-base font-bold bg-black/60 px-6 py-4 rounded-xl border border-white/5 mt-auto shadow-inner">
+                        <span class="text-gray-400 flex items-center"><i class="fas fa-trophy text-yellow-400 mr-2"></i> Best: <span id="reaction-best" class="text-yellow-400 text-xl ml-2 font-black drop-shadow-[0_0_5px_#facc15]">0 ms</span></span>
+                        <span class="text-gray-400 flex items-center"><i class="fas fa-history text-techBlue mr-2"></i> Last: <span id="reaction-last" class="text-white text-xl ml-2">0 ms</span></span>
                     </div>
                 </div>
             </div>
@@ -660,49 +754,63 @@
     </section>
 
     <!-- About Me -->
-    <section id="about" class="py-24 relative">
+    <section id="about" class="py-24 relative bg-[#030303]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="glass-card rounded-3xl p-6 md:p-12 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="glass-card rounded-[3rem] p-8 md:p-16 border-t-2 border-l-2 border-white/10 bg-gradient-to-br from-gray-900 via-black to-[#111] reveal shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About <span class="text-techBlue">Tiran Kalhara</span></h2>
+                        <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full border border-techBlue/30 bg-techBlue/10 text-techBlue text-xs font-bold uppercase tracking-widest">
+                            <i class="fas fa-user-circle"></i> The Developer
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black text-white mb-8 tracking-tight">About <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple filter drop-shadow-[0_0_10px_rgba(0,242,255,0.4)]">Tiran Kalhara</span></h2>
                         
-                        <div class="space-y-4 md:space-y-6 text-gray-300 text-base md:text-lg leading-relaxed">
+                        <div class="space-y-6 text-gray-300 text-lg leading-relaxed font-light">
                             <p>
                                 I am not just a technician or a developer; I am someone who genuinely cares about technology and the people who use it. I started this journey out of pure passion for understanding how things work—from the tiniest microchip to complex software codes.
                             </p>
                             <p>
-                                My philosophy is simple: <strong>Quality over Quantity</strong>. When you hand over a laptop for repair or trust me with a website project, I treat it as my own. I don't believe in quick fixes, shortcuts, or hidden costs. I believe in doing the job right the first time.
+                                My philosophy is simple: <strong class="text-white font-bold bg-white/10 px-2 py-1 rounded">Quality over Quantity</strong>. When you hand over a laptop for repair or trust me with a website project, I treat it as my own. I don't believe in quick fixes, shortcuts, or hidden costs. I believe in doing the job right the first time.
                             </p>
                             <p class="hidden md:block">
                                 Whether it's reviving a dead computer or building a system for your business, my goal is to give you a solution that you can rely on. If I can't fix it, I'll be honest about it. My reputation is built on trust, transparency, and a genuine desire to help.
                             </p>
                         </div>
 
-                        <div class="mt-8 pt-6 border-t border-gray-800 hidden md:block">
-                            <p class="text-gray-400 italic">"Technology is complicated, but finding a reliable person to handle it shouldn't be."</p>
+                        <div class="mt-10 pt-8 border-t border-white/10 hidden md:block">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-techPink to-techPurple flex items-center justify-center text-xl shadow-[0_0_15px_rgba(255,0,85,0.5)]">
+                                    <i class="fas fa-quote-left text-white"></i>
+                                </div>
+                                <p class="text-gray-400 italic text-xl font-serif">"Technology is complicated, but finding a reliable person to handle it shouldn't be."</p>
+                            </div>
                         </div>
                     </div>
                     <div class="relative">
                         <!-- Decorative elements -->
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-techBlue rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob hidden md:block"></div>
-                        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-techPurple rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 hidden md:block"></div>
+                        <div class="absolute -top-16 -right-16 w-48 h-48 bg-techBlue rounded-full mix-blend-screen filter blur-[80px] opacity-30 animate-blob hidden md:block"></div>
+                        <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-techPurple rounded-full mix-blend-screen filter blur-[80px] opacity-30 animate-blob animation-delay-2000 hidden md:block"></div>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techBlue transition-colors animate-float">
-                                <i class="fas fa-brain text-3xl md:text-4xl text-techBlue mb-4"></i>
-                                <h4 class="text-white font-bold">Deep Analysis</h4>
-                                <p class="text-xs text-gray-500 mt-2">I find the root cause, not just the symptom.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
+                            <div class="bg-black/50 p-8 rounded-3xl backdrop-blur-xl border border-white/5 hover:border-techBlue hover:bg-techBlue/5 transition-all duration-500 animate-float shadow-xl group">
+                                <div class="w-14 h-14 rounded-2xl bg-techBlue/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-techBlue/30">
+                                    <i class="fas fa-brain text-3xl text-techBlue drop-shadow-[0_0_10px_#00f2ff]"></i>
+                                </div>
+                                <h4 class="text-xl text-white font-black tracking-wide mb-2">Deep Analysis</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">I find the root cause, not just the symptom.</p>
                             </div>
-                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techPurple transition-colors md:mt-8 animate-float hidden sm:block" style="animation-delay: 1s;">
-                                <i class="fas fa-layer-group text-3xl md:text-4xl text-techPurple mb-4"></i>
-                                <h4 class="text-white font-bold">Full Dedication</h4>
-                                <p class="text-xs text-gray-500 mt-2">Every project gets my 100% attention.</p>
+                            <div class="bg-black/50 p-8 rounded-3xl backdrop-blur-xl border border-white/5 hover:border-techPurple hover:bg-techPurple/5 transition-all duration-500 md:mt-12 animate-float hidden sm:block shadow-xl group" style="animation-delay: 1.5s;">
+                                <div class="w-14 h-14 rounded-2xl bg-techPurple/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-techPurple/30">
+                                    <i class="fas fa-layer-group text-3xl text-techPurple drop-shadow-[0_0_10px_#bc13fe]"></i>
+                                </div>
+                                <h4 class="text-xl text-white font-black tracking-wide mb-2">Full Dedication</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Every project gets my 100% attention.</p>
                             </div>
-                            <div class="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-techPink transition-colors animate-float" style="animation-delay: 2s;">
-                                <i class="fas fa-handshake text-3xl md:text-4xl text-techPink mb-4"></i>
-                                <h4 class="text-white font-bold">Honest Work</h4>
-                                <p class="text-xs text-gray-500 mt-2">Transparent pricing and genuine advice.</p>
+                            <div class="bg-black/50 p-8 rounded-3xl backdrop-blur-xl border border-white/5 hover:border-techPink hover:bg-techPink/5 transition-all duration-500 animate-float shadow-xl group" style="animation-delay: 3s;">
+                                <div class="w-14 h-14 rounded-2xl bg-techPink/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border border-techPink/30">
+                                    <i class="fas fa-handshake text-3xl text-techPink drop-shadow-[0_0_10px_#ff0055]"></i>
+                                </div>
+                                <h4 class="text-xl text-white font-black tracking-wide mb-2">Honest Work</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Transparent pricing and genuine advice.</p>
                             </div>
                         </div>
                     </div>
@@ -712,65 +820,87 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="glass-card rounded-3xl p-1 bg-gradient-to-b from-gray-800 to-black reveal">
-                <div class="bg-black/80 rounded-[22px] p-6 md:p-12 md:backdrop-blur-xl">
-                    <div class="text-center mb-10">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white">Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple">Connect</span></h2>
-                        <p class="text-sm md:text-base text-gray-400 mt-2">Ready to start your project or fix your device?</p>
+    <section id="contact" class="py-24 relative bg-black">
+        <!-- Grid pattern overlay -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-[3rem] p-1.5 bg-gradient-to-b from-gray-800 to-[#050505] reveal shadow-[0_0_50px_rgba(0,242,255,0.1)]">
+                <div class="bg-[#0a0a0a] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-techBlue/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-techPurple/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    
+                    <div class="text-center mb-14 relative z-10">
+                        <h2 class="text-5xl md:text-6xl font-black text-white tracking-tight">Let's <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple filter drop-shadow-[0_0_15px_rgba(0,242,255,0.4)]">Connect</span></h2>
+                        <p class="text-lg text-gray-400 mt-4">Ready to start your project or fix your device?</p>
                     </div>
 
                     <!-- Contact Form Input Fields -->
-                    <div class="space-y-4 md:space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div class="space-y-6 relative z-10 max-w-3xl mx-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="group">
-                                <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Name</label>
-                                <input type="text" id="c-name" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="John Doe">
+                                <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest group-focus-within:text-techBlue transition-colors pl-2">Name</label>
+                                <div class="relative">
+                                    <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 group-focus-within:text-techBlue transition-colors"></i>
+                                    <input type="text" id="c-name" class="w-full bg-black/50 border-2 border-gray-800 rounded-2xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-techBlue focus:bg-black transition-all shadow-inner" placeholder="John Doe">
+                                </div>
                             </div>
                             <div class="group">
-                                <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Phone</label>
-                                <input type="tel" id="c-phone" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="07x xxx xxxx">
+                                <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest group-focus-within:text-techPurple transition-colors pl-2">Phone</label>
+                                <div class="relative">
+                                    <i class="fas fa-phone-alt absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 group-focus-within:text-techPurple transition-colors"></i>
+                                    <input type="tel" id="c-phone" class="w-full bg-black/50 border-2 border-gray-800 rounded-2xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-techPurple focus:bg-black transition-all shadow-inner" placeholder="07x xxx xxxx">
+                                </div>
                             </div>
                         </div>
                         <div class="group">
-                            <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Service</label>
-                            <select id="c-service" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all [&>option]:bg-black">
-                                <option>Hardware Repair</option>
-                                <option>Web Development</option>
-                                <option>Software Development</option>
-                                <option>Network Issue</option>
-                                <option>Other Inquiry</option>
-                            </select>
+                            <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest group-focus-within:text-techPink transition-colors pl-2">Service</label>
+                            <div class="relative">
+                                <i class="fas fa-concierge-bell absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600 group-focus-within:text-techPink transition-colors"></i>
+                                <select id="c-service" class="w-full bg-black/50 border-2 border-gray-800 rounded-2xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-techPink focus:bg-black transition-all appearance-none cursor-pointer shadow-inner [&>option]:bg-gray-900">
+                                    <option>Hardware Repair</option>
+                                    <option>Web Development</option>
+                                    <option>Software Development</option>
+                                    <option>Network Issue</option>
+                                    <option>Other Inquiry</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none"></i>
+                            </div>
                         </div>
                         <div class="group">
-                            <label class="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-techBlue transition-colors">Message</label>
-                            <textarea id="c-message" rows="4" class="w-full bg-white/5 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-techBlue focus:ring-1 focus:ring-techBlue transition-all" placeholder="How can I help you?"></textarea>
+                            <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest group-focus-within:text-techBlue transition-colors pl-2">Message</label>
+                            <textarea id="c-message" rows="4" class="w-full bg-black/50 border-2 border-gray-800 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-techBlue focus:bg-black transition-all shadow-inner resize-none" placeholder="How can I help you?"></textarea>
                         </div>
                         
                         <!-- Dual Button System -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                            <button onclick="sendMessage('whatsapp')" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 md:py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
-                                <i class="fab fa-whatsapp text-xl md:text-2xl group-hover:scale-110 transition-transform"></i> Send via WhatsApp
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-6">
+                            <button onclick="sendMessage('whatsapp')" class="interactive-element w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-black font-black py-4 rounded-2xl shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] transition-all flex items-center justify-center gap-3 text-lg group">
+                                <i class="fab fa-whatsapp text-2xl group-hover:scale-125 transition-transform duration-300"></i> WhatsApp
                             </button>
-                            <button onclick="sendMessage('email')" class="w-full bg-gradient-to-r from-techBlue to-techPurple hover:opacity-90 text-black font-bold py-3 md:py-4 rounded-lg shadow-lg transition-all flex items-center justify-center gap-2 group">
-                                <i class="fas fa-envelope text-lg md:text-xl group-hover:scale-110 transition-transform"></i> Send via Email
+                            <button onclick="sendMessage('email')" class="interactive-element w-full bg-gradient-to-r from-techBlue via-techPurple to-techPink bg-[length:200%_auto] hover:bg-right text-black font-black py-4 rounded-2xl shadow-[0_0_20px_rgba(188,19,254,0.4)] hover:shadow-[0_0_30px_rgba(188,19,254,0.6)] transition-all duration-500 flex items-center justify-center gap-3 text-lg group">
+                                <i class="fas fa-envelope text-xl group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300"></i> Email Me
                             </button>
                         </div>
                     </div>
 
-                    <div class="mt-12 pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center md:text-left">
-                        <div>
-                            <p class="text-xs md:text-sm text-gray-500 uppercase tracking-widest mb-1">Email</p>
-                            <p class="text-sm md:text-base text-white hover:text-techBlue transition-colors">tirankalharac@gmail.com</p>
+                    <div class="mt-16 pt-10 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left relative z-10">
+                        <div class="group">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-4 mx-auto md:mx-0 group-hover:bg-techBlue/20 transition-colors">
+                                <i class="fas fa-envelope text-gray-400 group-hover:text-techBlue transition-colors text-xl"></i>
+                            </div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Email</p>
+                            <p class="text-base text-white font-medium hover:text-techBlue transition-colors cursor-pointer select-all">tirankalharac@gmail.com</p>
                         </div>
-                        <div>
-                            <p class="text-xs md:text-sm text-gray-500 uppercase tracking-widest mb-1">Phone</p>
-                            <p class="text-sm md:text-base text-white hover:text-techBlue transition-colors">070 342 7275</p>
+                        <div class="group">
+                            <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-4 mx-auto md:mx-0 group-hover:bg-techPurple/20 transition-colors">
+                                <i class="fas fa-phone-alt text-gray-400 group-hover:text-techPurple transition-colors text-xl"></i>
+                            </div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Phone</p>
+                            <p class="text-base text-white font-medium hover:text-techPurple transition-colors cursor-pointer select-all">070 342 7275</p>
                         </div>
-                        <div class="md:text-right">
-                            <a href="https://www.facebook.com/" target="_blank" class="inline-flex items-center text-sm md:text-base text-blue-500 hover:text-white transition-colors">
-                                <i class="fab fa-facebook text-xl md:text-2xl mr-2"></i> Find me on Facebook
+                        <div class="md:text-right flex flex-col items-center md:items-end justify-center group">
+                            <a href="https://www.facebook.com/" target="_blank" class="interactive-element inline-flex items-center text-base text-blue-400 hover:text-white font-bold bg-blue-500/10 hover:bg-blue-500/30 px-6 py-3 rounded-full border border-blue-500/30 transition-all shadow-[0_0_15px_rgba(59,130,246,0.2)] hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                                <i class="fab fa-facebook text-2xl mr-3"></i> Find me on Facebook
                             </a>
                         </div>
                     </div>
@@ -780,63 +910,163 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-gray-900 text-center relative z-10">
-        <p class="text-gray-600 text-sm mt-4">
-            &copy; 2026 Kalhara Development. Crafted with <i class="fas fa-heart text-red-500 animate-pulse"></i> for technology.
+    <footer class="bg-black py-10 border-t border-white/5 text-center relative z-10">
+        <div class="flex justify-center items-center gap-2 mb-4">
+            <img src="logo.png" alt="KD" class="h-6 w-6 opacity-50 grayscale" onerror="this.style.display='none'">
+            <span class="text-gray-500 font-black tracking-widest text-sm">KALHARA DEV</span>
+        </div>
+        <p class="text-gray-600 text-sm">
+            &copy; 2026 Kalhara Development. Crafted with <i class="fas fa-heart text-red-500 animate-pulse mx-1 drop-shadow-[0_0_5px_rgba(239,68,68,0.8)]"></i> for technology.
         </p>
     </footer>
 
     <!-- AI CHATBOT WIDGET -->
-    <div id="chat-widget" class="fixed bottom-6 right-4 md:right-6 z-50 flex flex-col items-end gap-2">
-        <div class="bg-white/90 backdrop-blur text-black px-3 py-1 md:px-4 md:py-2 rounded-xl shadow-lg border border-white/20 animate-bounce-slow text-xs md:text-sm font-bold mr-2 relative hidden md:block">
-            Need IT Support? Ask AI 👋
-            <div class="absolute -bottom-1 right-6 w-3 h-3 bg-white rotate-45"></div>
+    <div id="chat-widget" class="fixed bottom-6 right-4 md:right-8 z-[100] flex flex-col items-end gap-3 group">
+        <div class="bg-black/80 backdrop-blur-md text-white px-4 py-2.5 rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] border border-techBlue/30 animate-float text-xs md:text-sm font-bold mr-2 relative hidden md:block group-hover:border-techBlue group-hover:shadow-[0_0_15px_rgba(0,242,255,0.4)] transition-all">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple font-black">Need IT Support?</span> Ask AI 👋
+            <div class="absolute -bottom-1.5 right-6 w-3 h-3 bg-black border-b border-r border-techBlue/30 rotate-45"></div>
         </div>
-        <button onclick="toggleChat()" class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-techBlue to-techPurple rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30 hover:scale-110 transition-transform relative group">
-            <i class="fas fa-robot text-xl md:text-2xl text-black"></i>
-            <span class="absolute top-0 right-0 w-3 h-3 md:w-4 md:h-4 bg-green-500 border-2 border-black rounded-full animate-pulse"></span>
+        <button onclick="toggleChat()" class="interactive-element w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-techBlue via-techPurple to-techPink rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(188,19,254,0.5)] hover:shadow-[0_0_30px_rgba(0,242,255,0.8)] hover:scale-110 transition-all duration-300 relative">
+            <i class="fas fa-robot text-2xl md:text-3xl text-black drop-shadow-md group-hover:animate-bounce"></i>
+            <span class="absolute top-0 right-0 w-3.5 h-3.5 md:w-4 md:h-4 bg-green-400 border-2 border-black rounded-full animate-ping"></span>
+            <span class="absolute top-0 right-0 w-3.5 h-3.5 md:w-4 md:h-4 bg-green-400 border-2 border-black rounded-full shadow-[0_0_8px_#4ade80]"></span>
         </button>
     </div>
 
     <!-- Chat Window -->
-    <div id="chat-window" class="fixed bottom-20 md:bottom-24 right-4 md:right-6 w-[300px] sm:w-80 md:w-[400px] bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_0_40px_rgba(188,19,254,0.15)] transform scale-0 origin-bottom-right transition-transform duration-300 z-50 overflow-hidden flex flex-col">
-        <div class="bg-gradient-to-r from-techBlue to-techPurple p-3 md:p-4 flex justify-between items-center relative z-10 shadow-md">
-            <div class="flex items-center gap-3 text-black">
+    <div id="chat-window" class="fixed bottom-24 md:bottom-28 right-4 md:right-8 w-[92vw] sm:w-80 md:w-[400px] bg-black/90 backdrop-blur-3xl border border-white/10 rounded-[2rem] shadow-[0_10px_50px_rgba(188,19,254,0.3)] transform scale-0 origin-bottom-right transition-all duration-400 cubic-bezier(0.175, 0.885, 0.32, 1.275) z-[100] overflow-hidden flex flex-col">
+        <div class="bg-gradient-to-r from-techBlue via-techPurple to-techPink p-4 flex justify-between items-center relative z-10 shadow-lg">
+            <div class="flex items-center gap-4 text-black">
                 <div class="relative">
-                    <div class="w-8 h-8 md:w-10 md:h-10 bg-black/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <i class="fas fa-robot text-lg md:text-xl text-black"></i>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md border border-white/30 shadow-inner">
+                        <i class="fas fa-robot text-xl md:text-2xl text-black drop-shadow-sm"></i>
                     </div>
-                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border border-black rounded-full"></span>
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-black rounded-full shadow-[0_0_5px_#4ade80]"></span>
                 </div>
                 <div>
-                    <div class="font-bold text-sm md:text-base leading-none">Mr. Kalhara AI</div>
-                    <div class="text-[10px] md:text-xs font-semibold opacity-75 mt-1 flex items-center gap-1">
-                        <i class="fas fa-bolt text-[8px]"></i> Advanced Tech Agent
+                    <div class="font-black text-base md:text-lg leading-none tracking-wide text-white drop-shadow-md">Mr. Kalhara AI</div>
+                    <div class="text-xs font-bold text-white/80 mt-1 flex items-center gap-1.5 bg-black/20 px-2 py-0.5 rounded-full inline-flex">
+                        <i class="fas fa-bolt text-[10px] text-yellow-300"></i> Advanced Tech Agent
                     </div>
                 </div>
             </div>
-            <div class="flex items-center gap-1">
-                <button onclick="clearChat()" class="text-black/70 hover:text-black transition-colors p-2 rounded-full hover:bg-black/10" title="Clear History"><i class="fas fa-trash-alt text-xs md:text-sm"></i></button>
-                <button onclick="toggleChat()" class="text-black/70 hover:text-black transition-colors p-2 rounded-full hover:bg-black/10" title="Close"><i class="fas fa-times text-sm md:text-base"></i></button>
+            <div class="flex items-center gap-1.5">
+                <button onclick="clearChat()" class="w-8 h-8 flex items-center justify-center text-white/70 hover:text-white bg-black/10 hover:bg-black/30 transition-colors rounded-full backdrop-blur-sm border border-transparent hover:border-white/20" title="Clear History"><i class="fas fa-trash-alt text-sm"></i></button>
+                <button onclick="toggleChat()" class="w-8 h-8 flex items-center justify-center text-white/70 hover:text-white bg-black/10 hover:bg-black/30 transition-colors rounded-full backdrop-blur-sm border border-transparent hover:border-white/20" title="Close"><i class="fas fa-times text-base"></i></button>
             </div>
         </div>
-        <div id="ai-scan-bar" class="w-full h-1 bg-gray-800 hidden">
-            <div id="ai-scan-progress" class="h-full bg-techBlue w-0 chat-progress-bar shadow-[0_0_10px_#00f2ff]"></div>
+        <div id="ai-scan-bar" class="w-full h-1.5 bg-gray-900 hidden">
+            <div id="ai-scan-progress" class="h-full bg-gradient-to-r from-techBlue to-techPurple w-0 chat-progress-bar shadow-[0_0_15px_#bc13fe]"></div>
         </div>
-        <div id="chat-messages" class="h-72 md:h-96 p-3 md:p-4 overflow-y-auto space-y-4 custom-scrollbar bg-black/40 relative"></div>
-        <div class="p-2 md:p-3 border-t border-white/10 flex gap-2 bg-[#050505] items-center relative z-10">
+        <div id="chat-messages" class="h-80 md:h-[450px] p-4 md:p-5 overflow-y-auto space-y-5 custom-scrollbar bg-gradient-to-b from-[#0a0a0a] to-[#050505] relative scroll-smooth"></div>
+        
+        <div class="p-3 md:p-4 border-t border-white/10 flex gap-2.5 bg-[#080808] items-center relative z-10">
             <input type="file" id="image-upload" hidden accept="image/*" onchange="handleImageUpload(this)">
-            <button onclick="document.getElementById('image-upload').click()" class="text-gray-400 hover:text-techBlue transition-colors p-2 md:p-2.5 bg-white/5 rounded-lg hover:bg-white/10" title="දෝෂයේ (Error) ඡායාරූපයක් යවන්න">
-                <i class="fas fa-camera text-sm md:text-base"></i>
+            <button onclick="document.getElementById('image-upload').click()" class="interactive-element flex-shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-gray-400 hover:text-techBlue bg-white/5 border border-white/5 hover:border-techBlue/30 hover:bg-techBlue/10 transition-all rounded-xl shadow-inner" title="දෝෂයේ (Error) ඡායාරූපයක් යවන්න">
+                <i class="fas fa-camera text-base md:text-lg"></i>
             </button>
-            <input type="text" id="chat-input" placeholder="ගැටළුව මෙතන ටයිප් කරන්න..." class="w-full bg-white/5 border border-gray-700 rounded-lg px-3 py-2 md:px-4 md:py-2.5 text-xs md:text-sm text-white focus:outline-none focus:border-techBlue focus:bg-white/10 transition-all placeholder-gray-500" onkeypress="handleEnter(event)">
-            <button onclick="sendUserMessage()" class="bg-gradient-to-r from-techBlue to-techPurple text-black px-3 py-2 md:px-4 md:py-2.5 rounded-lg hover:opacity-90 transition-opacity shadow-lg flex items-center justify-center">
-                <i class="fas fa-paper-plane text-sm md:text-base"></i>
+            <input type="text" id="chat-input" placeholder="ගැටළුව මෙතන ටයිප් කරන්න..." class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-2.5 md:py-3 text-sm md:text-base text-white focus:outline-none focus:border-techBlue focus:bg-black transition-all placeholder-gray-600 shadow-inner" onkeypress="handleEnter(event)">
+            <button onclick="sendUserMessage()" class="interactive-element flex-shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-gradient-to-r from-techBlue to-techPurple text-black rounded-xl hover:shadow-[0_0_15px_rgba(188,19,254,0.5)] hover:scale-105 transition-all shadow-md">
+                <i class="fas fa-paper-plane text-base md:text-lg ml-[-2px]"></i>
             </button>
         </div>
     </div>
 
     <script>
+        // --- CUSTOM CURSOR LOGIC ---
+        const cursor = document.getElementById('custom-cursor');
+        const cursorDot = document.getElementById('custom-cursor-dot');
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .interactive-element');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // --- SCROLL PROGRESS LOGIC ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress-bar').style.width = scrolled + '%';
+            
+            // Navbar style change on scroll
+            const nav = document.getElementById('navbar');
+            if (winScroll > 50) {
+                nav.classList.add('shadow-[0_4px_30px_rgba(0,0,0,0.8)]', 'border-techBlue/30');
+            } else {
+                nav.classList.remove('shadow-[0_4px_30px_rgba(0,0,0,0.8)]', 'border-techBlue/30');
+            }
+        });
+
+        // --- GEMINI API INTEGRATION CONFIGURATION ---
+        const apiKey = ""; 
+
+        async function fetchWithRetry(url, payload) {
+            const delays = [1000, 2000, 4000, 8000, 16000];
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error('API Error');
+                    const result = await response.json();
+                    if (result.candidates && result.candidates[0]) {
+                        return result.candidates[0].content.parts[0].text;
+                    }
+                    throw new Error('Invalid response');
+                } catch (error) {
+                    if (i === 4) break; 
+                    await new Promise(resolve => setTimeout(resolve, delays[i]));
+                }
+            }
+            return null; 
+        }
+
+        async function getGeminiResponse(userText) {
+            if(!apiKey) return null; 
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: userText }] }],
+                systemInstruction: { parts: [{ text: "You are Mr. Kalhara AI, an expert IT assistant for Kalhara Development website. Tiran Kalhara is your boss. You help users with PC hardware, software, networking, and web development issues. Keep your answers concise, friendly. ALWAYS Answer in Sinhala. Use basic HTML tags like <b>, <strong>, <br> instead of markdown." }] }
+            };
+            return await fetchWithRetry(url, payload);
+        }
+
+        async function getGeminiImageResponse(base64Data, mimeType) {
+            if(!apiKey) return null; 
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ 
+                    role: "user", 
+                    parts: [
+                        { text: "Analyze this image (it's likely an IT issue, error screen, or hardware). Tell me what the problem is and how to fix it briefly. ALWAYS Answer in Sinhala. Use basic HTML formatting." },
+                        { inlineData: { mimeType: mimeType, data: base64Data.split(',')[1] } } 
+                    ] 
+                }],
+                systemInstruction: { parts: [{ text: "You are Mr. Kalhara AI, an expert IT troubleshooter." }] }
+            };
+            return await fetchWithRetry(url, payload);
+        }
+        
+        function formatMarkdownToHTML(text) {
+            let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            if(!html.includes('<br>') && !html.includes('<p>')) {
+                html = html.replace(/\n/g, '<br>');
+            }
+            return html;
+        }
+
         // --- MESSAGING LOGIC ---
         function sendMessage(method) {
             const name = document.getElementById('c-name').value;
@@ -892,7 +1122,7 @@
                 typingElement.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
             }
-            let typeSpeed = isDeleting ? 100 : 200;
+            let typeSpeed = isDeleting ? 80 : 150;
             if (!isDeleting && charIndex === currentText.length) {
                 typeSpeed = 3000;
                 isDeleting = true;
@@ -909,9 +1139,7 @@
         }
 
         // --- DYNAMIC LEARN TECH LOGIC ---
-        // මෙහි ඇති Array එකට ඔබට අවශ්‍ය ඕනෑම ලිපි ප්‍රමාණයක් (100ක් වුවත්) පහසුවෙන් එකතු කළ හැක.
         const learnTechData = [
-            // (කලින් තිබුණු ලිපි ටික ඒ විදියටම තියෙනවා)
             {
                 category: "Security",
                 time: "8 Min Read",
@@ -1048,7 +1276,7 @@
                     <p class="mb-3"><strong>බ්ලොක්චේන් (Blockchain)</strong> කියන්නේ අද ලෝකයේ තියෙන ආරක්ෂිතම තාක්ෂණයක්. සරලවම කිව්වොත් මේක ඩිජිටල් ලෙජරයක් (Digital Ledger) හෙවත් පොතක්. හැබැයි මේ පොතේ ලියන කිසිම දෙයක් ආයෙ කවදාවත් මකන්නවත්, වෙනස් කරන්නවත් බෑ. ඒ වගේම මේ ලෙජරය තනි සර්වර් එකක නැතිව ලෝකේ පුරාම තියෙන පරිගණක ලක්ෂ ගණනක එකවර සේව් වෙනවා (Decentralized).</p>
                     <p class="mb-3"><strong>Cryptocurrency (ක්‍රිප්ටෝ කරන්සි) යනු කුමක්ද?</strong><br>අපි පාවිච්චි කරන රුපියල්, ඩොලර් වගේ මුදල් පාලනය කරන්නේ ඒ ඒ රටවල මහ බැංකු වලින්. ඒත් Cryptocurrency (උදා: <strong>Bitcoin, Ethereum</strong>) කියන්නේ කිසිම රටකට, බැංකුවකට හෝ රජයකට අයිති නැති අන්තර්ජාලය ඇතුලේ විතරක් තියෙන ඩිජිටල් මුදල් වර්ගයක්. මේවා වැඩ කරන්නේ අර කලින් කිව්ව Blockchain තාක්ෂණය උඩයි.</p>
                     <p class="mb-3">මේවායේ වටිනාකම තීරණය වෙන්නේ මිනිස්සුන්ගේ ඉල්ලුම සහ සැපයුම (Supply & Demand) මතයි. කවුරුහරි කෙනෙක් තව කෙනෙක්ට Bitcoin යවනවා නම්, ඒක මැදින් ඉඳන් නවත්තන්න බැංකුවකට බෑ.</p>
-                    <p>අද වෙද්දි Blockchain තාක්ෂණය මුදල් යවන්න විතරක් නෙවෙයි, ඉඩම් ඔප්පු ලියාපදිංචි කරන්න, ඡන්දය ප්‍රකාශ කරන්න සහ සැපයුම් ජාල (Supply Chains) පාලනය කරන්න වගේ ගොඩක් දේවල් වලට පාවිච්චි කරන්න පර්යේෂණ කරගෙන යනවා.</p>
+                    <p>අද වෙද්දි Blockchain තාක්ෂණය මුදල් යවන්න විතරක් නෙවෙයි, ඉඩම් ඔප්පු ලියාපදිංචි ලියාපදිංචි කරන්න, ඡන්දය ප්‍රකාශ කරන්න සහ සැපයුම් ජාල (Supply Chains) පාලනය කරන්න වගේ ගොඩක් දේවල් වලට පාවිච්චි කරන්න පර්යේෂණ කරගෙන යනවා.</p>
                 `
             },
             {
@@ -1115,29 +1343,29 @@
             const container = document.getElementById('learn-articles-container');
             container.innerHTML = '';
 
-            learnTechData.forEach((article, index) => {
+            learnTechData.forEach((article) => {
                 const articleHTML = `
-                    <div class="glass-card p-6 md:p-8 rounded-2xl reveal group ${article.borderClass} transition-all flex flex-col article-card">
-                        <div class="flex gap-3 mb-4 hidden md:flex">
-                            <span class="bg-gray-800/50 ${article.colorClass} border border-gray-700 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> ${article.time}</span>
-                            <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">${article.category}</span>
+                    <div class="glass-card p-6 md:p-8 rounded-3xl reveal group ${article.borderClass} transition-all flex flex-col article-card cursor-pointer border border-white/5 hover:bg-[#111]">
+                        <div class="flex gap-3 mb-6 hidden md:flex">
+                            <span class="bg-black/50 ${article.colorClass} border border-${article.colorClass.split('-')[1]}-500/30 text-xs px-4 py-1.5 rounded-full shadow-inner font-bold"><i class="far fa-clock mr-1"></i> ${article.time}</span>
+                            <span class="bg-black/50 text-gray-300 border border-gray-700 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider">${article.category}</span>
                         </div>
-                        <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                            <div class="w-10 h-10 md:w-12 md:h-12 ${article.bgClass} rounded-lg flex items-center justify-center ${article.colorClass} shrink-0">
-                                <i class="fas ${article.icon} text-lg md:text-xl"></i>
+                        <div class="flex items-center gap-4 md:gap-5 mb-5 md:mb-6">
+                            <div class="w-14 h-14 md:w-16 md:h-16 ${article.bgClass} rounded-2xl flex items-center justify-center ${article.colorClass} shrink-0 border border-${article.colorClass.split('-')[1]}-500/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                                <i class="fas ${article.icon} text-2xl md:text-3xl drop-shadow-[0_0_10px_currentColor]"></i>
                             </div>
-                            <h3 class="text-lg md:text-2xl font-bold text-white article-title">${article.title}</h3>
+                            <h3 class="text-xl md:text-2xl font-black text-white article-title leading-snug group-hover:${article.colorClass} transition-colors">${article.title}</h3>
                         </div>
-                        <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
-                            <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none article-short">
+                        <div class="prose prose-invert text-gray-400 leading-relaxed flex-grow">
+                            <p class="mb-5 text-sm md:text-base line-clamp-3 md:line-clamp-none article-short font-medium">
                                 ${article.shortDesc}
                             </p>
-                            <details class="group mt-4">
-                                <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
+                            <details class="group/detail mt-auto">
+                                <summary class="list-none cursor-pointer ${article.colorClass} hover:text-white font-black flex items-center gap-2 transition-colors text-sm md:text-base bg-white/5 hover:bg-white/10 px-5 py-3 rounded-xl border border-white/5 w-fit">
                                     <span>සම්පූර්ණ විස්තරය කියවන්න</span>
-                                    <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                                    <i class="fas fa-chevron-down group-open/detail:rotate-180 transition-transform"></i>
                                 </summary>
-                                <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-300">
+                                <div class="mt-6 pt-6 border-t border-white/10 text-sm md:text-base text-gray-300 bg-black/30 p-5 rounded-2xl shadow-inner">
                                     ${article.fullDesc}
                                 </div>
                             </details>
@@ -1146,7 +1374,7 @@
                 `;
                 container.innerHTML += articleHTML;
             });
-            reveal(); // re-trigger animations for new elements
+            reveal(); 
         }
 
         function filterLearnArticles() {
@@ -1175,7 +1403,6 @@
         }
 
         // --- TROUBLESHOOT LOGIC ---
-        // Illi 60 atyanta sadharana IT samasyegalu mattu avugala pariharagalannu serisalagide
         const troubleshootData = [
             // HARDWARE ISSUES
             { cat: 'Hardware', q: 'Computer won\'t turn on (No lights at all)', a: 'Verify power outlet. Check PSU switch. For laptops, remove battery, hold power button for 30s, plug in charger without battery and try.' },
@@ -1250,32 +1477,33 @@
         function renderIssues(data) {
             issuesContainer.innerHTML = '';
             if(data.length === 0) {
-                issuesContainer.innerHTML = '<div class="text-center text-gray-500 py-8 italic">No matching solutions found. Please contact me directly.</div>';
+                issuesContainer.innerHTML = '<div class="text-center text-gray-500 py-10 bg-white/5 rounded-2xl border border-white/5"><i class="fas fa-search-minus text-4xl mb-3"></i><p class="font-bold">No matching solutions found.</p></div>';
                 return;
             }
             data.forEach((issue) => {
                 const item = document.createElement('div');
-                item.className = 'faq-item bg-white/5 border border-white/10 rounded-xl px-4 md:px-6 py-3 md:py-4 cursor-pointer hover:bg-white/10 transition-all group';
+                item.className = 'faq-item bg-black/40 border border-white/10 rounded-2xl px-5 md:px-8 py-4 md:py-5 cursor-pointer hover:bg-black/80 transition-all duration-300 group shadow-md hover:shadow-xl';
                 item.onclick = () => toggleAnswer(item);
                 
                 let iconClass = 'fa-question-circle text-gray-500';
-                if(issue.cat === 'Hardware') iconClass = 'fa-microchip text-techBlue';
-                if(issue.cat === 'Software') iconClass = 'fa-code text-techPurple';
-                if(issue.cat === 'Internet') iconClass = 'fa-wifi text-techPink';
+                let glowClass = '';
+                if(issue.cat === 'Hardware') { iconClass = 'fa-microchip text-techBlue'; glowClass = 'group-hover:shadow-[0_0_15px_rgba(0,242,255,0.4)]'; }
+                if(issue.cat === 'Software') { iconClass = 'fa-code text-techPurple'; glowClass = 'group-hover:shadow-[0_0_15px_rgba(188,19,254,0.4)]'; }
+                if(issue.cat === 'Internet') { iconClass = 'fa-wifi text-techPink'; glowClass = 'group-hover:shadow-[0_0_15px_rgba(255,0,85,0.4)]'; }
 
                 item.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-3 md:gap-4">
-                            <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                                <i class="fas ${iconClass} text-sm md:text-base"></i>
+                        <div class="flex items-center gap-4 md:gap-5">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${glowClass} border border-white/5">
+                                <i class="fas ${iconClass} text-lg md:text-xl drop-shadow-md"></i>
                             </div>
-                            <h4 class="text-white font-medium text-sm md:text-lg group-hover:text-techBlue transition-colors">${issue.q}</h4>
+                            <h4 class="text-white font-bold text-base md:text-lg group-hover:text-techBlue transition-colors tracking-wide leading-snug">${issue.q}</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-500 text-sm md:text-base transition-transform duration-300 ml-2"></i>
+                        <i class="fas fa-chevron-down text-gray-500 text-base md:text-lg transition-transform duration-300 ml-3 bg-white/5 w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-white/10 group-hover:text-white"></i>
                     </div>
                     <div class="faq-answer text-gray-400 mt-0">
-                        <div class="pt-3 md:pt-4 pl-9 md:pl-12 border-t border-white/5 mt-2 md:mt-3">
-                            <p class="text-xs md:text-base"><span class="text-techBlue font-bold tracking-wide text-xs uppercase">Fix:</span> ${issue.a}</p>
+                        <div class="pt-4 md:pt-5 pl-14 md:pl-16 border-t border-white/10 mt-4 md:mt-5">
+                            <p class="text-sm md:text-base leading-relaxed bg-black/50 p-4 rounded-xl shadow-inner border border-white/5"><span class="text-techBlue font-black tracking-widest text-xs uppercase bg-techBlue/10 px-2 py-1 rounded mr-2 border border-techBlue/20"><i class="fas fa-wrench mr-1"></i> Fix:</span> ${issue.a}</p>
                         </div>
                     </div>
                 `;
@@ -1294,11 +1522,15 @@
         function filterIssues(category) {
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 const btnText = btn.innerText.includes('All') ? 'all' : btn.innerText;
-                if(btnText === category || (category === 'all' && btn.innerText.includes('All'))) {
-                    btn.classList.add('active', 'border-techBlue', 'text-techBlue', 'bg-techBlue/10');
+                if(btnText.includes(category) || (category === 'all' && btn.innerText.includes('All'))) {
+                    if(category === 'all' || btnText.includes('All')) btn.classList.add('active', 'border-techBlue', 'text-techBlue', 'bg-techBlue/10', 'shadow-[0_0_15px_rgba(0,242,255,0.3)]');
+                    else if(category === 'Hardware') btn.classList.add('active', 'border-techBlue', 'text-techBlue', 'bg-techBlue/10', 'shadow-[0_0_15px_rgba(0,242,255,0.3)]');
+                    else if(category === 'Software') btn.classList.add('active', 'border-techPurple', 'text-techPurple', 'bg-techPurple/10', 'shadow-[0_0_15px_rgba(188,19,254,0.3)]');
+                    else if(category === 'Internet') btn.classList.add('active', 'border-techPink', 'text-techPink', 'bg-techPink/10', 'shadow-[0_0_15px_rgba(255,0,85,0.3)]');
+                    
                     btn.classList.remove('border-gray-700', 'text-gray-300');
                 } else {
-                    btn.classList.remove('active', 'border-techBlue', 'text-techBlue', 'bg-techBlue/10');
+                    btn.classList.remove('active', 'border-techBlue', 'text-techBlue', 'bg-techBlue/10', 'border-techPurple', 'text-techPurple', 'bg-techPurple/10', 'border-techPink', 'text-techPink', 'bg-techPink/10', 'shadow-[0_0_15px_rgba(0,242,255,0.3)]', 'shadow-[0_0_15px_rgba(188,19,254,0.3)]', 'shadow-[0_0_15px_rgba(255,0,85,0.3)]');
                     btn.classList.add('border-gray-700', 'text-gray-300');
                 }
             });
@@ -1314,7 +1546,12 @@
 
         searchInput.addEventListener('input', () => {
             const activeBtn = document.querySelector('.filter-btn.active');
-            const category = activeBtn ? (activeBtn.innerText.includes('All') ? 'all' : activeBtn.innerText) : 'all';
+            let category = 'all';
+            if(activeBtn) {
+                if(activeBtn.innerText.includes('Hardware')) category = 'Hardware';
+                else if(activeBtn.innerText.includes('Software')) category = 'Software';
+                else if(activeBtn.innerText.includes('Internet')) category = 'Internet';
+            }
             filterIssues(category);
         });
         
@@ -1323,6 +1560,7 @@
         const chatMessages = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
         
+        // Offline Fallback Data if API fails
         const botResponses = [
             { keywords: ["how are you", "kohomada", "oyata kohomada", "how u", "how r u", "kohmda", "khmda", "thathwe", "mokada wenne", "mk"], response: "මම ගොඩක් හොඳින් ඉන්නවා! 😃 අද දවස කොහොමද ඔයාට? මම AI කෙනෙක් වුණත් ඔයා එක්ක කතා කර කර ඉන්න මම ගොඩක් ආසයි." },
             { keywords: ["who are you", "kauda", "oyage nama", "oya kauda", "human", "bot", "robot", "oya manussayekda", "ai da", "nama mokakda", "who r u", "who is this"], response: "මම Tiran Kalhara ගේ AI Assistant. මම ඇත්තම මනුස්සයෙක් නෙවෙයි, ඒත් මම කතා කරන්නේ හරියටම ඔයාගේ යාළුවෙක් වගේ! 😊 මට පුළුවන් ඔයාට IT ප්‍රශ්න විසඳගන්න උදව් කරන්න." },
@@ -1348,7 +1586,7 @@
                     initChat();
                     hasInitialized = true;
                 }
-                setTimeout(() => chatInput.focus(), 300);
+                setTimeout(() => chatInput.focus(), 400);
             } else {
                 chatWindow.classList.add('scale-0');
             }
@@ -1363,12 +1601,12 @@
             else greeting = "සුබ සන්ධ්‍යාවක්!";
 
             const welcomeHTML = `
-                <div class="mb-1">${greeting} මම <strong>Mr. Kalhara AI</strong>.</div>
-                මම වෘත්තීය IT උපදේශකයෙක්. ඔයාගේ Hardware, Software හෝ Web Development ගැටළුවක් තියෙනවද? මගෙන් අහන්න.
-                <div class="mt-3 flex flex-col md:flex-row flex-wrap gap-2">
-                    <span onclick="sendQuickReply('මගේ PC එක Slow වෙලා')" class="text-[11px] md:text-xs bg-techBlue/10 border border-techBlue/30 text-techBlue px-2.5 py-1.5 rounded-lg cursor-pointer hover:bg-techBlue hover:text-black transition-all">🚀 PC Slow?</span>
-                    <span onclick="sendQuickReply('Web Site එකක් හදන්න ඕන')" class="text-[11px] md:text-xs bg-techPurple/10 border border-techPurple/30 text-techPurple px-2.5 py-1.5 rounded-lg cursor-pointer hover:bg-techPurple hover:text-white transition-all">🌐 Create a Website</span>
-                    <span onclick="sendQuickReply('Hardware රෙපෙයාර්')" class="text-[11px] md:text-xs bg-orange-500/10 border border-orange-500/30 text-orange-400 px-2.5 py-1.5 rounded-lg cursor-pointer hover:bg-orange-500 hover:text-white transition-all">🔧 Hardware Fix</span>
+                <div class="mb-2 text-lg">${greeting} මම <strong>Mr. Kalhara AI</strong>.</div>
+                මම වෘත්තීය IT උපදේශකයෙක්. ඔයාගේ Hardware, Software හෝ Web Development ගැටළුවක් තියෙනවද? මගෙන් අහන්න. 
+                <div class="mt-4 flex flex-col md:flex-row flex-wrap gap-2.5">
+                    <span onclick="sendQuickReply('මගේ PC එක Slow වෙලා')" class="interactive-element text-[11px] md:text-xs bg-techBlue/10 border border-techBlue/40 text-techBlue px-3 py-2 rounded-xl cursor-pointer hover:bg-techBlue hover:text-black transition-all shadow-sm font-bold flex items-center"><i class="fas fa-tachometer-alt mr-1.5"></i> PC Slow?</span>
+                    <span onclick="sendQuickReply('Web Site එකක් හදන්න ඕන')" class="interactive-element text-[11px] md:text-xs bg-techPurple/10 border border-techPurple/40 text-techPurple px-3 py-2 rounded-xl cursor-pointer hover:bg-techPurple hover:text-white transition-all shadow-sm font-bold flex items-center"><i class="fas fa-globe mr-1.5"></i> Create Website</span>
+                    <span onclick="sendQuickReply('Hardware රෙපෙයාර්')" class="interactive-element text-[11px] md:text-xs bg-orange-500/10 border border-orange-500/40 text-orange-400 px-3 py-2 rounded-xl cursor-pointer hover:bg-orange-500 hover:text-black transition-all shadow-sm font-bold flex items-center"><i class="fas fa-tools mr-1.5"></i> Hardware Fix</span>
                 </div>
             `;
             addMessage(welcomeHTML, 'bot');
@@ -1396,10 +1634,25 @@
             processBotResponse(text);
         }
 
-        function processBotResponse(text) {
+        async function processBotResponse(text) {
             addThinkingMessage();
-            const thinkingTime = Math.random() * (2000 - 1200) + 1200;
             
+            // 1. Try Live Gemini API First
+            try {
+                let aiResponseText = await getGeminiResponse(text);
+                
+                if (aiResponseText) {
+                    removeThinkingMessage();
+                    aiResponseText = formatMarkdownToHTML(aiResponseText);
+                    addMessage(aiResponseText, 'bot');
+                    return;
+                }
+            } catch(e) {
+                console.warn("Gemini API failed, falling back to offline logic", e);
+            }
+
+            // 2. Fallback to Offline Logic if API fails or no API Key
+            const thinkingTime = Math.random() * (2000 - 1200) + 1200;
             setTimeout(() => {
                 removeThinkingMessage();
                 
@@ -1429,11 +1682,12 @@
                         <br><br>
                         හැබැයි බයවෙන්න එපා! මගේ <strong>Boss (Tiran Kalhara)</strong> ඔයාට අනිවාර්යයෙන්ම උදව් කරයි. කරුණාකර එයාව සම්බන්ධ කරගන්න:
                         <br><br>
-                        📞 Phone / WhatsApp: <a href="https://wa.me/94703427275" target="_blank" class="text-techBlue hover:underline font-bold">070 342 7275</a><br>
-                        📧 Email: <a href="mailto:tirankalharac@gmail.com" class="text-techBlue hover:underline font-bold">tirankalharac@gmail.com</a>
-                        <br>
-                        <button onclick="document.getElementById('contact').scrollIntoView(); toggleChat();" class='chat-action-btn w-full justify-center border-techPurple text-techPurple hover:bg-techPurple hover:text-white mt-3'>
-                            <i class='fas fa-headset'></i> Boss ට පණිවිඩයක් යවන්න
+                        <div class="bg-black/40 p-3 rounded-lg border border-white/5 mt-2">
+                            📞 Phone / WhatsApp: <a href="https://wa.me/94703427275" target="_blank" class="text-techBlue hover:underline font-bold">070 342 7275</a><br>
+                            📧 Email: <a href="mailto:tirankalharac@gmail.com" class="text-techBlue hover:underline font-bold mt-1 inline-block">tirankalharac@gmail.com</a>
+                        </div>
+                        <button onclick="document.getElementById('contact').scrollIntoView(); toggleChat();" class='interactive-element chat-action-btn w-full justify-center border-techPurple text-techPurple hover:bg-techPurple hover:text-white mt-4 py-2 text-sm rounded-xl font-bold shadow-[0_0_15px_rgba(188,19,254,0.2)]'>
+                            <i class='fas fa-headset text-lg'></i> Boss ට පණිවිඩයක් යවන්න
                         </button>
                     `;
                     addMessage(fallback, 'bot');
@@ -1443,52 +1697,72 @@
 
         function handleImageUpload(input) {
             if (input.files && input.files[0]) {
+                const file = input.files[0];
                 const reader = new FileReader();
-                reader.onload = function (e) {
-                    addImageMessage(e.target.result, 'user');
+                reader.onload = async function (e) {
+                    const base64String = e.target.result;
+                    addImageMessage(base64String, 'user');
                     const scanBarContainer = document.getElementById('ai-scan-bar');
                     const scanProgress = document.getElementById('ai-scan-progress');
                     scanBarContainer.classList.remove('hidden');
                     scanProgress.style.width = '0%';
                     
-                    addMessage("<i class='fas fa-crosshairs text-techBlue animate-spin-slow'></i> AI Vision මගින් දෝෂය පරීක්ෂා කරමින් පවතී...", 'bot', true);
+                    addMessage("<i class='fas fa-crosshairs text-techBlue animate-spin-slow text-lg mr-2'></i> AI Vision මගින් දෝෂය පරීක්ෂා කරමින් පවතී...", 'bot', true);
                     
                     let progress = 0;
                     const interval = setInterval(() => {
-                        progress += 10;
+                        progress += 5;
+                        if(progress > 90) progress = 90;
                         scanProgress.style.width = progress + '%';
-                        if(progress >= 100) {
-                            clearInterval(interval);
-                            setTimeout(() => {
-                                scanBarContainer.classList.add('hidden');
-                                const tempMsg = document.getElementById('temp-scan-msg');
-                                if(tempMsg) tempMsg.remove();
-                                provideImageSolution();
-                            }, 500);
+                    }, 200);
+
+                    // Call Actual Image API
+                    let aiSolution = await getGeminiImageResponse(base64String, file.type);
+                    
+                    clearInterval(interval);
+                    scanProgress.style.width = '100%';
+                    
+                    setTimeout(() => {
+                        scanBarContainer.classList.add('hidden');
+                        const tempMsg = document.getElementById('temp-scan-msg');
+                        if(tempMsg) tempMsg.remove();
+                        
+                        if (aiSolution) {
+                            aiSolution = formatMarkdownToHTML(aiSolution);
+                            const formattedSolution = `
+                                <div class="space-y-3">
+                                    <p class="font-black text-techBlue text-base flex items-center gap-2 border-b border-techBlue/20 pb-2"><i class="fas fa-microchip text-xl"></i> AI Analysis Complete</p>
+                                    <div class="text-sm md:text-base text-gray-200 leading-relaxed">${aiSolution}</div>
+                                </div>
+                            `;
+                            addMessage(formattedSolution, 'bot');
+                        } else {
+                            provideImageSolutionOffline(); // Offline Fallback
                         }
-                    }, 150);
+                    }, 500);
                 };
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(file);
             }
             input.value = '';
         }
 
         function addMessage(html, sender, isTemp = false) {
             const div = document.createElement('div');
-            div.className = `flex gap-2.5 ${sender === 'user' ? 'justify-end' : ''} animate-fade-in-up mt-2`;
+            div.className = `flex gap-3 md:gap-4 ${sender === 'user' ? 'justify-end' : ''} animate-fade-in-up mt-4`;
             if(isTemp) div.id = 'temp-scan-msg';
             
             let content = '';
             if(sender === 'bot') {
                 content = `
-                    <div class="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-techBlue to-techPurple flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0 shadow-[0_0_10px_rgba(0,242,255,0.3)] mt-1"><i class="fas fa-robot"></i></div>
-                    <div class="bg-[#1a1a1a] border border-white/10 p-3 md:p-4 rounded-2xl rounded-tl-sm text-xs md:text-sm text-gray-200 max-w-[85%] shadow-xl leading-relaxed">
-                        ${html}
+                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-techBlue to-techPurple flex items-center justify-center text-black text-xs md:text-sm font-bold flex-shrink-0 shadow-[0_0_15px_rgba(0,242,255,0.5)] mt-1 border border-white/20"><i class="fas fa-robot"></i></div>
+                    <div class="bg-[#111] border border-white/10 p-4 md:p-5 rounded-[1.5rem] rounded-tl-sm text-sm md:text-base text-gray-200 max-w-[85%] shadow-2xl leading-relaxed overflow-hidden break-words relative group">
+                        <div class="absolute inset-0 bg-gradient-to-br from-techBlue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="relative z-10">${html}</div>
                     </div>
                 `;
             } else {
                 content = `
-                    <div class="bg-gradient-to-r from-gray-800 to-gray-700 border border-gray-600 p-2.5 md:p-3 rounded-2xl rounded-tr-sm text-xs md:text-sm text-white max-w-[85%] shadow-lg">
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-600/50 p-3 md:p-4 rounded-[1.5rem] rounded-tr-sm text-sm md:text-base text-white max-w-[85%] shadow-xl shadow-black/50">
                         ${html}
                     </div>
                 `;
@@ -1501,11 +1775,11 @@
 
         function addImageMessage(imgSrc, sender) {
             const div = document.createElement('div');
-            div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''} animate-fade-in-up mt-2`;
+            div.className = `flex gap-2 ${sender === 'user' ? 'justify-end' : ''} animate-fade-in-up mt-4`;
             
             const content = `
-                <div class="bg-gray-800 border border-gray-600 p-1.5 rounded-2xl rounded-tr-sm text-xs md:text-sm text-white max-w-[80%] shadow-lg">
-                    <img src="${imgSrc}" class="rounded-xl max-h-32 md:max-h-48 object-cover">
+                <div class="bg-gray-800 border border-gray-600 p-2 rounded-2xl rounded-tr-sm max-w-[80%] shadow-xl">
+                    <img src="${imgSrc}" class="rounded-xl max-h-40 md:max-h-56 object-cover border border-white/10">
                 </div>
             `;
             
@@ -1517,10 +1791,10 @@
         let thinkingDiv = null;
         function addThinkingMessage() {
             thinkingDiv = document.createElement('div');
-            thinkingDiv.className = `flex gap-2.5 animate-fade-in-up mt-2`;
+            thinkingDiv.className = `flex gap-3 animate-fade-in-up mt-4`;
             thinkingDiv.innerHTML = `
-                <div class="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gradient-to-br from-techBlue to-techPurple flex items-center justify-center text-black text-[10px] md:text-xs font-bold flex-shrink-0 mt-1"><i class="fas fa-robot"></i></div>
-                <div class="bg-[#1a1a1a] border border-white/10 p-3 md:p-4 rounded-2xl rounded-tl-sm flex items-center shadow-lg">
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-techBlue to-techPurple flex items-center justify-center text-black text-xs md:text-sm font-bold flex-shrink-0 mt-1 shadow-[0_0_10px_rgba(0,242,255,0.3)]"><i class="fas fa-robot"></i></div>
+                <div class="bg-[#111] border border-white/10 p-4 md:p-5 rounded-[1.5rem] rounded-tl-sm flex items-center shadow-xl">
                     <div class="typing-indicator">
                         <div class="typing-dot"></div>
                         <div class="typing-dot"></div>
@@ -1539,26 +1813,15 @@
             }
         }
 
-        function provideImageSolution() {
+        // Offline Image Fallback
+        function provideImageSolutionOffline() {
             const solutionHTML = `
-                <div class="space-y-2">
-                    <p class="font-bold text-techBlue text-sm flex items-center gap-2"><i class="fas fa-microchip text-lg"></i> AI Analysis Complete</p>
-                    <p class="text-xs md:text-sm text-gray-300">මම ඔයාගේ Screenshot එක විශ්ලේෂණය කළා. මෙය බොහෝදුරට <strong>System Driver හෝ Display Adapter</strong> දෝෂයක්. පහත පියවර අනුගමනය කරන්න:</p>
-                    
-                    <div class="bg-[#050505] p-3 rounded-lg border border-gray-700 font-mono text-[10px] md:text-xs text-green-400 mt-2 shadow-inner">
-                        <p class="text-gray-500 mb-1">// 1. Graphic Drivers Restart කිරීම</p>
-                        <p class="text-techBlue">> Press: Win + Ctrl + Shift + B</p>
-                        <br>
-                        <p class="text-gray-500 mb-1">// 2. System Corruptions සෑදීම</p>
-                        <p>> Open CMD (Run as Administrator)</p>
-                        <p>> Type: <span class="text-white">sfc /scannow</span></p>
-                    </div>
-
-                    <p class="text-[10px] md:text-[11px] mt-2 text-gray-400 border-l-2 border-techPink pl-2">මෙයින් ගැටළුව විසඳුණේ නැතිනම්, එය Hardware දෝෂයක් විය හැක (උදා: RAM හෝ GPU Failure).</p>
-                    
-                    <div class="mt-3 text-center">
-                        <button onclick="document.getElementById('contact').scrollIntoView(); toggleChat();" class="chat-action-btn w-full justify-center border-techPurple text-techPurple hover:bg-techPurple hover:text-white">
-                            <i class="fas fa-headset"></i> වැඩිදුර සහාය සඳහා Tiran අමතන්න
+                <div class="space-y-3">
+                    <p class="font-black text-techBlue text-base flex items-center gap-2 border-b border-techBlue/20 pb-2"><i class="fas fa-microchip text-xl"></i> Offline Scan Complete</p>
+                    <p class="text-sm md:text-base text-gray-300 leading-relaxed">API සම්බන්ධතාවක් නොමැත. මෙය බොහෝදුරට <strong>System Driver හෝ Display Adapter</strong> දෝෂයක් විය හැක.</p>
+                    <div class="mt-4 text-center">
+                        <button onclick="document.getElementById('contact').scrollIntoView(); toggleChat();" class="interactive-element chat-action-btn w-full justify-center border-techPurple text-techPurple hover:bg-techPurple hover:text-white py-2.5 rounded-xl font-bold shadow-[0_0_15px_rgba(188,19,254,0.2)]">
+                            <i class="fas fa-headset text-lg"></i> වැඩිදුර සහාය සඳහා Tiran අමතන්න
                         </button>
                     </div>
                 </div>
@@ -1581,15 +1844,16 @@
         function generateFact() {
             const display = document.getElementById('fact-display');
             display.style.opacity = '0';
+            display.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 const randomFact = techFacts[Math.floor(Math.random() * techFacts.length)];
                 display.innerText = '"' + randomFact + '"';
                 display.style.opacity = '1';
-            }, 300);
+                display.style.transform = 'scale(1)';
+            }, 400);
         }
 
         // --- FUN ZONE LOGIC (Mini Quiz - UPDATED WITH LARGE QUESTION BANK) ---
-        // විශාල ප්‍රශ්න බැංකුව (මෙහි ප්‍රශ්න 30කට වඩා ඇත)
         const allQuizQuestions = [
             { q: "පරිගණකයක තාවකාලික මතකය (Short-term memory) ලෙස හඳුන්වන්නේ කුමක්ද?", options: ["Hard Disk", "RAM", "Processor", "Motherboard"], answer: 1 },
             { q: "URL යන්නෙහි දිගු නම කුමක්ද?", options: ["Uniform Resource Locator", "Universal Reference Link", "Unified Resource Line", "Ultra Reliable Link"], answer: 0 },
@@ -1628,9 +1892,7 @@
         let score = 0;
 
         function startQuiz() {
-            // ප්‍රශ්න 30න් අහඹු ලෙස (random) ප්‍රශ්න 5ක් තෝරාගැනීම
             currentSessionQuestions = [...allQuizQuestions].sort(() => 0.5 - Math.random()).slice(0, 5);
-            
             currentQuestion = 0;
             score = 0;
             document.getElementById('quiz-intro').classList.add('hidden');
@@ -1647,13 +1909,11 @@
             
             const optionsDiv = document.getElementById('quiz-options');
             optionsDiv.innerHTML = '';
-            
-            // කලින් තිබුණ Feedback එක මකා දැමීම
             document.getElementById('quiz-feedback').innerHTML = '';
             
             qData.options.forEach((opt, index) => {
                 const btn = document.createElement('button');
-                btn.className = 'w-full text-left bg-white/5 hover:bg-techBlue/10 border border-white/10 hover:border-techBlue text-gray-300 hover:text-white px-4 py-3 rounded-xl transition-all';
+                btn.className = 'interactive-element w-full text-left bg-black/40 hover:bg-techBlue/10 border-2 border-gray-700 hover:border-techBlue text-gray-300 hover:text-white px-5 py-4 rounded-xl transition-all shadow-sm hover:shadow-[0_0_15px_rgba(0,242,255,0.3)] font-medium text-base';
                 btn.innerText = opt;
                 btn.onclick = () => checkAnswer(index, btn);
                 optionsDiv.appendChild(btn);
@@ -1666,43 +1926,40 @@
             const allBtns = document.getElementById('quiz-options').children;
             const feedbackDiv = document.getElementById('quiz-feedback');
             
-            // උත්තරයක් දුන්නට පස්සේ අනිත් බොත්තම් ඔබන්න බැරි වෙන්න හදනවා
             for(let btn of allBtns) {
                 btn.onclick = null;
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
+                btn.classList.remove('hover:bg-techBlue/10', 'hover:border-techBlue', 'hover:text-white', 'hover:shadow-[0_0_15px_rgba(0,242,255,0.3)]');
             }
 
             if(selectedIndex === correctIndex) {
-                // නිවැරදි උත්තරයක් දුන් විට
-                btnElement.classList.replace('bg-white/5', 'bg-green-500/20');
-                btnElement.classList.replace('border-white/10', 'border-green-500');
-                btnElement.classList.add('text-green-400');
+                btnElement.classList.replace('bg-black/40', 'bg-green-500/20');
+                btnElement.classList.replace('border-gray-700', 'border-green-500');
+                btnElement.classList.add('text-green-400', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]', 'opacity-100');
+                btnElement.classList.remove('opacity-50');
                 score++;
                 document.getElementById('quiz-score-badge').innerText = 'Score: ' + score;
                 
-                // Feedback පෙන්වීම
-                feedbackDiv.innerHTML = '<p class="text-green-400 font-bold text-lg mt-2 animate-bounce">✅ නිවැරදියි! නියමයි.</p>';
+                feedbackDiv.innerHTML = '<p class="text-green-400 font-black text-xl mt-2 animate-bounce flex items-center justify-center"><i class="fas fa-check-circle mr-2 text-2xl"></i> නිවැරදියි! නියමයි.</p>';
             } else {
-                // වැරදි උත්තරයක් දුන් විට
-                btnElement.classList.replace('bg-white/5', 'bg-red-500/20');
-                btnElement.classList.replace('border-white/10', 'border-red-500');
-                btnElement.classList.add('text-red-400');
+                btnElement.classList.replace('bg-black/40', 'bg-red-500/20');
+                btnElement.classList.replace('border-gray-700', 'border-red-500');
+                btnElement.classList.add('text-red-400', 'opacity-100');
+                btnElement.classList.remove('opacity-50');
                 
-                // නිවැරදි එකට කොළ පාට දැමීම
-                allBtns[correctIndex].classList.replace('bg-white/5', 'bg-green-500/20');
-                allBtns[correctIndex].classList.replace('border-white/10', 'border-green-500');
-                allBtns[correctIndex].classList.add('text-green-400');
+                allBtns[correctIndex].classList.replace('bg-black/40', 'bg-green-500/20');
+                allBtns[correctIndex].classList.replace('border-gray-700', 'border-green-500');
+                allBtns[correctIndex].classList.add('text-green-400', 'opacity-100', 'shadow-[0_0_15px_rgba(74,222,128,0.3)]');
+                allBtns[correctIndex].classList.remove('opacity-50');
 
-                // පැහැදිලිව Feedback පෙන්වීම (වැරදි බව සහ නිවැරදි උත්තරය)
                 feedbackDiv.innerHTML = `
-                    <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-3 w-full animate-fade-in-up">
-                        <p class="text-red-400 font-bold text-lg mb-1">❌ වැරදියි!</p>
-                        <p class="text-gray-300 text-sm">නිවැරදි පිළිතුර: <span class="text-green-400 font-bold text-base">${qData.options[correctIndex]}</span></p>
+                    <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-4 w-full animate-fade-in-up shadow-inner">
+                        <p class="text-red-400 font-black text-xl mb-1 flex items-center justify-center"><i class="fas fa-times-circle mr-2 text-2xl"></i> වැරදියි!</p>
+                        <p class="text-gray-300 text-sm mt-2">නිවැරදි පිළිතුර: <span class="text-green-400 font-bold text-lg bg-black/40 px-2 py-0.5 rounded ml-1">${qData.options[correctIndex]}</span></p>
                     </div>
                 `;
             }
 
-            // තත්පර 2.5ක් නිවැරදි උත්තරය කියවන්න දීලා ඊළඟ ප්‍රශ්නෙට යනවා
             setTimeout(() => {
                 currentQuestion++;
                 if(currentQuestion < currentSessionQuestions.length) {
@@ -1710,7 +1967,7 @@
                 } else {
                     showQuizResult();
                 }
-            }, 2500);
+            }, 3000);
         }
 
         function showQuizResult() {
@@ -1725,13 +1982,13 @@
             const title = document.getElementById('quiz-result-title');
             
             if(score === currentSessionQuestions.length) {
-                icon.className = 'fas fa-crown text-5xl text-yellow-400 mb-4';
+                icon.className = 'fas fa-crown text-7xl text-yellow-400 mb-6 drop-shadow-[0_0_30px_rgba(250,204,21,0.8)] animate-bounce';
                 title.innerText = 'Tech Genius! 👑';
             } else if(score >= currentSessionQuestions.length / 2) {
-                icon.className = 'fas fa-medal text-5xl text-techBlue mb-4';
+                icon.className = 'fas fa-medal text-7xl text-techBlue mb-6 drop-shadow-[0_0_30px_rgba(0,242,255,0.6)] animate-pulse';
                 title.innerText = 'Good Job! 👍';
             } else {
-                icon.className = 'fas fa-book-reader text-5xl text-gray-400 mb-4';
+                icon.className = 'fas fa-book-reader text-7xl text-gray-500 mb-6 drop-shadow-md';
                 title.innerText = 'Keep Learning! 📚';
             }
         }
@@ -1751,24 +2008,24 @@
             
             if(pwd.length === 0) {
                 bar.style.width = '0%';
-                bar.className = 'h-full rounded-full transition-all duration-300 w-0';
+                bar.className = 'h-full rounded-full transition-all duration-500 w-0 relative overflow-hidden bg-gray-600';
                 text.innerText = '---';
-                text.className = 'text-gray-500 font-bold text-lg mb-2';
+                text.className = 'text-gray-600 font-black text-2xl mb-4 tracking-wider uppercase';
             } else if(strength <= 2) {
                 bar.style.width = '30%';
-                bar.className = 'bg-red-500 h-full rounded-full transition-all duration-300 shadow-[0_0_10px_#ef4444]';
-                text.innerText = 'Weak (දුර්වලයි)';
-                text.className = 'text-red-500 font-bold text-lg mb-2';
+                bar.className = 'bg-gradient-to-r from-red-600 to-red-500 h-full rounded-full transition-all duration-500 shadow-[0_0_15px_#ef4444] relative overflow-hidden';
+                text.innerText = 'Weak';
+                text.className = 'text-red-500 font-black text-2xl mb-4 tracking-wider uppercase drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]';
             } else if(strength === 3 || strength === 4) {
                 bar.style.width = '65%';
-                bar.className = 'bg-yellow-500 h-full rounded-full transition-all duration-300 shadow-[0_0_10px_#eab308]';
-                text.innerText = 'Medium (මධ්‍යමයි)';
-                text.className = 'text-yellow-500 font-bold text-lg mb-2';
+                bar.className = 'bg-gradient-to-r from-yellow-600 to-yellow-400 h-full rounded-full transition-all duration-500 shadow-[0_0_15px_#eab308] relative overflow-hidden';
+                text.innerText = 'Medium';
+                text.className = 'text-yellow-400 font-black text-2xl mb-4 tracking-wider uppercase drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]';
             } else {
                 bar.style.width = '100%';
-                bar.className = 'bg-green-500 h-full rounded-full transition-all duration-300 shadow-[0_0_10px_#22c55e]';
-                text.innerText = 'Strong (ශක්තිමත්)';
-                text.className = 'text-green-500 font-bold text-lg mb-2';
+                bar.className = 'bg-gradient-to-r from-green-600 to-green-400 h-full rounded-full transition-all duration-500 shadow-[0_0_15px_#22c55e] relative overflow-hidden';
+                text.innerText = 'Strong';
+                text.className = 'text-green-400 font-black text-2xl mb-4 tracking-wider uppercase drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]';
             }
         }
 
@@ -1785,38 +2042,39 @@
             const bestDisplay = document.getElementById('reaction-best');
 
             if (reactionState === 'idle') {
-                // Changing to red
-                box.className = 'w-full h-32 md:h-40 rounded-xl bg-red-600 flex items-center justify-center cursor-pointer transition-colors select-none mb-6 border border-red-500 shadow-[0_0_20px_rgba(220,38,38,0.4)]';
+                box.className = 'w-full h-40 md:h-48 rounded-2xl bg-gradient-to-b from-red-500 to-red-700 flex items-center justify-center cursor-pointer transition-all duration-200 select-none mb-8 border-2 border-red-400 shadow-[0_0_30px_rgba(239,68,68,0.6)] group relative overflow-hidden scale-[0.98]';
                 msg.innerText = 'Wait for Green...';
+                msg.className = 'text-white font-black text-2xl md:text-3xl pointer-events-none z-10 drop-shadow-md animate-pulse';
                 reactionState = 'waiting';
                 
-                // Random time between 2 to 5 seconds
                 const waitTime = Math.floor(Math.random() * 3000) + 2000; 
                 reactionTimeout = setTimeout(() => {
-                    // Changing to green
-                    box.className = 'w-full h-32 md:h-40 rounded-xl bg-green-500 flex items-center justify-center cursor-pointer transition-colors select-none mb-6 border border-green-400 shadow-[0_0_25px_rgba(34,197,94,0.6)]';
+                    box.className = 'w-full h-40 md:h-48 rounded-2xl bg-gradient-to-b from-green-400 to-green-600 flex items-center justify-center cursor-pointer transition-all duration-100 select-none mb-8 border-2 border-green-300 shadow-[0_0_40px_rgba(74,222,128,0.8)] group relative overflow-hidden scale-100';
                     msg.innerText = 'CLICK NOW!';
+                    msg.className = 'text-white font-black text-4xl md:text-5xl pointer-events-none z-10 drop-shadow-lg';
                     reactionStartTime = Date.now();
                     reactionState = 'ready';
                 }, waitTime);
 
             } else if (reactionState === 'waiting') {
-                // Clicked too early
                 clearTimeout(reactionTimeout);
-                box.className = 'w-full h-32 md:h-40 rounded-xl bg-blue-600/80 flex items-center justify-center cursor-pointer transition-colors select-none mb-6 border border-white/10 hover:brightness-110';
+                box.className = 'w-full h-40 md:h-48 rounded-2xl bg-gradient-to-b from-blue-700 to-blue-900 flex items-center justify-center cursor-pointer transition-all duration-200 select-none mb-8 border-2 border-white/10 hover:brightness-110 shadow-lg group relative overflow-hidden';
                 msg.innerText = 'Too soon! Click to try again.';
+                msg.className = 'text-white font-bold text-xl md:text-2xl pointer-events-none z-10 drop-shadow-md';
                 reactionState = 'idle';
 
             } else if (reactionState === 'ready') {
-                // Success click
                 const reactionTime = Date.now() - reactionStartTime;
-                box.className = 'w-full h-32 md:h-40 rounded-xl bg-blue-600/80 flex items-center justify-center cursor-pointer transition-colors select-none mb-6 border border-white/10 hover:brightness-110';
+                box.className = 'w-full h-40 md:h-48 rounded-2xl bg-gradient-to-b from-blue-600 to-blue-800 flex items-center justify-center cursor-pointer transition-all duration-200 select-none mb-8 border-2 border-white/10 hover:brightness-110 shadow-lg group relative overflow-hidden';
                 msg.innerText = `${reactionTime} ms! Click to play again.`;
+                msg.className = 'text-white font-black text-2xl md:text-3xl pointer-events-none z-10 drop-shadow-md group-hover:scale-105 transition-transform';
                 lastDisplay.innerText = `${reactionTime} ms`;
                 
                 if (reactionTime < bestReaction) {
                     bestReaction = reactionTime;
                     bestDisplay.innerText = `${bestReaction} ms`;
+                    bestDisplay.classList.add('animate-bounce');
+                    setTimeout(() => bestDisplay.classList.remove('animate-bounce'), 1000);
                 }
                 reactionState = 'idle';
             }
@@ -1840,9 +2098,9 @@
             
             gameDeck.forEach((icon, index) => {
                 let card = document.createElement('div');
-                card.className = 'memory-card text-white';
+                card.className = 'interactive-element memory-card text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]';
                 card.dataset.icon = icon;
-                card.innerHTML = `<i class="fab ${icon}"></i>`;
+                card.innerHTML = `<i class="fab ${icon} text-3xl"></i>`;
                 card.onclick = () => flipCard(card);
                 memoryBoard.appendChild(card);
             });
@@ -1854,7 +2112,7 @@
                 flippedCards.push(card);
                 
                 if (flippedCards.length === 2) {
-                    setTimeout(checkMatch, 500);
+                    setTimeout(checkMatch, 600);
                 }
             }
         }
@@ -1894,6 +2152,7 @@
             document.getElementById('typing-input').disabled = false;
             document.getElementById('typing-time').innerText = '0.0s';
             document.getElementById('typing-wpm').innerText = '0';
+            document.getElementById('typing-input').classList.remove('border-green-400', 'shadow-[0_0_25px_rgba(74,222,128,0.4)]');
             clearInterval(typingTimer);
             typingStartTime = null;
         }
@@ -1913,11 +2172,17 @@
             if (input === currentQuote) {
                 clearInterval(typingTimer);
                 document.getElementById('typing-input').disabled = true;
+                document.getElementById('typing-input').classList.add('border-green-400', 'shadow-[0_0_25px_rgba(74,222,128,0.4)]');
                 
                 const timeTaken = (new Date().getTime() - typingStartTime) / 1000 / 60;
                 const wordsCount = currentQuote.length / 5;
                 const wpm = Math.round(wordsCount / timeTaken);
                 document.getElementById('typing-wpm').innerText = wpm;
+                
+                // Add success effect
+                const wpmElement = document.getElementById('typing-wpm');
+                wpmElement.classList.add('animate-ping', 'text-2xl');
+                setTimeout(() => wpmElement.classList.remove('animate-ping', 'text-2xl'), 1000);
                 
                 setTimeout(initTyping, 3000); 
             }
