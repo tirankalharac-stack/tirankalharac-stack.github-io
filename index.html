@@ -459,13 +459,23 @@
         </div>
     </section>
 
-    <!-- LEARN TECH SECTION -->
+    <!-- NEW DYNAMIC LEARN TECH SECTION -->
     <section id="learn" class="py-24 relative bg-black/50 backdrop-blur-sm border-t border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 reveal">
+            <div class="text-center mb-10 reveal">
                 <span class="text-green-400 font-bold tracking-widest uppercase text-sm">Knowledge Hub</span>
                 <h2 class="text-4xl font-bold text-white mt-2">Learn <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-techBlue">Technology</span></h2>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">සරල සිංහලෙන් තාක්ෂණය ඉගෙන ගන්න. (විස්තරාත්මක ලිපි 20+)</p>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">සරල සිංහලෙන් තාක්ෂණය ඉගෙන ගන්න. දැන් ලිපි දහස් ගණනක් වුවද මෙතැනින් පහසුවෙන් සොයා කියවිය හැක.</p>
+            </div>
+
+            <!-- Learn Tech Search Bar -->
+            <div class="mb-12 max-w-2xl mx-auto relative group reveal">
+                <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-techBlue rounded-full opacity-30 blur group-hover:opacity-60 transition duration-1000 group-hover:duration-200 hidden md:block"></div>
+                <div class="relative flex items-center bg-black/80 rounded-full p-2 border border-gray-700 md:border-none shadow-lg">
+                    <i class="fas fa-search text-green-400 ml-4 text-xl"></i>
+                    <input type="text" id="learnSearchInput" placeholder="ඔබට ඉගෙනීමට අවශ්‍ය දේ සොයන්න (උදා: Cyber Security, Web)..." 
+                        class="w-full bg-transparent text-white px-4 py-3 text-sm md:text-base focus:outline-none placeholder-gray-500" oninput="filterLearnArticles()">
+                </div>
             </div>
 
             <!-- Ad Space Top -->
@@ -473,205 +483,13 @@
                 <p>Google AdSense Banner Area</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-                <!-- Article 1 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-green-500/50 transition-all flex flex-col">
-                    <div class="flex gap-3 mb-4 hidden md:flex">
-                        <span class="bg-gray-800/50 text-green-400 border border-green-500/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 3 Min Read</span>
-                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Basics</span>
-                    </div>
-                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400 shrink-0">
-                            <i class="fas fa-code text-lg md:text-xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-2xl font-bold text-white">Software කියන්නේ මොකක්ද?</h3>
-                    </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
-                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
-                            සරලවම කිව්වොත්, <strong>Software (මෘදුකාංග)</strong> කියන්නේ පරිගණකයට හෝ ෆෝන් එකට "මොකක්ද කරන්න ඕන" කියලා කියලා දෙන උපදෙස් මාලාවක්. අපි දකින Hardware (මවුස්, කීබෝඩ්) වලට පණ දෙන්නේ මේ සොෆ්ට්වෙයාර් තමයි.
-                        </p>
-                        <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
-                                <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
-                            </summary>
-                            <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>Software ප්‍රධාන වර්ග 3ක් ඇත:</strong></p>
-                                <ul class="list-disc pl-5 space-y-2 mb-4">
-                                    <li><strong>System Software:</strong> මේවා තමයි පරිගණකයේ අඩිතාලම. Hardware පාලනය කරන්නේ මේවායින්. උදාහරණ: Windows, macOS, Android, Linux. මේවා නැතුව පරිගණකයක් On වෙන්නේ නෑ.</li>
-                                    <li><strong>Application Software:</strong> අපි අපේ එදිනෙදා වැඩ කරගන්න දාගන්න මෘදුකාංග. උදාහරණ: MS Word, Photoshop, Google Chrome, Games.</li>
-                                    <li><strong>Programming Software:</strong> අනිත් මෘදුකාංග හදන්න උදව් වෙන මෘදුකාංග. උදාහරණ: VS Code, Python Compilers.</li>
-                                </ul>
-                                <div class="w-full h-20 bg-gray-900/30 border border-gray-800 border-dashed rounded-lg my-4 flex items-center justify-center text-gray-600 text-xs">
-                                    <p>In-Article Ad Space</p>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Article 2 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-techBlue/50 transition-all delay-100 flex flex-col">
-                    <div class="flex gap-3 mb-4 hidden md:flex">
-                        <span class="bg-gray-800/50 text-techBlue border border-techBlue/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 5 Min Read</span>
-                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Web</span>
-                    </div>
-                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-techBlue/20 rounded-lg flex items-center justify-center text-techBlue shrink-0">
-                            <i class="fas fa-globe text-lg md:text-xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-2xl font-bold text-white">Web Site එකක් හැදෙන්නේ කොහොමද?</h3>
-                    </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
-                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
-                            Website (වෙබ් අඩවියක්) කියන්නේ අන්තර්ජාලය හරහා ලෝකයේ ඕනෑම කෙනෙක්ට පිවිසිය හැකි, එකිනෙකට සම්බන්ධ පිටු (Web Pages) සමූහයක්. මේක හරියට අන්තර්ජාලයේ තියෙන ඩිජිටල් පොතක් වගේ.
-                        </p>
-                        <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
-                                <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
-                            </summary>
-                            <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>වෙබ් අඩවියක් හදන්න ප්‍රධාන තාක්ෂණ 3ක් ඕන වෙනවා:</strong></p>
-                                <ul class="list-none space-y-3 mb-4">
-                                    <li class="flex gap-3">
-                                        <span class="font-bold text-orange-500 hidden md:block">HTML:</span>
-                                        <span>ගෙයක් හදද්දී බිත්ති බඳිනවා වගේ, වෙබ් සයිට් එකේ ඇටසැකිල්ල (Structure) හදන්නේ HTML වලින්.</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="font-bold text-blue-500 hidden md:block">CSS:</span>
-                                        <span>ගෙදර පාට කරලා, ලස්සන කරලා, සැරසිලි කරනවා වගේ වැඩේ කරන්නේ CSS වලින්.</span>
-                                    </li>
-                                    <li class="flex gap-3">
-                                        <span class="font-bold text-yellow-400 hidden md:block">JavaScript:</span>
-                                        <span>ගෙදරට විදුලිය දීලා, ෆෑන්, ලයිට් වැඩ කරන තත්ත්වයට ගන්නවා වගේ, වෙබ් සයිට් එකට "පණ දෙන්නේ" JS වලින්.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Article 3 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-techPurple/50 transition-all delay-200 flex flex-col">
-                    <div class="flex gap-3 mb-4 hidden md:flex">
-                        <span class="bg-gray-800/50 text-techPurple border border-techPurple/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 4 Min Read</span>
-                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Future</span>
-                    </div>
-                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-techPurple/20 rounded-lg flex items-center justify-center text-techPurple shrink-0">
-                            <i class="fas fa-robot text-lg md:text-xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-2xl font-bold text-white">AI (කෘතිම බුද්ධිය) යනු කුමක්ද?</h3>
-                    </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
-                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
-                            AI හෙවත් Artificial Intelligence කියන්නේ පරිගණකයකට හෝ යන්ත්‍රයකට මිනිසෙකු මෙන් සිතීමට, ඉගෙන ගැනීමට සහ තීරණ ගැනීමට හැකි හැකියාව ලබා දීමයි. අද වන විට Phone එකේ Face Unlock එකේ සිට ස්වයංක්‍රීයව යන කාර් දක්වා හැමතැනම AI තියෙනවා.
-                        </p>
-                        <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
-                                <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
-                            </summary>
-                            <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3 hidden md:block"><strong>AI වැඩ කරන්නේ කොහොමද?</strong><br>AI එකක් ඉගෙන ගන්නේ දත්ත (Data) වලින්. මේකට Machine Learning කියලා කියනවා.</p>
-                                <p class="mb-3"><strong>AI වර්ග:</strong></p>
-                                <ul class="list-disc pl-5 space-y-2 mb-4">
-                                    <li><strong>Narrow AI:</strong> එක වැඩක් විතරක් කරන්න පුළුවන් AI. උදා: Siri, Google Assistant, ChatGPT. මේවාට හැඟීම් දැනෙන්නේ නෑ.</li>
-                                    <li><strong>General AI:</strong> මිනිහෙක් වගේම ඕනම වැඩක් කරන්න පුළුවන්, තනිවම හිතන්න පුළුවන් AI. මේවා තාම පර්යේෂණ මට්ටමේ තියෙන්නේ.</li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Article 4 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-teal-500/50 transition-all flex flex-col">
-                    <div class="flex gap-3 mb-4 hidden md:flex">
-                        <span class="bg-gray-800/50 text-teal-400 border border-teal-500/20 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> 6 Min Read</span>
-                        <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">Money</span>
-                    </div>
-                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-teal-500/20 rounded-lg flex items-center justify-center text-teal-500 shrink-0">
-                            <i class="fas fa-dollar-sign text-lg md:text-xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-2xl font-bold text-white">Freelancing සරලව</h3>
-                    </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
-                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
-                            Freelancing කියන්නේ ස්ථිර බොස් කෙනෙක් යටතේ රස්සාවක් නොකර, තමන්ට කැමති වෙලාවක, තමන් දන්නා හැකියාව පාවිච්චි කරලා අන්තර්ජාලය හරහා විවිධ රටවල පුද්ගලයින්ට වැඩ කරලා මුදල් උපයන ක්‍රමයක්.
-                        </p>
-                        <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
-                                <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
-                            </summary>
-                            <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <p class="mb-3"><strong>පටන් ගන්නේ කොහොමද?</strong></p>
-                                <ol class="list-decimal pl-5 space-y-2 mb-4">
-                                    <li><strong>හැකියාවක් හදාගන්න:</strong> Graphic Design, Web Development, Video Editing වගේ දෙයක් මුලින්ම හොඳට ඉගෙන ගන්න.</li>
-                                    <li><strong>Profile එකක් හදන්න:</strong> Fiverr, Upwork, Freelancer.com වගේ වෙබ් අඩවියක ගිණුමක් හදාගන්න.</li>
-                                    <li><strong>Orders ලබාගන්න:</strong> හොඳ Portfolio එකක් පෙන්නලා පාරිභෝගිකයන් ආකර්ෂණය කරගන්න.</li>
-                                </ol>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Article 5 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-orange-500/50 transition-all flex flex-col">
-                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500 shrink-0">
-                            <i class="fas fa-hdd text-lg md:text-xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-2xl font-bold text-white">SSD සහ HDD අතර වෙනස</h3>
-                    </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
-                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
-                            පරිගණකයක් Slow වෙන්න ප්‍රධානම හේතුවක් තමයි පරණ HDD (Hard Disk Drive) තාක්ෂණය භාවිතා කිරීම. අද කාලේ අලුත් පරිගණක වල එන්නේ SSD (Solid State Drive).
-                        </p>
-                        <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
-                                <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
-                            </summary>
-                            <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <ul class="list-disc pl-5 space-y-2 mb-4">
-                                    <li><strong>HDD (Hard Disk Drive):</strong> මේක ඇතුලේ තියෙන්නේ වේගයෙන් කැරකෙන චුම්බක තැටි. මේක යාන්ත්‍රික නිසා වේගය අඩුයි.</li>
-                                    <li><strong>SSD (Solid State Drive):</strong> මේකේ කැරකෙන කොටස් මුකුත් නෑ. Pen Drive එකක් වගේ මෙමරි චිප්ස් වලින් හැදිලා තියෙන්නේ. ඒ නිසා HDD එකට වඩා 10 ගුණයක් විතර වේගවත්.</li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- Article 6 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl reveal group hover:border-blue-500/50 transition-all flex flex-col">
-                    <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-500 shrink-0">
-                            <i class="fas fa-memory text-lg md:text-xl"></i>
-                        </div>
-                        <h3 class="text-lg md:text-2xl font-bold text-white">RAM එක කියන්නේ මොකක්ද?</h3>
-                    </div>
-                    <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
-                        <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none">
-                            RAM (Random Access Memory) කියන්නේ පරිගණකයේ "කෙටි කාලීන මතකය". ඔයා දැනට කරමින් පවතින වැඩ තාවකාලිකව ගබඩා වෙලා තියෙන්නේ මේකේ.
-                        </p>
-                        <details class="group mt-4">
-                            <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
-                                <span>සම්පූර්ණ විස්තරය කියවන්න</span>
-                                <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
-                            </summary>
-                            <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400">
-                                <ul class="list-disc pl-5 space-y-2 mb-4">
-                                    <li><strong>4GB:</strong> සාමාන්‍ය Office වැඩ සහ ඉන්ටර්නෙට් යන්න ඇති.</li>
-                                    <li><strong>8GB:</strong> අද කාලේ අවම අවශ්‍යතාවය මෙයයි. Games ගහන්න හොඳයි.</li>
-                                    <li><strong>16GB+:</strong> Video Editing, Gaming සහ බර වැඩ වලට අනිවාර්යයි.</li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
-                </div>
+            <!-- Dynamic Articles Container -->
+            <div id="learn-articles-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <!-- Articles will be injected here via JavaScript -->
+            </div>
+            
+            <div id="no-articles-msg" class="hidden text-center text-gray-500 py-10 w-full col-span-2">
+                ඔබ සෙවූ මාතෘකාවට අදාළ ලිපි කිසිවක් හමු නොවීය. වෙනත් වචනයක් උත්සාහ කරන්න.
             </div>
             
             <!-- Ad Space Bottom -->
@@ -797,10 +615,9 @@
                 </div>
             </div>
 
-            <!-- Row 3: Hex Color & Reaction Time (NEW) -->
+            <!-- Row 3: Hex Color & Reaction Time -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                
-                <!-- Password Strength Tester (NEW) -->
+                <!-- Password Strength Tester -->
                 <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
                     <div class="text-center mb-6">
                         <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-key text-blue-400 mr-2"></i> Password Tester</h3>
@@ -818,7 +635,7 @@
                     </div>
                 </div>
 
-                <!-- Reaction Time Tester (NEW) -->
+                <!-- Reaction Time Tester -->
                 <div class="glass-card rounded-3xl p-8 border border-gray-800 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
                     <div class="text-center mb-4">
                         <h3 class="text-2xl font-bold text-white mb-2"><i class="fas fa-stopwatch text-yellow-500 mr-2"></i> Reaction Time</h3>
@@ -834,7 +651,6 @@
                         <span class="text-gray-400">Last: <span id="reaction-last" class="text-white text-lg">0 ms</span></span>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -1088,6 +904,271 @@
             menu.classList.toggle('hidden');
         }
 
+        // --- DYNAMIC LEARN TECH LOGIC ---
+        // මෙහි ඇති Array එකට ඔබට අවශ්‍ය ඕනෑම ලිපි ප්‍රමාණයක් (100ක් වුවත්) පහසුවෙන් එකතු කළ හැක.
+        const learnTechData = [
+            {
+                category: "Security",
+                time: "8 Min Read",
+                icon: "fa-shield-alt",
+                colorClass: "text-red-500",
+                bgClass: "bg-red-500/20",
+                borderClass: "hover:border-red-500/50",
+                title: "Cyber Security (සයිබර් ආරක්ෂාව) යනු කුමක්ද?",
+                shortDesc: "අන්තර්ජාලය භාවිතා කරන විට අපගේ දත්ත, මුදල් සහ පෞද්ගලිකත්වය ආරක්ෂා කරගැනීමේ කලාව...",
+                fullDesc: `
+                    <p class="mb-3"><strong>සයිබර් ආරක්ෂාව (Cyber Security)</strong> කියන්නේ අන්තර්ජාලය හරහා සිදුවන විවිධ හැකින් (Hacking) උත්සාහයන්, දත්ත සොරකම් කිරීම් සහ වෛරස් ප්‍රහාර වලින් අපගේ පරිගණක, ජංගම දුරකථන සහ ජාල (Networks) ආරක්ෂා කර ගැනීමේ ක්‍රියාවලියයි. අද වන විට ලෝකයේ යුද්ධ ඇතිවන්නේ ආයුධ වලින් පමණක් නොව, දත්ත (Data) සහ සර්වර් (Servers) හරහා බව ඔබ දන්නවාද?</p>
+                    <p class="mb-3"><strong>ප්‍රධාන සයිබර් තර්ජන කීපයක්:</strong></p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-400">
+                        <li><strong>Phishing (ෆිෂින්):</strong> බැංකුවකින් හෝ සමාගමකින් එවන ආකාරයට ව්‍යාජ ඊමේල් හෝ SMS එවා ඔබගේ Password සහ බැංකු ගිණුම් විස්තර සොරකම් කිරීම. කිසිවිටෙකත් සැක සහිත ලින්ක් (Links) ක්ලික් කරන්න එපා.</li>
+                        <li><strong>Ransomware:</strong> ඔබේ පරිගණකයේ ඇති සියලුම ෆොටෝ, වීඩියෝ සහ ෆයිල් ලොක් (Encrypt) කර, ඒවා නැවත ලබාදීමට නම් කප්පම් මුදලක් (බොහෝවිට Bitcoin වලින්) ඉල්ලා සිටින දරුණුම ගණයේ වෛරසයකි.</li>
+                        <li><strong>Malware / Trojans:</strong> ඔබට නොදැනෙන සේ පරිගණකයට ඇතුළු වී ඔබේ ක්‍රියාකාරකම් ඔත්තු බලන සහ වෙනත් හැකර්වරුන්ට පරිගණකයට ඇතුල් වීමට දොරටු විවෘත කර දෙන මෘදුකාංග.</li>
+                    </ul>
+                    <p><strong>ආරක්ෂා වන්නේ කෙසේද?</strong><br>සෑමවිටම ශක්තිමත් මුරපද (Strong Passwords) භාවිතා කරන්න. Two-Factor Authentication (2FA) අනිවාර්යයෙන් ක්‍රියාත්මක කරන්න. ඔබගේ Operating System එක සහ මෘදුකාංග නිතරම Update කර තබා ගන්න. එමෙන්ම, පිළිගත් Antivirus මෘදුකාංගයක් භාවිතා කිරීමෙන් බොහෝ දුරට මෙම තර්ජන වලින් බේරී සිටිය හැක.</p>
+                `
+            },
+            {
+                category: "Cloud",
+                time: "6 Min Read",
+                icon: "fa-cloud",
+                colorClass: "text-blue-400",
+                bgClass: "bg-blue-400/20",
+                borderClass: "hover:border-blue-400/50",
+                title: "Cloud Computing සරලව තේරුම් ගනිමු",
+                shortDesc: "ඔබගේ දත්ත පරිගණකයේ Hard Disk එකේ සේව් කරනවා වෙනුවට අන්තර්ජාලයේ ගබඩා කිරීම...",
+                fullDesc: `
+                    <p class="mb-3">අද කාලේ ගොඩක් අය කතා වෙන මාතෘකාවක් තමයි <strong>Cloud Computing</strong> කියන්නේ. සරලවම කිව්වොත් මේකෙන් කරන්නේ අපේ දත්ත (Data) සහ මෘදුකාංග (Software) අපේ පරිගණකයේ Hard Disk එකේ සේව් කරගන්නවා වෙනුවට අන්තර්ජාලය හරහා වෙනත් ප්‍රබල සර්වර් (Servers) වල ගබඩා කරලා පාවිච්චි කරන එකයි.</p>
+                    <p class="mb-3">උදාහරණයක් විදියට ඔයා පාවිච්චි කරන <strong>Google Drive, Google Photos, iCloud, සහ Netflix</strong> කියන්නේ Cloud Computing වලට හොඳම උදාහරණ. ඔයා Netflix එකෙන් ෆිල්ම් එකක් බලද්දී ඒ ෆිල්ම් එක ඔයාගේ ෆෝන් එකේ සේව් වෙලා නෑ. ඒක තියෙන්නේ වෙනත් රටක තියෙන Cloud Server එකක. ඔයා අන්තර්ජාලය හරහා ඒක නරඹනවා පමණයි.</p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-400">
+                        <li><strong>වාසි මොනවාද?</strong> අපිට විශාල Hard Disk මිලදී ගන්න අවශ්‍ය වෙන්නේ නෑ. ලෝකයේ ඕනෑම තැනක ඉඳන් අපේ ෆයිල්ස් වලට ඇතුල් වෙන්න පුළුවන් (Phone එකෙන් හරි වෙනත් PC එකකින් හරි). වෛරස් ඇවිත් පරිගණකය කැඩුනත් දත්ත නැතිවෙන්නේ නෑ.</li>
+                        <li><strong>සේවා සපයන්නන් (Cloud Providers):</strong> මේ Cloud පහසුකම් ලබාදෙන ලෝකයේ ලොකුම සමාගම් තුන තමයි Amazon (AWS), Microsoft (Azure) සහ Google (Google Cloud). අද ලෝකයේ තියෙන ලොකුම වෙබ් අඩවි සහ ඇප්ස් ඔක්කොම වගේ දුවන්නේ මේ Cloud සර්වර් උඩයි.</li>
+                    </ul>
+                `
+            },
+            {
+                category: "Hardware",
+                time: "5 Min Read",
+                icon: "fa-hdd",
+                colorClass: "text-orange-500",
+                bgClass: "bg-orange-500/20",
+                borderClass: "hover:border-orange-500/50",
+                title: "SSD සහ HDD අතර ප්‍රධාන වෙනස",
+                shortDesc: "පරිගණකයක් Slow වෙන්න ප්‍රධානම හේතුවක් තමයි පරණ HDD තාක්ෂණය භාවිතා කිරීම...",
+                fullDesc: `
+                    <p class="mb-3">ඔබේ පරිගණකය ඉතාමත් මන්දගාමී (Slow) වී තිබෙනවාද? එයට ප්‍රධානතම හේතුවක් විය හැක්කේ ඔබ තවමත් පරණ මාදිලියේ Hard Disk Drive (HDD) එකක් භාවිතා කිරීමයි. අද කාලයේ සෑම පරිගණකයක්ම පාහේ නිකුත් වන්නේ <strong>Solid State Drive (SSD)</strong> තාක්ෂණය සමඟයි.</p>
+                    <p class="mb-3"><strong>HDD (Hard Disk Drive) යනු:</strong><br>මෙහි ඇතුළත වේගයෙන් කරකැවෙන චුම්බක තැටි (Magnetic platters) සහ කියවන කටුවක් ඇත. හරියට පරණ ග්‍රැමෆෝන් එකක් වගේ. මේවා යාන්ත්‍රිකව වැඩ කරන නිසා දත්ත සොයාගන්නා වේගය ඉතා අඩුයි. එමෙන්ම බිම වැටුණොත් ලෙහෙසියෙන්ම කැඩී යාමට ඉඩ ඇත.</p>
+                    <p class="mb-3"><strong>SSD (Solid State Drive) යනු:</strong><br>මෙහි කිසිදු කැරකෙන හෝ යාන්ත්‍රික කොටසක් නොමැත. මෙය සම්පූර්ණයෙන්ම සෑදී ඇත්තේ Pen Drive එකක හෝ Memory Card එකක මෙන් Microchips වලිනි (NAND flash memory). මේ නිසා SSD එකක් සාමාන්‍ය HDD එකකට වඩා <strong>දස ගුණයකටත් වඩා (10x) වේගවත්ය.</strong></p>
+                    <p>ඔබේ පරණ පරිගණකයට අලුත් පණක් ලබාදීමට අවශ්‍ය නම්, අලුත් පරිගණකයක් මිලදී ගැනීමට පෙර එහි ඇති HDD එක ගලවා ඉවත් කර ඒ වෙනුවට SSD එකක් සවි කර බලන්න. පරිගණකය තත්පර කිහිපයකින් On වන බව සහ මෘදුකාංග ක්ෂණයකින් විවෘත වන බව ඔබටම දැකගත හැකි වනු ඇත.</p>
+                `
+            },
+            {
+                category: "Web",
+                time: "7 Min Read",
+                icon: "fa-globe",
+                colorClass: "text-techBlue",
+                bgClass: "bg-techBlue/20",
+                borderClass: "hover:border-techBlue/50",
+                title: "Web Site එකක් හැදෙන්නේ කොහොමද?",
+                shortDesc: "අන්තර්ජාලයේ ඇති වෙබ් අඩවියක් නිර්මාණය කිරීමට පිටුපස ඇති තාක්ෂණයන්...",
+                fullDesc: `
+                    <p class="mb-3">Website (වෙබ් අඩවියක්) කියන්නේ අන්තර්ජාලය හරහා ලෝකයේ ඕනෑම කෙනෙක්ට පිවිසිය හැකි, එකිනෙකට සම්බන්ධ පිටු (Web Pages) සමූහයක්. මේක හරියට අන්තර්ජාලයේ තියෙන ඩිජිටල් පොතක් වගේ. අද වන විට බිස්නස් එකකට වෙබ් අඩවියක් තිබීම අත්‍යවශ්‍ය කාරණයක් වී ඇත.</p>
+                    <p class="mb-3"><strong>වෙබ් අඩවියක් හදන්න ප්‍රධාන තාක්ෂණ 3ක් අනිවාර්යයෙන්ම ඕන වෙනවා:</strong></p>
+                    <ul class="list-none space-y-4 mb-4 text-gray-400">
+                        <li class="flex gap-3">
+                            <span class="font-bold text-orange-500">HTML:</span>
+                            <span>ගෙයක් හදද්දී බිත්ති බඳිනවා වගේ, වෙබ් සයිට් එකේ ඇටසැකිල්ල (Structure) හදන්නේ HTML (HyperText Markup Language) වලින්. පින්තූර, අකුරු, ලින්ක් සයිට් එකට දාන්නේ මේකෙනි.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-blue-500">CSS:</span>
+                            <span>ගෙදර පාට කරලා, ටයිල් කරලා ලස්සන කරනවා වගේ වැඩේ කරන්නේ CSS (Cascading Style Sheets) වලින්. බොත්තම් වල පාට, අකුරු වල හැඩය, සහ ෆෝන් එකට සයිට් එක ලස්සනට පේන්න හදන්නේ CSS වලිනි.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="font-bold text-yellow-400">JavaScript:</span>
+                            <span>ගෙදරට විදුලිය දීලා ෆෑන්, ලයිට් වැඩ කරන තත්ත්වයට ගන්නවා වගේ, වෙබ් සයිට් එකට "පණ දෙන්නේ" JS වලින්. උදාහරණයක් විදියට බොත්තමක් එබුවම මෙනු එකක් එන එක, ගේම්ස් වැඩ කරන එක වෙන්නේ මේකෙනි.</span>
+                        </li>
+                    </ul>
+                    <p>ඊට අමතරව වෙබ් අඩවියක් හැමෝටම බලන්න පුළුවන් වෙන්න අන්තර්ජාලයට දාන්න අපිට <strong>Domain Name</strong> එකක් (උදා: facebook.com) සහ <strong>Web Hosting</strong> (අන්තර්ජාලයෙන් ඉඩක්) මිලදී ගන්න සිද්ධ වෙනවා.</p>
+                `
+            },
+            {
+                category: "Future",
+                time: "6 Min Read",
+                icon: "fa-robot",
+                colorClass: "text-techPurple",
+                bgClass: "bg-techPurple/20",
+                borderClass: "hover:border-techPurple/50",
+                title: "AI (කෘතිම බුද්ධිය) යනු කුමක්ද?",
+                shortDesc: "පරිගණකයකට මිනිසෙකු මෙන් සිතීමට, ඉගෙන ගැනීමට සහ තීරණ ගැනීමට හැකි හැකියාව...",
+                fullDesc: `
+                    <p class="mb-3"><strong>AI හෙවත් Artificial Intelligence (කෘතිම බුද්ධිය)</strong> කියන්නේ පරිගණකයකට හෝ යන්ත්‍රයකට මිනිසෙකු මෙන් සිතීමට, ඉගෙන ගැනීමට සහ ස්වාධීනව තීරණ ගැනීමට හැකි හැකියාව ලබා දීමේ තාක්ෂණයයි. අද වන විට Phone එකේ Face Unlock එකේ සිට ස්වයංක්‍රීයව යන (Self-driving) Tesla කාර් දක්වා හැමතැනම AI තාක්ෂණය භාවිතා වෙනවා.</p>
+                    <p class="mb-3"><strong>AI වැඩ කරන්නේ කොහොමද?</strong><br>AI එකක් ඉගෙන ගන්නේ දත්ත (Data) වලින්. මේකට Machine Learning (යන්ත්‍ර ඉගෙනුම) කියලා කියනවා. අපි දරුවෙක්ට බල්ලෙක්ගේ පින්තූර 100ක් පෙන්නුවම ඊළඟ දවසේ බල්ලෙක් දැක්කම අඳුරගන්නවා වගේම, පරිගණකයට පින්තූර ලක්ෂයක් දීලා Training කළාම ඊට පස්සේ ඒකට තනිවම බල්ලන්ව අඳුරගන්න පුළුවන් වෙනවා.</p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-400">
+                        <li><strong>Narrow AI (දුර්වල AI):</strong> එක වැඩක් විතරක් කරන්න පුළුවන් AI. උදා: Siri, Google Assistant, ChatGPT වැනි දේවල්. මේවා කොතරම් දක්ෂ වුණත් ඒවාට හැඟීම් දැනෙන්නේ නෑ, සිතන්න බැහැ.</li>
+                        <li><strong>General AI (ප්‍රබල AI):</strong> මිනිහෙක් වගේම ඕනම වැඩක් කරන්න පුළුවන්, තනිවම හිතන්න පුළුවන් AI. මේවා තවමත් තියෙන්නේ චිත්‍රපට වල සහ පර්යේෂණාගාර වල පමණයි. අනාගතයේදී මෙය බිහිවනු ඇත.</li>
+                    </ul>
+                    <p>ChatGPT වැනි AI මෙවලම් මගින් අද වන විට කේතකරණය (Coding), ලිපි ලිවීම, පින්තූර නිර්මාණය කිරීම වැනි මිනිසුන් පැය ගණනක් කළ වැඩ තත්පර කිහිපයකින් කරගත හැකි වී තිබේ.</p>
+                `
+            },
+            {
+                category: "Hardware",
+                time: "5 Min Read",
+                icon: "fa-memory",
+                colorClass: "text-green-500",
+                bgClass: "bg-green-500/20",
+                borderClass: "hover:border-green-500/50",
+                title: "RAM එක කියන්නේ මොකක්ද?",
+                shortDesc: "පරිගණකයේ කෙටි කාලීන මතකය සහ එහි ක්‍රියාකාරීත්වය ගැන දැනගනිමු...",
+                fullDesc: `
+                    <p class="mb-3"><strong>RAM (Random Access Memory)</strong> කියන්නේ පරිගණකයේ "කෙටි කාලීන මතකය" (Short-term memory) ලෙස හැඳින්විය හැක. ඔබ මේ මොහොතේ පරිගණකයේ විවෘත කරගෙන සිටින (Open කර ඇති) මෘදුකාංග, ගේම්ස් සහ වෙබ් බ්‍රව්සර් ටැබ් තාවකාලිකව ගබඩා වෙලා තියෙන්නේ මේ RAM එක ඇතුලෙයි.</p>
+                    <p class="mb-3">Hard Disk එකේ ඉඩ කොච්චර තිබුණත්, මෘදුකාංගයක් වැඩ කරන්න නම් ඒක අනිවාර්යයෙන්ම RAM එකට Load වෙන්න ඕන. පරිගණකය Off කළ සැණින් RAM එකේ තියෙන සියලුම දත්ත මැකී යනවා.</p>
+                    <p class="mb-3"><strong>ඔබට කොතරම් RAM ප්‍රමාණයක් අවශ්‍යද?</strong></p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-400">
+                        <li><strong>4GB RAM:</strong> අද කාලයේ මෙය ප්‍රමාණවත් වන්නේ සාමාන්‍ය Office වැඩ වලට සහ අන්තර්ජාලයේ සැරිසැරීමට පමණි.</li>
+                        <li><strong>8GB RAM:</strong> වර්තමානයේ පරිගණකයක් මිලදී ගැනීමේදී තිබිය යුතු අවම සම්මතය මෙයයි. සාමාන්‍ය මට්ටමේ Games ගැසීමට සහ මෘදුකාංග කීපයක් එකවර වැඩ කිරීමට මෙය ප්‍රමාණවත්ය.</li>
+                        <li><strong>16GB - 32GB RAM:</strong> Video Editing, 3D Rendering, Streaming සහ අලුත්ම බරපතල Video Games ක්‍රීඩා කිරීමට නම් අනිවාර්යයෙන්ම 16GB හෝ ඊට වැඩි RAM එකක් තිබිය යුතුය.</li>
+                    </ul>
+                    <p>ඔබේ පරිගණකය මෘදුකාංග කීපයක් Open කළ විට නිතරම Stuck වෙනවා නම් හෝ මන්දගාමී වෙනවා නම්, බොහෝදුරට කළ යුතු හොඳම දෙය වන්නේ ඔබේ RAM ධාරිතාවය වැඩි (Upgrade) කිරීමයි.</p>
+                `
+            },
+            {
+                category: "Tech",
+                time: "6 Min Read",
+                icon: "fa-link",
+                colorClass: "text-pink-500",
+                bgClass: "bg-pink-500/20",
+                borderClass: "hover:border-pink-500/50",
+                title: "Blockchain සහ Cryptocurrency",
+                shortDesc: "Bitcoin පිටුපස ඇති තාක්ෂණය සහ ඩිජිටල් මුදල් වල අනාගතය...",
+                fullDesc: `
+                    <p class="mb-3"><strong>බ්ලොක්චේන් (Blockchain)</strong> කියන්නේ අද ලෝකයේ තියෙන ආරක්ෂිතම තාක්ෂණයක්. සරලවම කිව්වොත් මේක ඩිජිටල් ලෙජරයක් (Digital Ledger) හෙවත් පොතක්. හැබැයි මේ පොතේ ලියන කිසිම දෙයක් ආයෙ කවදාවත් මකන්නවත්, වෙනස් කරන්නවත් බෑ. ඒ වගේම මේ ලෙජරය තනි සර්වර් එකක නැතිව ලෝකේ පුරාම තියෙන පරිගණක ලක්ෂ ගණනක එකවර සේව් වෙනවා (Decentralized).</p>
+                    <p class="mb-3"><strong>Cryptocurrency (ක්‍රිප්ටෝ කරන්සි) යනු කුමක්ද?</strong><br>අපි පාවිච්චි කරන රුපියල්, ඩොලර් වගේ මුදල් පාලනය කරන්නේ ඒ ඒ රටවල මහ බැංකු වලින්. ඒත් Cryptocurrency (උදා: <strong>Bitcoin, Ethereum</strong>) කියන්නේ කිසිම රටකට, බැංකුවකට හෝ රජයකට අයිති නැති අන්තර්ජාලය ඇතුලේ විතරක් තියෙන ඩිජිටල් මුදල් වර්ගයක්. මේවා වැඩ කරන්නේ අර කලින් කිව්ව Blockchain තාක්ෂණය උඩයි.</p>
+                    <p class="mb-3">මේවායේ වටිනාකම තීරණය වෙන්නේ මිනිස්සුන්ගේ ඉල්ලුම සහ සැපයුම (Supply & Demand) මතයි. කවුරුහරි කෙනෙක් තව කෙනෙක්ට Bitcoin යවනවා නම්, ඒක මැදින් ඉඳන් නවත්තන්න බැංකුවකට බෑ.</p>
+                    <p>අද වෙද්දි Blockchain තාක්ෂණය මුදල් යවන්න විතරක් නෙවෙයි, ඉඩම් ඔප්පු ලියාපදිංචි කරන්න, ඡන්දය ප්‍රකාශ කරන්න සහ සැපයුම් ජාල (Supply Chains) පාලනය කරන්න වගේ ගොඩක් දේවල් වලට පාවිච්චි කරන්න පර්යේෂණ කරගෙන යනවා.</p>
+                `
+            },
+            {
+                category: "Career",
+                time: "9 Min Read",
+                icon: "fa-dollar-sign",
+                colorClass: "text-teal-400",
+                bgClass: "bg-teal-400/20",
+                borderClass: "hover:border-teal-400/50",
+                title: "Freelancing (ෆ්‍රීලාන්සින්) සරලව",
+                shortDesc: "අන්තර්ජාලය හරහා නිවසේ සිටම මුදල් උපයන නිවැරදි ක්‍රම සහ පියවර...",
+                fullDesc: `
+                    <p class="mb-3"><strong>Freelancing (ෆ්‍රීලාන්සින්)</strong> කියන්නේ ස්ථිර බොස් කෙනෙක් යටතේ රස්සාවක් නොකර, තමන්ට කැමති වෙලාවක, තමන් දන්නා හැකියාව පාවිච්චි කරලා අන්තර්ජාලය හරහා විවිධ රටවල පුද්ගලයින්ට වැඩ කරලා මුදල් උපයන ක්‍රමයක්. මෙය ලංකාවේ වර්තමානයේ ඩොලර් ඉපයිය හැකි ඉතාමත් හොඳ ක්‍රමයකි.</p>
+                    <p class="mb-3"><strong>පටන් ගන්නේ කොහොමද?</strong></p>
+                    <ol class="list-decimal pl-5 space-y-3 mb-4 text-gray-400">
+                        <li><strong>හැකියාවක් හදාගන්න (Build a Skill):</strong> මුලින්ම ඔබ මොනවා හරි දෙයක් හොඳින් ඉගෙන ගත යුතුයි. උදාහරණ: Graphic Design, Web Development, Video Editing, Content Writing හෝ 3D Modeling.</li>
+                        <li><strong>Profile එකක් හදන්න:</strong> ඔබේ හැකියාව විකුණන්න පුළුවන් ජාත්‍යන්තර වෙබ් අඩවියක (Freelance Marketplaces) ගිණුමක් හදාගන්න. ලෝකයේ ජනප්‍රියතම අඩවි වන්නේ <strong>Fiverr, Upwork, සහ Freelancer.com</strong> වේ.</li>
+                        <li><strong>Orders ලබාගන්න (Get Clients):</strong> ඔබේ Profile එකට එන ගනුදෙනුකරුවන්ට ඔබ කලින් කළ නිර්මාණ (Portfolio) පෙන්වා ඔවුන්ගේ වැඩ භාරගන්න. වැඩේ නිසි වෙලාවට කරලා දුන්නම අදාළ වෙබ් අඩවිය හරහා ඔබට මුදල් (ඩොලර් වලින්) ලැබේ.</li>
+                    </ol>
+                    <p>Freelancing කියන්නේ රෑ එළිවෙද්දී කෝටිපතියෙක් වෙන මැජික් එකක් නෙවෙයි. මුල් කාලයේදී orders ලබාගන්න තරමක් අමාරු වෙන්න පුළුවන්. ඒ සඳහා දැඩි කැපවීමක් සහ ඉවසීමක් අත්‍යවශ්‍ය වේ. ඉංග්‍රීසි භාෂාව හැසිරවීමේ හැකියාවද මෙහිදී ඉතා වැදගත් වේ.</p>
+                `
+            },
+            {
+                category: "Networking",
+                time: "5 Min Read",
+                icon: "fa-wifi",
+                colorClass: "text-yellow-400",
+                bgClass: "bg-yellow-400/20",
+                borderClass: "hover:border-yellow-400/50",
+                title: "IP Address එකක් කියන්නේ මොකක්ද?",
+                shortDesc: "අන්තර්ජාලයේ ඔබව හඳුනාගන්නා ඩිජිටල් ලිපිනය ගැන දැනගනිමු...",
+                fullDesc: `
+                    <p class="mb-3"><strong>IP Address (Internet Protocol Address)</strong> එකක් කියන්නේ අන්තර්ජාලයට හෝ යම්කිසි ජාලයකට (Network) සම්බන්ධ වෙලා තියෙන ඕනෑම උපකරණයකට (පරිගණකයක්, ෆෝන් එකක්, රවුටරයක්) ලැබෙන අද්විතීය ඩිජිටල් ලිපිනයක්. හරියට ඔයාගේ ගෙදරට තියෙන තැපැල් ලිපිනය වගේ.</p>
+                    <p class="mb-3">අපි අන්තර්ජාලයෙන් යමක් Download කරද්දී හෝ වෙබ් අඩවියකට යද්දී, අදාළ දත්ත ටික ලෝකයේ තියෙන වෙනත් සර්වර් එකක ඉඳන් හරියටම ඔයාගේ ෆෝන් එකට එන්නේ මේ IP Address එක හරහායි. එය සාමාන්‍යයෙන් <code>192.168.1.5</code> වගේ ඉලක්කම් රටාවකින් සමන්විත වෙනවා (IPv4).</p>
+                    <p class="mb-3"><strong>ප්‍රධාන IP වර්ග 2ක් ඇත:</strong></p>
+                    <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-400">
+                        <li><strong>Public IP:</strong> ඔබේ අන්තර්ජාල සේවා සපයන්නා (SLT, Dialog, Mobitel) විසින් ලෝකයට පේන්න ලබාදෙන ලිපිනයයි. මේ හරහා ලෝකයේ ඕනෑම තැනක සිට ඔබගේ රවුටරය සොයාගත හැක.</li>
+                        <li><strong>Private IP:</strong> ඔබේ ගෙදර තියෙන Wi-Fi රවුටරය මගින් ගෙදර තියෙන ෆෝන් සහ ලැප්ටොප් වලට ලබාදෙන අභ්‍යන්තර ලිපිනයයි. මෙය පිටත ලෝකයට පෙනෙන්නේ නැත.</li>
+                    </ul>
+                    <p>ඔබගේ Public IP Address එක හැකර් කෙනෙකුට දැනගන්න ලැබුණොත් ඔහුට ඔබ සිටින දළ ප්‍රදේශය සොයාගත හැක. VPN (Virtual Private Network) එකක් භාවිතා කිරීමෙන් ඔබගේ සැබෑ IP ලිපිනය සඟවාගෙන වෙනත් රටක IP එකක් හරහා අන්තර්ජාලයට පිවිසිය හැක.</p>
+                `
+            },
+            {
+                category: "OS",
+                time: "7 Min Read",
+                icon: "fa-windows",
+                colorClass: "text-blue-300",
+                bgClass: "bg-blue-300/20",
+                borderClass: "hover:border-blue-300/50",
+                title: "Windows, Linux සහ Mac අතර වෙනස",
+                shortDesc: "ලෝකයේ ජනප්‍රියතම පරිගණක මෙහෙයුම් පද්ධති 3ක් සංසන්දනය...",
+                fullDesc: `
+                    <p class="mb-3">පරිගණකයක් ක්‍රියාත්මක වීමට අවශ්‍ය ප්‍රධානම මෘදුකාංගය වන්නේ මෙහෙයුම් පද්ධතිය (Operating System - OS) යි. ලෝකයේ ප්‍රධාන වශයෙන් භාවිත වන පරිගණක මෙහෙයුම් පද්ධති 3ක් තිබේ. ඒ ඒ එක් එක් ඒවාට ආවේණික වූ වාසි සහ අවාසි ඇත.</p>
+                    <ul class="list-none space-y-4 mb-4 text-gray-400">
+                        <li><strong><i class="fab fa-windows text-blue-400"></i> Microsoft Windows:</strong> ලෝකයේ වැඩිපුරම භාවිතා වන OS එකයි. භාවිතය ඉතා පහසුයි (User Friendly). ලෝකයේ තියෙන ඕනෑම මෘදුකාංගයක් සහ Video Game එකක් මේකේ වැඩ කරනවා. හැබැයි වෛරස් (Viruses) එන්න තියෙන ඉඩකඩ ගොඩක් වැඩියි.</li>
+                        <li><strong><i class="fab fa-apple text-gray-200"></i> Apple macOS:</strong> Apple ආයතනය විසින් ඔවුන්ගේ Mac පරිගණක සඳහා පමණක් සාදන OS එකයි. මෙය ඉතාමත් වේගවත් සහ ආරක්ෂිතයි. Graphic Designers ලා, Video Editors ලා සහ ක්‍රමලේඛකයන් (Developers) අතර ඉතා ජනප්‍රියයි. නමුත් Mac පරිගණක මිලෙන් ඉතා වැඩියි. අලුත් Games ක්‍රීඩා කිරීමට එතරම් සුදුසු නැත.</li>
+                        <li><strong><i class="fab fa-linux text-yellow-500"></i> Linux:</strong> මෙය සම්පූර්ණයෙන්ම නොමිලේ (Free & Open Source) ලබාදෙන මෙහෙයුම් පද්ධතියකි. Ubuntu, Kali Linux, Mint යනු මෙහි ප්‍රභේද කිහිපයකි. මෙය ලෝකයේ ආරක්ෂිතම OS එක වේ. ලෝකයේ තියෙන සුපිරි පරිගණක (Supercomputers) සහ සර්වර් වලින් 90% කටත් වඩා දුවන්නේ Linux වලිනි. නමුත් සාමාන්‍ය කෙනෙකුට භාවිතය තරමක් අපහසු විය හැක.</li>
+                    </ul>
+                `
+            }
+        ];
+
+        function renderLearnTechArticles() {
+            const container = document.getElementById('learn-articles-container');
+            container.innerHTML = '';
+
+            learnTechData.forEach((article, index) => {
+                const articleHTML = `
+                    <div class="glass-card p-6 md:p-8 rounded-2xl reveal group ${article.borderClass} transition-all flex flex-col article-card">
+                        <div class="flex gap-3 mb-4 hidden md:flex">
+                            <span class="bg-gray-800/50 ${article.colorClass} border border-gray-700 text-xs px-3 py-1 rounded-full"><i class="far fa-clock mr-1"></i> ${article.time}</span>
+                            <span class="bg-gray-800/50 text-gray-300 border border-gray-600 text-xs px-3 py-1 rounded-full">${article.category}</span>
+                        </div>
+                        <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                            <div class="w-10 h-10 md:w-12 md:h-12 ${article.bgClass} rounded-lg flex items-center justify-center ${article.colorClass} shrink-0">
+                                <i class="fas ${article.icon} text-lg md:text-xl"></i>
+                            </div>
+                            <h3 class="text-lg md:text-2xl font-bold text-white article-title">${article.title}</h3>
+                        </div>
+                        <div class="prose prose-invert text-gray-300 leading-relaxed flex-grow">
+                            <p class="mb-4 text-sm md:text-base line-clamp-3 md:line-clamp-none article-short">
+                                ${article.shortDesc}
+                            </p>
+                            <details class="group mt-4">
+                                <summary class="list-none cursor-pointer text-techBlue hover:text-white font-bold flex items-center gap-2 transition-colors text-sm md:text-base">
+                                    <span>සම්පූර්ණ විස්තරය කියවන්න</span>
+                                    <i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                                </summary>
+                                <div class="mt-4 pt-4 border-t border-gray-800 text-sm text-gray-300">
+                                    ${article.fullDesc}
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += articleHTML;
+            });
+            reveal(); // re-trigger animations for new elements
+        }
+
+        function filterLearnArticles() {
+            const searchTerm = document.getElementById('learnSearchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.article-card');
+            let hasVisibleCards = false;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.article-title').innerText.toLowerCase();
+                const shortDesc = card.querySelector('.article-short').innerText.toLowerCase();
+                
+                if (title.includes(searchTerm) || shortDesc.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                    hasVisibleCards = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noMsg = document.getElementById('no-articles-msg');
+            if (!hasVisibleCards) {
+                noMsg.classList.remove('hidden');
+            } else {
+                noMsg.classList.add('hidden');
+            }
+        }
+
         // --- TROUBLESHOOT LOGIC ---
         // Illi 60 atyanta sadharana IT samasyegalu mattu avugala pariharagalannu serisalagide
         const troubleshootData = [
@@ -1231,8 +1312,7 @@
             const category = activeBtn ? (activeBtn.innerText.includes('All') ? 'all' : activeBtn.innerText) : 'all';
             filterIssues(category);
         });
-        renderIssues(troubleshootData);
-
+        
         // --- ADVANCED AI CHATBOT LOGIC ---
         const chatWindow = document.getElementById('chat-window');
         const chatMessages = document.getElementById('chat-messages');
@@ -1789,6 +1869,8 @@
         // --- INIT ALL ---
         document.addEventListener('DOMContentLoaded', () => {
             typeEffect();
+            renderIssues(troubleshootData);
+            renderLearnTechArticles();
             initMemoryGame();
             initTyping();
         });
