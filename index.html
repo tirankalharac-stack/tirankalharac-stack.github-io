@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Search Console Verification Code -->
+    <!-- ගූගල් සර්ච් කන්සෝල් තහවුරු කිරීමේ කේතය (Google Search Console Verification Code) -->
     <meta name="google-site-verification" content="IH50WTRSJSWWC5nlEKyXMWr1MMBVKpfKWQPrJA-4hFs" />
     
-    <!-- Ikon Gidan Yanar Gizo (Favicon) -->
+    <!-- වෙබ් අඩවියේ අයිකනය (Favicon) -->
     <link rel="icon" type="image/png" sizes="48x48" href="logo.png">
     <link rel="shortcut icon" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     
     <title>Kalhara Development | High-End IT Solutions</title>
     
-    <!-- Tailwind CSS -->
+    <!-- ටේල්වින්ඩ් CSS (Tailwind CSS) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
+    <!-- ෆොන්ට් ඔසම් අයිකන් (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -77,7 +77,7 @@
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        /* --- SAKE RUBUTA YANAYIN HASKE --- */
+        /* --- ලයිට් මෝඩ් (Light Mode) සැකසුම් --- */
         body.light-mode { background-color: #f4f7f9; color: #1a1a1a; }
         body.light-mode .text-white { color: #1a1a1a !important; }
         body.light-mode .text-gray-300 { color: #4a4a4a !important; }
@@ -98,7 +98,7 @@
         body.light-mode #chat-messages { background: #f8fafc !important; }
         body.light-mode .shadow-inner { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); }
 
-        /* --- Na'urar Canja Shafin Shafi --- */
+        /* --- පිටුව ලෝඩ් වීමේ ඇනිමේෂන් (Page Loader) --- */
         #page-loader {
             position: fixed; inset: 0; z-index: 999999;
             background-color: #030303; display: flex; flex-direction: column;
@@ -108,7 +108,7 @@
         body.light-mode #page-loader { background-color: #ffffff; }
         .loader-hide { opacity: 0 !important; visibility: hidden !important; pointer-events: none; }
 
-        /* --- Siga na Neon --- */
+        /* --- නියෝන් කර්සරය (Custom Neon Cursor) --- */
         #custom-cursor {
             pointer-events: none; position: fixed; top: 0; left: 0; width: 30px; height: 30px;
             border: 2px solid #00f2ff; border-radius: 50%; transform: translate(-50%, -50%);
@@ -127,15 +127,15 @@
         body.light-mode #custom-cursor { mix-blend-mode: normal; border-color: #0088ff; box-shadow: none; }
         @media (max-width: 768px) { #custom-cursor, #custom-cursor-dot { display: none; } body { cursor: auto; } }
 
-        /* --- Fari na Gaba na Gudun Gungurawa --- */
+        /* --- ස්ක්‍රෝල් ප්‍රෝග්‍රෙස් බාර් එක (Scroll Progress Bar) --- */
         #scroll-progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.05); z-index: 9999; }
         #scroll-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #00f2ff, #bc13fe, #ff0055); box-shadow: 0 0 15px #bc13fe; transition: width 0.1s ease-out; }
 
-        /* --- Rayarwa --- */
+        /* --- ඇනිමේෂන් (Animations) --- */
         .reveal { opacity: 0; transform: translateY(60px) scale(0.95); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
 
-        /* Kwallo na Baya (An Inganta) */
+        /* පසුබිමේ ඇති බෝල (Background Orbs) */
         .orb-1, .orb-2, .orb-3, .orb-4 { position: fixed; border-radius: 50%; filter: blur(90px); z-index: -1; opacity: 0.5; animation: blob 12s infinite alternate; }
         .orb-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #7000ff; }
         .orb-2 { top: 20%; right: -20%; width: 450px; height: 450px; background: #00f2ff; animation-delay: 2s; }
@@ -149,7 +149,7 @@
             100% { text-shadow: 0 0 20px rgba(188, 19, 254, 1), 0 0 40px rgba(0, 242, 255, 0.9), 0 0 60px rgba(255, 0, 85, 0.5); }
         }
 
-        /* Katunan Gilashi 2.0 */
+        /* ග්ලාස් කාඩ් ඩිසයින් (Glass Cards 2.0) */
         .glass-card {
             background: rgba(20, 20, 20, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); overflow: hidden; position: relative;
@@ -175,7 +175,7 @@
         .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; text-shadow: 0 0 10px #fff; }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Maballin Haske Ingantacce */
+        /* දිලිසෙන බොත්තම් (Glowing Buttons) */
         .btn-glow {
             position: relative; z-index: 1; overflow: hidden; transition: 0.4s; background-size: 200% auto;
         }
@@ -191,7 +191,7 @@
         .faq-item.active i.fa-chevron-down { transform: rotate(180deg); color: #00f2ff; text-shadow: 0 0 10px #00f2ff;}
         .faq-item.active { border-color: #00f2ff; background: linear-gradient(to right, rgba(0, 242, 255, 0.1), rgba(188, 19, 254, 0.05)); box-shadow: inset 0 0 10px rgba(0,242,255,0.1); }
 
-        /* Asalin Grid na PC */
+        /* පරිගණක සඳහා ග්‍රිඩ් පසුබිම (PC Grid Background) */
         .pc-grid-bg {
             background-image: linear-gradient(to right, rgba(0, 242, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(188, 19, 254, 0.05) 1px, transparent 1px);
             background-size: 50px 50px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
@@ -199,7 +199,7 @@
         }
         @keyframes panBg { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
 
-        /* --- Siga na Na'urar Mai Hankali --- */
+        /* --- AI චැට්බොට් එකේ ඩිසයින් (AI Chatbot Styles) --- */
         .chat-progress-bar { transition: width 0.1s linear; }
         .typing-indicator { display: flex; align-items: center; gap: 4px; padding: 4px 8px; }
         .typing-dot { width: 6px; height: 6px; background-color: #00f2ff; border-radius: 50%; animation: typingBounce 1.4s infinite ease-in-out both; box-shadow: 0 0 5px #00f2ff; }
@@ -210,7 +210,7 @@
         .chat-action-btn { background: rgba(0, 242, 255, 0.1); border: 1px solid rgba(0, 242, 255, 0.4); color: #00f2ff; padding: 6px 12px; border-radius: 6px; font-size: 12px; margin-top: 12px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
         .chat-action-btn:hover { background: #00f2ff; color: #000; box-shadow: 0 0 20px rgba(0,242,255,0.6); transform: scale(1.02); }
 
-        /* --- Siga na Wasan Ma'ajiya --- */
+        /* --- මෙමරි ගේම් එකේ ඩිසයින් (Memory Game Styles) --- */
         .memory-card { aspect-ratio: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: inset 0 0 10px rgba(0,0,0,0.5); transform-style: preserve-3d; }
         .memory-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
         .memory-card.flipped { background: linear-gradient(135deg, rgba(188, 19, 254, 0.3), rgba(0, 242, 255, 0.2)); border-color: #bc13fe; transform: rotateY(180deg); box-shadow: 0 0 20px rgba(188, 19, 254, 0.4); }
@@ -223,7 +223,7 @@
 </head>
 <body class="bg-techDark text-white relative">
 
-    <!-- Canjin Shafi na Loaduwa -->
+    <!-- පිටුව ලෝඩ් වීමේ ඇනිමේෂන් එක -->
     <div id="page-loader">
         <div class="relative w-24 h-24 flex items-center justify-center mb-6">
             <div class="absolute inset-0 border-4 border-techBlue/20 rounded-full"></div>
@@ -231,25 +231,25 @@
             <i class="fas fa-microchip text-3xl text-white animate-pulse"></i>
         </div>
         <h2 class="text-white font-black tracking-widest text-2xl animate-pulse drop-shadow-[0_0_10px_#bc13fe]">KALHARA DEV</h2>
-        <p class="text-techBlue text-sm mt-2 font-mono">Ana Fara Tsarin...</p>
+        <p class="text-techBlue text-sm mt-2 font-mono">Initializing Systems...</p>
     </div>
 
-    <!-- Siga na Al'ada -->
+    <!-- කස්ටම් කර්සරය -->
     <div id="custom-cursor"></div>
     <div id="custom-cursor-dot"></div>
 
-    <!-- Fari na Gaba na Gudun Gungurawa -->
+    <!-- ස්ක්‍රෝල් ප්‍රෝග්‍රෙස් බාර් එක -->
     <div id="scroll-progress-container">
         <div id="scroll-progress-bar"></div>
     </div>
 
-    <!-- Kwallo na Baya -->
+    <!-- පසුබිමේ ඇති බෝල -->
     <div class="orb-1"></div>
     <div class="orb-2"></div>
     <div class="orb-3"></div>
     <div class="orb-4"></div>
 
-    <!-- Kewayawa -->
+    <!-- මෙනුව (Navigation) -->
     <nav class="fixed w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5 transition-all duration-300 hover:bg-black/80 hover:border-techBlue/30" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -284,8 +284,8 @@
                             Contact
                         </a>
                     </div>
-                    <!-- Maɓallin Canja Jigo -->
-                    <button id="theme-toggle" class="ml-6 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all interactive-element text-yellow-400 hover:text-yellow-300 shadow-inner" onclick="toggleTheme()" title="Canja Haske/Duhu Yanayin">
+                    <!-- තේමාව වෙනස් කරන බොත්තම (Theme Toggle) -->
+                    <button id="theme-toggle" class="ml-6 w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all interactive-element text-yellow-400 hover:text-yellow-300 shadow-inner" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
                         <i class="fas fa-sun text-lg"></i>
                     </button>
                 </div>
@@ -299,7 +299,7 @@
                 </div>
             </div>
         </div>
-        <!-- Menu na Waya -->
+        <!-- ජංගම දුරකථන මෙනුව (Mobile Menu) -->
         <div id="mobile-menu" class="hidden lg:hidden bg-black/95 backdrop-blur-xl border-t border-techPurple/30 absolute w-full shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div class="px-4 pt-4 pb-6 space-y-3">
                 <a href="#home" class="block px-4 py-3 rounded-xl text-base font-bold bg-white/5 hover:bg-techBlue/20 hover:text-techBlue text-white transition-all border border-transparent hover:border-techBlue/50" onclick="toggleMenu()">Home</a>
@@ -313,9 +313,9 @@
         </div>
     </nav>
 
-    <!-- Sashe na Jarumi -->
+    <!-- ප්‍රධාන කොටස (Hero Section) -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
-        <!-- Asalin Grid na PC Kawai -->
+        <!-- පරිගණක සඳහා පමණක් ඇති ග්‍රිඩ් එක -->
         <div class="hidden md:block absolute inset-0 pc-grid-bg z-0 pointer-events-none"></div>
 
         <div class="text-center z-10 max-w-5xl mx-auto">
@@ -348,7 +348,7 @@
         </div>
     </section>
 
-    <!-- Sashe na Ayyuka -->
+    <!-- සේවා කොටස (Services Section) -->
     <section id="services" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
@@ -357,7 +357,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <!-- Kayan Aiki -->
+                <!-- හාඩ්වෙයාර් -->
                 <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
                     <div class="absolute inset-0 bg-gradient-to-br from-techBlue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
                     <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-techBlue to-blue-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,242,255,0.4)] group-hover:shadow-[0_0_35px_rgba(0,242,255,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:rotate-6 z-10">
@@ -374,7 +374,7 @@
                     </div>
                 </div>
 
-                <!-- Ci gaban Yanar Gizo -->
+                <!-- වෙබ් නිර්මාණය -->
                 <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-100 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
                     <div class="absolute inset-0 bg-gradient-to-br from-techPurple/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
                     <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-techPurple to-pink-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(188,19,254,0.4)] group-hover:shadow-[0_0_35px_rgba(188,19,254,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:-rotate-6 z-10">
@@ -391,7 +391,7 @@
                     </div>
                 </div>
 
-                <!-- Ci gaban Manhaja -->
+                <!-- මෘදුකාංග නිර්මාණය -->
                 <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-200 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
                     <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
                     <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-400 to-emerald-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_35px_rgba(74,222,128,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:rotate-6 z-10">
@@ -408,7 +408,7 @@
                     </div>
                 </div>
 
-                <!-- Hanyar Sadarwa -->
+                <!-- නෙට්වර්කින් -->
                 <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
                     <div class="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
                     <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-orange-400 to-red-600 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(251,146,60,0.4)] group-hover:shadow-[0_0_35px_rgba(251,146,60,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:-rotate-6 z-10">
@@ -425,7 +425,7 @@
                     </div>
                 </div>
 
-                <!-- Tsarin Aiki & Gyarawa -->
+                <!-- මෙහෙයුම් පද්ධති -->
                 <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-100 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
                     <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-blue-400 to-indigo-700 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(96,165,250,0.4)] group-hover:shadow-[0_0_35px_rgba(96,165,250,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:rotate-6 z-10">
@@ -442,7 +442,7 @@
                     </div>
                 </div>
 
-                <!-- Mayar da Bayanai -->
+                <!-- දත්ත ප්‍රතිසාධනය -->
                 <div class="glass-card p-6 md:p-8 rounded-[2rem] relative group reveal delay-200 flex flex-col interactive-element cursor-pointer border-t border-l border-white/10">
                     <div class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]"></div>
                     <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-red-500 to-rose-800 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(239,68,68,0.4)] group-hover:shadow-[0_0_35px_rgba(239,68,68,0.8)] group-hover:scale-110 transition-all duration-500 group-hover:-rotate-6 z-10">
@@ -462,7 +462,7 @@
         </div>
     </section>
 
-    <!-- SABON SASHE NA ILIMI A DYNAMIC -->
+    <!-- අලුත් තාක්ෂණික ලිපි කොටස (Learn Tech Section) -->
     <section id="learn" class="py-24 relative bg-gradient-to-b from-[#050505] to-[#0a0a0a] border-t border-white/5">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12 reveal">
@@ -471,7 +471,7 @@
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">සරල සිංහලෙන් තාක්ෂණය ඉගෙන ගන්න. දැන් ලිපි දහස් ගණනක් වුවද මෙතැනින් පහසුවෙන් සොයා කියවිය හැක.</p>
             </div>
 
-            <!-- Learn Tech Search Bar -->
+            <!-- නවීන සෙවුම් තීරුව -->
             <div class="mb-16 max-w-3xl mx-auto relative group reveal z-20">
                 <div class="absolute -inset-1.5 bg-gradient-to-r from-green-400 via-techBlue to-techPurple rounded-full opacity-40 blur-lg group-hover:opacity-70 transition duration-500 hidden md:block"></div>
                 <div class="relative flex items-center bg-black/90 backdrop-blur-xl rounded-full p-2.5 border border-gray-600 focus-within:border-green-400 focus-within:shadow-[0_0_25px_rgba(74,222,128,0.3)] transition-all shadow-2xl">
@@ -495,7 +495,7 @@
         </div>
     </section>
 
-    <!-- SASHE NA LABARAN FASAHAR RAYUWA -->
+    <!-- සජීවී තාක්ෂණික පුවත් කොටස (Live Tech News Section) -->
     <section id="news" class="py-24 relative bg-[#030303] border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
@@ -505,7 +505,7 @@
             </div>
 
             <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Mai Loda -->
+                <!-- ලෝඩරය (Loader) -->
                 <div class="text-center col-span-1 md:col-span-2 lg:col-span-3 text-blue-400 py-10">
                     <i class="fas fa-circle-notch fa-spin text-5xl mb-4"></i>
                     <p class="font-bold tracking-wider">අලුත්ම පුවත් ගෙනෙමින් පවතී...</p>
@@ -514,7 +514,7 @@
         </div>
     </section>
 
-    <!-- SASHE NA MAGANCE MATSALA -->
+    <!-- දෝෂ විසඳුම් කොටස (Troubleshoot Section) -->
     <section id="troubleshoot" class="py-24 relative bg-black/60 backdrop-blur-xl border-t border-techPink/20">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
@@ -523,7 +523,7 @@
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">පරිගණකයේ ඇතිවන ගැටළු වලට තනිවම විසඳුම් සොයාගන්න.</p>
             </div>
 
-            <!-- Binciken Zamani -->
+            <!-- නවීන සෙවුම් තීරුව (Modern Search) -->
             <div class="mb-12 relative group reveal z-20">
                 <div class="absolute -inset-1.5 bg-gradient-to-r from-techPink via-techPurple to-techBlue rounded-full opacity-40 blur-lg group-hover:opacity-70 transition duration-500 hidden md:block"></div>
                 <div class="relative flex items-center bg-[#0a0a0a] rounded-full p-2.5 border border-gray-600 focus-within:border-techPink focus-within:shadow-[0_0_25px_rgba(255,0,85,0.3)] transition-all shadow-2xl">
@@ -540,14 +540,14 @@
                 <button onclick="filterIssues('Internet')" class="filter-btn px-6 md:px-8 py-2.5 rounded-full border border-gray-700 text-gray-300 hover:border-techPink hover:text-techPink hover:bg-techPink/10 transition-all text-sm md:text-base font-bold shadow-md interactive-element"><i class="fas fa-wifi mr-2"></i>Internet</button>
             </div>
 
-            <!-- Jerin Matsaloli -->
+            <!-- ගැටළු ලැයිස්තුව (Issues List) -->
             <div id="issuesContainer" class="space-y-4 md:space-y-5 max-h-[650px] overflow-y-auto pr-3 custom-scrollbar reveal">
                 <!-- Javascript will populate this -->
             </div>
         </div>
     </section>
 
-    <!-- SASHE NA WURI MAI DAɗI -->
+    <!-- විනෝදාත්මක කොටස (Fun Zone Section) -->
     <section id="funzone" class="py-24 relative bg-gradient-to-t from-[#050505] to-[#0a0a0a] border-t border-yellow-500/20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
@@ -556,9 +556,9 @@
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">වෙබ් අඩවියේ රැඳී සිටින අතරතුර ඔබේ IT දැනුම උරගා බලන්න සහ අලුත් දේවල් ඉගෙන ගන්න.</p>
             </div>
 
-            <!-- Jere na 1: Gaskiya & Tambayoyi -->
+            <!-- 1 වන පේළිය: කරුණු සහ ප්‍රශ්නාවලිය -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <!-- Gaskiyar Fasaha -->
+                <!-- තාක්ෂණික කරුණු (Tech Facts) -->
                 <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col justify-between items-center text-center group">
                     <i class="fas fa-lightbulb text-6xl text-yellow-400 mb-6 drop-shadow-[0_0_25px_rgba(250,204,21,0.8)] group-hover:scale-110 transition-transform duration-500 group-hover:rotate-12"></i>
                     <h3 class="text-3xl font-black text-white mb-4 tracking-wide">Did You Know?</h3>
@@ -571,7 +571,7 @@
                     </button>
                 </div>
 
-                <!-- Tambayoyin Fasaha na Mini -->
+                <!-- කුඩා තාක්ෂණික ප්‍රශ්නාවලිය (Mini IT Quiz) -->
                 <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col min-h-[500px]">
                     <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
                         <h3 class="text-3xl font-black text-white flex items-center tracking-wide"><i class="fas fa-gamepad text-techBlue mr-3 text-4xl drop-shadow-[0_0_15px_#00f2ff]"></i> Mini IT Quiz</h3>
@@ -602,9 +602,9 @@
                 </div>
             </div>
 
-            <!-- Jere na 2: Ma'ajiya & Rubutawa -->
+            <!-- 2 වන පේළිය: මෙමරි ගේම් සහ ටයිපින්ග් -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <!-- Daidaitar Ma'ajiya na Fasaha -->
+                <!-- මෙමරි ගේම් (Memory Match) -->
                 <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between group">
                     <div class="text-center mb-6">
                         <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-clone text-techPurple mr-3 drop-shadow-[0_0_15px_#bc13fe]"></i> Memory Match</h3>
@@ -618,7 +618,7 @@
                     </div>
                 </div>
 
-                <!-- Gwajin Rubuta Dan Dandatsa -->
+                <!-- ටයිපින්ග් ගේම් (Hacker Typing) -->
                 <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
                     <div class="text-center mb-6">
                         <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-keyboard text-green-400 mr-3 drop-shadow-[0_0_15px_#4ade80]"></i> Hacker Typing</h3>
@@ -636,9 +636,9 @@
                 </div>
             </div>
 
-            <!-- Jere na 3: Launi na Hex & Lokacin Maimaitawa -->
+            <!-- 3 වන පේළිය: මුරපද පරීක්ෂාව සහ ප්‍රතිචාර කාලය -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <!-- Gwajin Ƙarfin Kalmar Sirri -->
+                <!-- මුරපද ශක්තිමත්භාවය පරීක්ෂා කිරීම -->
                 <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
                     <div class="text-center mb-8">
                         <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-key text-blue-400 mr-3 drop-shadow-[0_0_15px_#60a5fa]"></i> Password Tester</h3>
@@ -661,7 +661,7 @@
                     </div>
                 </div>
 
-                <!-- Gwajin Lokacin Maimaitawa -->
+                <!-- ප්‍රතිචාර කාලය මැනීම -->
                 <div class="glass-card rounded-[2rem] p-8 border-t border-l border-white/10 bg-gradient-to-br from-gray-900 to-black reveal flex flex-col items-center justify-between">
                     <div class="text-center mb-6">
                         <h3 class="text-3xl font-black text-white mb-2 flex items-center justify-center tracking-wide"><i class="fas fa-stopwatch text-yellow-500 mr-3 drop-shadow-[0_0_15px_#eab308]"></i> Reaction Time</h3>
@@ -682,7 +682,7 @@
         </div>
     </section>
 
-    <!-- Game da Ni -->
+    <!-- මා ගැන (About Me) -->
     <section id="about" class="py-24 relative bg-[#030303]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="glass-card rounded-[3rem] p-8 md:p-16 border-t-2 border-l-2 border-white/10 bg-gradient-to-br from-gray-900 via-black to-[#111] reveal shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
@@ -715,7 +715,7 @@
                         </div>
                     </div>
                     <div class="relative">
-                        <!-- Abubuwan ado -->
+                        <!-- සැරසිලි කොටස් -->
                         <div class="absolute -top-16 -right-16 w-48 h-48 bg-techBlue rounded-full mix-blend-screen filter blur-[80px] opacity-30 animate-blob hidden md:block"></div>
                         <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-techPurple rounded-full mix-blend-screen filter blur-[80px] opacity-30 animate-blob animation-delay-2000 hidden md:block"></div>
                         
@@ -748,9 +748,9 @@
         </div>
     </section>
 
-    <!-- Sashe na Tuntuɓar -->
+    <!-- සම්බන්ධ කරගැනීමේ කොටස (Contact Section) -->
     <section id="contact" class="py-24 relative bg-black">
-        <!-- Rufin tsarin Grid -->
+        <!-- ග්‍රිඩ් පසුබිම -->
         <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 30px 30px;"></div>
         
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -764,7 +764,7 @@
                         <p class="text-lg text-gray-400 mt-4">Ready to start your project or fix your device?</p>
                     </div>
 
-                    <!-- Filin Shigarwa na Form na Tuntuɓar -->
+                    <!-- ෆෝම් එකේ දත්ත ඇතුළත් කරන කොටස් -->
                     <div class="space-y-6 relative z-10 max-w-3xl mx-auto">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="group">
@@ -801,7 +801,7 @@
                             <textarea id="c-message" rows="4" class="w-full bg-black/50 border-2 border-gray-800 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-techBlue focus:bg-black transition-all shadow-inner resize-none" placeholder="How can I help you?"></textarea>
                         </div>
                         
-                        <!-- Tsarin Maballin Biyu -->
+                        <!-- බොත්තම් ද්විත්වයේ සැකසුම (Dual Button System) -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-6">
                             <button onclick="sendMessage('whatsapp')" class="interactive-element w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-black font-black py-4 rounded-2xl shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] transition-all flex items-center justify-center gap-3 text-lg group">
                                 <i class="fab fa-whatsapp text-2xl group-hover:scale-125 transition-transform duration-300"></i> WhatsApp
@@ -838,7 +838,7 @@
         </div>
     </section>
 
-    <!-- Kafa -->
+    <!-- ෆූටරය (Footer) -->
     <footer class="bg-black py-10 border-t border-white/5 text-center relative z-10">
         <div class="flex justify-center items-center gap-2 mb-4">
             <img src="logo.png" alt="KD" class="h-6 w-6 opacity-50 grayscale" onerror="this.style.display='none'">
@@ -849,7 +849,7 @@
         </p>
     </footer>
 
-    <!-- NA'URAR MAI AI CHATBOT -->
+    <!-- AI චැට්බොට් විජට් එක -->
     <div id="chat-widget" class="fixed bottom-6 right-4 md:right-8 z-[100] flex flex-col items-end gap-3 group">
         <div class="bg-black/80 backdrop-blur-md text-white px-4 py-2.5 rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] border border-techBlue/30 animate-float text-xs md:text-sm font-bold mr-2 relative hidden md:block group-hover:border-techBlue group-hover:shadow-[0_0_15px_rgba(0,242,255,0.4)] transition-all">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-techBlue to-techPurple font-black">Need IT Support?</span> Ask AI 👋
@@ -862,7 +862,7 @@
         </button>
     </div>
 
-    <!-- Taga na Taɗi -->
+    <!-- චැට් කවුළුව (Chat Window) -->
     <div id="chat-window" class="fixed bottom-24 md:bottom-28 right-4 md:right-8 w-[92vw] sm:w-80 md:w-[400px] bg-black/90 backdrop-blur-3xl border border-white/10 rounded-[2rem] shadow-[0_10px_50px_rgba(188,19,254,0.3)] transform scale-0 origin-bottom-right transition-all duration-400 cubic-bezier(0.175, 0.885, 0.32, 1.275) z-[100] overflow-hidden flex flex-col">
         <div class="bg-gradient-to-r from-techBlue via-techPurple to-techPink p-4 flex justify-between items-center relative z-10 shadow-lg">
             <div class="flex items-center gap-4 text-black">
@@ -902,15 +902,15 @@
     </div>
 
     <script>
-        // --- MANHAJAR MAI LODA SHAFI ---
+        // --- පිටුව ලෝඩ් වීමේ සැකසුම් ---
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('page-loader');
                 loader.classList.add('loader-hide');
-            }, 800); // Tasa na sakan 0.8 don nuna rayarwa
+            }, 800); // ඇනිමේෂන් එක පෙන්වීමට තත්පර 0.8ක ප්‍රමාදයක්
         });
 
-        // --- MANHAJAR HASKE/DUHU YANAYIN ---
+        // --- ලයිට්/ඩාර්ක් මෝඩ් සැකසුම් ---
         let isLightMode = false;
         function toggleTheme() {
             isLightMode = !isLightMode;
@@ -934,7 +934,7 @@
             }
         }
 
-        // --- MANHAJAR SIGA NA AL'ADA ---
+        // --- කස්ටම් කර්සරයේ සැකසුම් ---
         const cursor = document.getElementById('custom-cursor');
         const cursorDot = document.getElementById('custom-cursor-dot');
         const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .interactive-element');
@@ -951,14 +951,14 @@
             el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
         });
 
-        // --- MANHAJAR GUDUN GUNGURAWA ---
+        // --- ස්ක්‍රෝල් ප්‍රෝග්‍රෙස් එකේ සැකසුම් ---
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('scroll-progress-bar').style.width = scrolled + '%';
             
-            // Canjin salon Kewayawa akan gungurawa
+            // ස්ක්‍රෝල් කිරීමේදී මෙනුවේ පෙනුම වෙනස් කිරීම
             const nav = document.getElementById('navbar');
             if (winScroll > 50) {
                 nav.classList.add('shadow-[0_4px_30px_rgba(0,0,0,0.8)]', 'border-techBlue/30');
@@ -967,27 +967,32 @@
             }
         });
 
-        // --- CIGABAN LABARAN FASAHA NA GOOGLE (Google News API) ---
+        // --- සජීවී තාක්ෂණික පුවත් සැකසුම් (Google News API) ---
         async function fetchTechNews() {
             const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = `
+                <div class="text-center col-span-1 md:col-span-2 lg:col-span-3 text-blue-400 py-10">
+                    <i class="fas fa-circle-notch fa-spin text-5xl mb-4"></i>
+                    <p class="font-bold tracking-wider">Fetching latest tech news...</p>
+                </div>
+            `;
             try {
-                // Daukar labaran Sri Lanka daga Google News
+                // Google News හරහා ශ්‍රී ලංකාවේ තාක්ෂණික පුවත් ලබාගැනීම
                 const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=technology+Sri+Lanka&hl=en-LK&gl=LK&ceid=LK:en');
                 const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`);
                 const data = await res.json();
                 
                 if(data.status === 'ok' && data.items.length > 0) {
                     newsContainer.innerHTML = '';
-                    const articles = data.items.slice(0, 3); // Samun labarai 3 na baya-bayan nan
+                    const articles = data.items.slice(0, 3);
                     
                     articles.forEach(article => {
-                        // Nemo hoto daga kwatance (Google News baya bayar da thumbnail a waje koyaushe)
+                        // පුවතේ විස්තරයෙන් පින්තූරය ලබාගැනීම හෝ ආදේශක පින්තූරයක් යෙදීම
                         let imgUrl = 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
                         const imgMatch = article.description.match(/<img[^>]+src="([^">]+)"/);
                         if (imgMatch && imgMatch[1]) {
                             imgUrl = imgMatch[1];
                         } else {
-                            // Idan babu hoto, saka hoton fasaha
                             const fallbacks = [
                                 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
                                 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
@@ -996,8 +1001,8 @@
                             imgUrl = fallbacks[Math.floor(Math.random() * fallbacks.length)];
                         }
                         
-                        let title = article.title.split(' - ')[0]; // Cire sunan gidan yanar gizo daga take
-                        const date = new Date(article.pubDate).toLocaleDateString('si-LK', { month: 'short', day: 'numeric', year: 'numeric' });
+                        let title = article.title.split(' - ')[0]; 
+                        const date = new Date(article.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                         const safeLink = article.link ? article.link : '#';
 
                         const articleHTML = `
@@ -1021,7 +1026,7 @@
                     });
                     reveal(); 
                 } else {
-                    throw new Error("API ta gaza");
+                    throw new Error("API failed");
                 }
             } catch(e) {
                 newsContainer.innerHTML = `
@@ -1032,7 +1037,7 @@
             }
         }
 
-        // --- TSARIN HAƊAKA API NA GEMINI ---
+        // --- GEMINI API සම්බන්ධ කිරීමේ සැකසුම් ---
         const apiKey = ""; 
 
         async function fetchWithRetry(url, payload) {
@@ -1093,7 +1098,7 @@
             return html;
         }
 
-        // --- MANHAJAR SAƙONNI ---
+        // --- පණිවිඩ යැවීමේ සැකසුම් ---
         function sendMessage(method) {
             const name = document.getElementById('c-name').value;
             const phone = document.getElementById('c-phone').value;
@@ -1101,7 +1106,7 @@
             const message = document.getElementById('c-message').value;
 
             if(!name || !message) {
-                alert("Da fatan za a shigar da Sunanku da Saƙonku.");
+                alert("කරුණාකර ඔබගේ නම සහ පණිවිඩය ඇතුළත් කරන්න.");
                 return;
             }
 
@@ -1118,7 +1123,7 @@
             }
         }
 
-        // --- GUNGURA RAYARWA ---
+        // --- ස්ක්‍රෝල් ඇනිමේෂන් සැකසුම් ---
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -1133,7 +1138,7 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        // --- TASIRIN RUBUTAWA ---
+        // --- ටයිපින්ග් ඉෆෙක්ට් සැකසුම් ---
         const textToType = "HARDWARE & CODE";
         const typingElement = document.getElementById('typing-text');
         let charIndex = 0;
@@ -1164,7 +1169,7 @@
             menu.classList.toggle('hidden');
         }
 
-        // --- MANHAJAR DYNAMIC KOYI FASAHA ---
+        // --- ඩයිනමික් තාක්ෂණික ලිපි සැකසුම් ---
         const learnTechData = [
             {
                 category: "Security",
@@ -1428,9 +1433,9 @@
             }
         }
 
-        // --- MANHAJAR MAGANCE MATSALA ---
+        // --- දෝෂ විසඳුම් සැකසුම් ---
         const troubleshootData = [
-            // MATSALOLIN KAYAN AIKI
+            // හාඩ්වෙයාර් ගැටළු (HARDWARE ISSUES)
             { cat: 'Hardware', q: 'Computer won\'t turn on (No lights at all)', a: 'Verify power outlet. Check PSU switch. For laptops, remove battery, hold power button for 30s, plug in charger without battery and try.' },
             { cat: 'Hardware', q: 'PC turns on, fans spin, but screen is black', a: 'Often a RAM issue. Turn off, open case, remove RAM sticks, clean the gold contacts with a pencil eraser, blow out dust, and firmly reseat them.' },
             { cat: 'Hardware', q: 'Continuous beeping sound on startup', a: 'Count the beeps. Usually indicates a RAM or GPU error. Reseat both components firmly into their slots.' },
@@ -1452,7 +1457,7 @@
             { cat: 'Hardware', q: 'Monitor displays weird colors or lines', a: 'Check the display cable (HDMI/DP) connections. Try a different monitor to rule out a dying Graphics Card (GPU).' },
             { cat: 'Hardware', q: 'Webcam not detected', a: 'Check for a physical privacy switch or camera key (Fn+Camera). Allow camera access in Windows Privacy Settings.' },
             
-            // MATSALOLIN MANHAJA
+            // මෘදුකාංග ගැටළු (SOFTWARE ISSUES)
             { cat: 'Software', q: 'Windows Update stuck downloading', a: 'Run the Windows Update Troubleshooter. Alternatively, clear the "SoftwareDistribution" folder located in C:\\Windows.' },
             { cat: 'Software', q: 'Program is frozen / Not Responding', a: 'Press Ctrl+Shift+Esc to open Task Manager. Right-click the frozen program and select "End Task".' },
             { cat: 'Software', q: 'Blue Screen of Death (BSOD)', a: 'Note the error code. "MEMORY_MANAGEMENT" = Test RAM. "IRQL_NOT_LESS_OR_EQUAL" = Update drivers. Boot into Safe Mode to troubleshoot.' },
@@ -1476,7 +1481,7 @@
             { cat: 'Software', q: 'C: Drive is red/full but no large files', a: 'Run "Disk Cleanup" -> "Clean up system files". Delete previous Windows installations (Windows.old) and temp files.' },
             { cat: 'Software', q: 'Mouse cursor disappears entirely', a: 'Press Fn + F-key for touchpad toggle. Unplug and replug mouse. Press Windows key to check if system is responsive.' },
             
-            // MATSALOLIN INTERNET & HANYAR SADARWA
+            // අන්තර්ජාල හා නෙට්වර්ක් ගැටළු (INTERNET & NETWORK ISSUES)
             { cat: 'Internet', q: 'WiFi connected, but No Internet', a: 'Restart router. On PC, open CMD as admin: type "ipconfig /flushdns", press Enter, then "netsh winsock reset". Restart PC.' },
             { cat: 'Internet', q: 'Internet speed is extremely slow', a: 'Move closer to the router. Disconnect idle devices. Connect via Ethernet cable to verify if it is a WiFi issue or ISP issue.' },
             { cat: 'Internet', q: 'Can\'t see my WiFi network in the list', a: 'Check if router is on. Update WiFi adapter drivers. Ensure Airplane mode is off. Go to Settings and Network Reset.' },
@@ -1503,7 +1508,7 @@
         function renderIssues(data) {
             issuesContainer.innerHTML = '';
             if(data.length === 0) {
-                issuesContainer.innerHTML = '<div class="text-center text-gray-500 py-10 bg-white/5 rounded-2xl border border-white/5"><i class="fas fa-search-minus text-4xl mb-3"></i><p class="font-bold">Ba a sami hanyoyin warwarewa masu dacewa ba.</p></div>';
+                issuesContainer.innerHTML = '<div class="text-center text-gray-500 py-10 bg-white/5 rounded-2xl border border-white/5"><i class="fas fa-search-minus text-4xl mb-3"></i><p class="font-bold">මෙයට අදාළ විසඳුම් හමු නොවීය.</p></div>';
                 return;
             }
             data.forEach((issue) => {
@@ -1529,7 +1534,7 @@
                     </div>
                     <div class="faq-answer text-gray-400 mt-0">
                         <div class="pt-4 md:pt-5 pl-14 md:pl-16 border-t border-white/10 mt-4 md:mt-5">
-                            <p class="text-sm md:text-base leading-relaxed bg-black/50 p-4 rounded-xl shadow-inner border border-white/5"><span class="text-techBlue font-black tracking-widest text-xs uppercase bg-techBlue/10 px-2 py-1 rounded mr-2 border border-techBlue/20"><i class="fas fa-wrench mr-1"></i> Gyara:</span> ${issue.a}</p>
+                            <p class="text-sm md:text-base leading-relaxed bg-black/50 p-4 rounded-xl shadow-inner border border-white/5"><span class="text-techBlue font-black tracking-widest text-xs uppercase bg-techBlue/10 px-2 py-1 rounded mr-2 border border-techBlue/20"><i class="fas fa-wrench mr-1"></i> විසඳුම (Fix):</span> ${issue.a}</p>
                         </div>
                     </div>
                 `;
@@ -1581,12 +1586,12 @@
             filterIssues(category);
         });
         
-        // --- MANHAJAR CIGABAN AI CHATBOT ---
+        // --- උසස් AI චැට්බොට් සැකසුම් ---
         const chatWindow = document.getElementById('chat-window');
         const chatMessages = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
         
-        // Bayanan Baya na Wajen Layi idan API ya gaza
+        // API එක ක්‍රියා නොකළහොත් භාවිතා කිරීමට Offline දත්ත
         const botResponses = [
             { keywords: ["how are you", "kohomada", "oyata kohomada", "how u", "how r u", "kohmda", "khmda", "thathwe", "mokada wenne", "mk"], response: "මම ගොඩක් හොඳින් ඉන්නවා! 😃 අද දවස කොහොමද ඔයාට? මම AI කෙනෙක් වුණත් ඔයා එක්ක කතා කර කර ඉන්න මම ගොඩක් ආසයි." },
             { keywords: ["who are you", "kauda", "oyage nama", "oya kauda", "human", "bot", "robot", "oya manussayekda", "ai da", "nama mokakda", "who r u", "who is this"], response: "මම Tiran Kalhara ගේ AI Assistant. මම ඇත්තම මනුස්සයෙක් නෙවෙයි, ඒත් මම කතා කරන්නේ හරියටම ඔයාගේ යාළුවෙක් වගේ! 😊 මට පුළුවන් ඔයාට IT ප්‍රශ්න විසඳගන්න උදව් කරන්න." },
@@ -1598,7 +1603,7 @@
             { keywords: ["bye", "gihin ennam", "yanawa", "later", "see you", "passe", "puluwan nam", "ok", "hari", "hmm"], response: "හරි! පරිස්සමින් ඉන්න. 👋 ආයෙත් වෙලාවක් ලැබුණු ගමන් මේ පැත්තේ එන්න කතා කර කර ඉන්න. සුබ දවසක්!" },
             { keywords: ["hi", "hello", "ayubowan", "hey", "halo", "helo", "hiii"], response: "ආයුබෝවන්! යාළුවා.. 👋 මොකද වෙන්නේ? මම Tiran ගේ AI Assistant. ඔයාට IT ගැන ප්‍රශ්නයක් තියෙනවද, නැත්නම් නිකන් කතා කර කර ඉන්නද ආවේ?" },
             { keywords: ["slow", "stuck", "lag", "hang", "hira", "parakku", "100% disk", "speed"], response: "<strong>PC එක Slow වීමට ප්‍රධාන හේතු සහ විසඳුම්:</strong><br><br>1. <strong>HDD Bottleneck:</strong> පරණ Hard Disk එක ගලවලා NVMe හෝ SATA SSD එකක් සවි කිරීමෙන් වේගය 10x කින් වැඩි කරගන්න පුළුවන්.<br>2. <strong>RAM ධාරිතාවය:</strong> අද කාලයේ Windows 10/11 ධාවනයට අවම 8GB RAM එකක් අවශ්‍යයි.<br>3. <strong>Thermal Throttling:</strong> Processor එක රත් වීම නිසා වේගය අඩාල වෙනවා. Thermal paste මාරු කර Fan එක Clean කළ යුතුයි.<br><br><button onclick=\"document.getElementById('contact').scrollIntoView(); toggleChat();\" class='chat-action-btn'><i class='fas fa-tools'></i> SSD Upgrade කිරීම සඳහා විමසන්න</button>" },
-            { keywords: ["format", "os", "windows", "install", "boot", "update", "blue screen"], response: "<strong>OS Installation / Formatting Guide:</strong><br><br>Windows 11 හෝ 10 දාද්දී මුලින්ම C: Drive එකේ Data අනිවාර්යයෙන් Backup කරගන්න. <br>• GPT Partition style එකෙන් UEFI Boot විදියට Format කළොත් Windows ගොඩක් ඉක්මනට On වෙනවා.<br>• OS එක දැම්මට පස්සේ අනිවාර්යයෙන්ම Original Drivers Install කරන්න ඕන (Display, Audio, Chipset).<br><br>ඔයාට මේ දේවල් කරගන්න අපහසු නම්, Data වලට කිසිදු හානියක් නොකර මම සම්පූර්ණ Clean Install එකක් කරලා දෙන්නම්.<br><br><button onclick=\"document.getElementById('contact').scrollIntoView(); toggleChat();\" class='chat-action-btn border-techPurple text-techPurple hover:bg-techPurple'><i class='fas fa-laptop-medical'></i> Format කරගැනීමට</button>" },
+            { keywords: ["format", "os", "windows", "install", "boot", "update", "blue screen"], response: "<strong>OS Installation / Formatting Guide:</strong><br><br>Windows 11 හෝ 10 දාද්දී මුලින්ම C: Drive එකේ Data අනිවාර්යයෙන් Backup කරගන්න. <br>• GPT Partition style එකෙන් UEFI Boot විදියට Format කළොත් Windows ගොඩක් ඉක්මනට On වෙනවා.<br>• OS එක දැම්මට පස්සේ අනිවාර්යයෙන්ම Original Drivers Install කරන්න ඕන (Display, Audio, Chipset).<br><br>ඔයාට මේ දේවල් කරගන්න අපහසු නම්, Data වලට කිසිදු හානියක් නොකර මම සම්පූර්ණ Clean Install එකක් කරලා දෙන්නම්.<br><br><button onclick=\"documentgetElementById('contact').scrollIntoView(); toggleChat();\" class='chat-action-btn border-techPurple text-techPurple hover:bg-techPurple'><i class='fas fa-laptop-medical'></i> Format කරගැනීමට</button>" },
             { keywords: ["virus", "malware", "hack", "ransomware", "shortcut", "kaspersky", "defender"], response: "<strong>Virus / Malware ඉවත් කිරීම:</strong><br><br>ෆයිල්ස් Shortcut වෙලා නම් Format කරන්න එපා! <br>1. <code>cmd</code> එක Administrator විදියට open කරන්න.<br>2. <code>attrib -h -r -s /s /d G:\*.*</code> (G වෙනුවට පෙන් එකේ අකුර දෙන්න) ගහලා Enter කරන්න.<br><br>Ransomware ඇවිත් ෆයිල්ස් වල නම වෙනස් වෙලා නම්, ඉක්මනටම PC එක ඉන්ටර්නෙට් එකෙන් අයින් කරන්න. Kaspersky හෝ Malwarebytes Premium පාවිච්චි කිරීම වඩාත් ආරක්ෂිතයි." },
             { keywords: ["web", "site", "domain", "hosting", "html", "css", "js", "develop", "ecommerce", "system", "website"], response: "<strong>Web Development & Systems:</strong><br><br>ඔයාට ව්‍යාපාරයක් තියෙනවා නම් සාමාන්‍ය ෆේස්බුක් පේජ් එකකට වඩා Website එකක් තියෙන එකෙන් ලොකු වටිනාකමක් එනවා. <br>• මම පාවිච්චි කරන්නේ <strong>React.js, Node.js, Tailwind CSS</strong> වගේ නවතම තාක්ෂණයන්.<br>• Inventory Management, POS Systems (බිල් ගහන මැෂින්) වගේ දේවල් මට Cloud-based විදියට හදලා දෙන්න පුළුවන්.<br>• Domain (.com / .lk) සහ Hosting එක්ක සම්පූර්ණ පැකේජ් එකම මම බලාගන්නවා.<br><br><button onclick=\"document.getElementById('contact').scrollIntoView(); toggleChat();\" class='chat-action-btn' style='border-color:#00f2ff; color:#00f2ff;'><i class='fas fa-code'></i> වෙබ් අඩවියක් නිර්මාණය කරගැනීමට</button>" }
         ];
@@ -1663,7 +1668,7 @@
         async function processBotResponse(text) {
             addThinkingMessage();
             
-            // 1. Gwada Rayayyen Gemini API Tukuna
+            // 1. පළමුව සජීවී Gemini API එක හරහා උත්සාහ කරන්න
             try {
                 let aiResponseText = await getGeminiResponse(text);
                 
@@ -1677,7 +1682,7 @@
                 console.warn("Gemini API failed, falling back to offline logic", e);
             }
 
-            // 2. Koma ga Ma'anar Wajen Layi idan API ya gaza ko babu Maɓallin API
+            // 2. API එක අසමත් වුවහොත් හෝ API Key එකක් නොමැති නම් Offline දත්ත වලට යන්න
             const thinkingTime = Math.random() * (2000 - 1200) + 1200;
             setTimeout(() => {
                 removeThinkingMessage();
@@ -1742,7 +1747,7 @@
                         scanProgress.style.width = progress + '%';
                     }, 200);
 
-                    // Kira Haƙiƙanin Hoton API
+                    // රූප කියවීමේ API එක අමතන්න
                     let aiSolution = await getGeminiImageResponse(base64String, file.type);
                     
                     clearInterval(interval);
@@ -1763,7 +1768,7 @@
                             `;
                             addMessage(formattedSolution, 'bot');
                         } else {
-                            provideImageSolutionOffline(); // Komawa Wajen Layi
+                            provideImageSolutionOffline(); // රූප සඳහා Offline ප්‍රතිචාරය
                         }
                     }, 500);
                 };
@@ -1839,7 +1844,7 @@
             }
         }
 
-        // Komawar Hoton Wajen Layi
+        // රූප සඳහා Offline ප්‍රතිචාරය
         function provideImageSolutionOffline() {
             const solutionHTML = `
                 <div class="space-y-3">
@@ -1855,7 +1860,7 @@
             addMessage(solutionHTML, 'bot');
         }
 
-        // --- MANHAJAR WURI MAI DAɗI (Gaskiyar Fasaha) ---
+        // --- විනෝදාත්මක කොටස: තාක්ෂණික කරුණු ---
         const techFacts = [
             "පළමු පරිගණක මූසිකය (Mouse) 1964 දී Doug Engelbart විසින් ලී වලින් නිපදවා ඇත.",
             "ලොව පළමු වෙබ් අඩවිය 1991 අගෝස්තු 6 වන දින අන්තර්ජාලයට එක් විය.",
@@ -1879,7 +1884,7 @@
             }, 400);
         }
 
-        // --- MANHAJAR WURI MAI DAɗI (Tambayoyin Fasaha na Mini - AN SABUNTA DA BABBAN BANKIN TAMBAYOYI) ---
+        // --- විනෝදාත්මක කොටස: කුඩා තාක්ෂණික ප්‍රශ්නාවලිය ---
         const allQuizQuestions = [
             { q: "පරිගණකයක තාවකාලික මතකය (Short-term memory) ලෙස හඳුන්වන්නේ කුමක්ද?", options: ["Hard Disk", "RAM", "Processor", "Motherboard"], answer: 1 },
             { q: "URL යන්නෙහි දිගු නම කුමක්ද?", options: ["Uniform Resource Locator", "Universal Reference Link", "Unified Resource Line", "Ultra Reliable Link"], answer: 0 },
@@ -2019,7 +2024,7 @@
             }
         }
 
-        // --- MANHAJAR SABON WURI MAI DAɗI: GWAJIN ƘARFIN KALMAR SIRRI ---
+        // --- අලුත් විනෝදාත්මක කොටස: මුරපද ශක්තිමත්භාවය පරීක්ෂා කිරීම ---
         function checkPasswordStrength() {
             const pwd = document.getElementById('pwd-input').value;
             const bar = document.getElementById('pwd-bar');
@@ -2055,8 +2060,8 @@
             }
         }
 
-        // --- MANHAJAR SABON WURI MAI DAɗI: GWAJIN LOKACIN MAIMAITAWA ---
-        let reactionState = 'idle'; // maras aiki, jira, shirye
+        // --- අලුත් විනෝදාත්මක කොටස: ප්‍රතිචාර කාලය මැනීම ---
+        let reactionState = 'idle'; // idle, waiting, ready
         let reactionStartTime = 0;
         let reactionTimeout = null;
         let bestReaction = Infinity;
@@ -2106,7 +2111,7 @@
             }
         }
 
-        // --- MANHAJAR WURI MAI DAɗI: DAIDAITAR MA'AJIYA ---
+        // --- විනෝදාත්මක කොටස: මෙමරි ගේම් ---
         const memoryIconsList = ['fa-html5', 'fa-css3-alt', 'fa-js', 'fa-react', 'fa-python', 'fa-windows', 'fa-android', 'fa-apple'];
         let memoryBoard = document.getElementById('memory-board');
         let flippedCards = [];
@@ -2159,7 +2164,7 @@
             flippedCards = [];
         }
 
-        // --- MANHAJAR WURI MAI DAɗI: GWAJIN GUDUN RUBUTAWA ---
+        // --- විනෝදාත්මක කොටස: ටයිපින්ග් වේගය මැනීම ---
         const typingQuotes = [
             'npm install react-dom',
             'git commit -m "Update"',
@@ -2205,7 +2210,7 @@
                 const wpm = Math.round(wordsCount / timeTaken);
                 document.getElementById('typing-wpm').innerText = wpm;
                 
-                // Ƙara tasirin nasara
+                // සාර්ථක වූ විට එන ඉෆෙක්ට් එක එකතු කරන්න
                 const wpmElement = document.getElementById('typing-wpm');
                 wpmElement.classList.add('animate-ping', 'text-2xl');
                 setTimeout(() => wpmElement.classList.remove('animate-ping', 'text-2xl'), 1000);
@@ -2214,14 +2219,14 @@
             }
         }
 
-        // --- FARA DUKKA ---
+        // --- සියලුම දේවල් ආරම්භ කිරීම (INIT ALL) ---
         document.addEventListener('DOMContentLoaded', () => {
             typeEffect();
             renderIssues(troubleshootData);
             renderLearnTechArticles();
             initMemoryGame();
             initTyping();
-            fetchTechNews(); // Kawo Labaran Rayuwa
+            fetchTechNews(); // සජීවී පුවත් ලබාගැනීම
         });
 
     </script>
